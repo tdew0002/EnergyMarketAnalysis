@@ -1,0 +1,351 @@
+---
+title: "Data Procesing and Cleaning"
+format: html
+editor: visual
+---
+
+## Filtering, and normalisaiton timestamp
+```{r}
+library(arrow)
+library(data.table)
+library(fs)
+library(stringr)
+library(dplyr)
+library(lubridate)
+library(future)
+library(future.apply)
+
+# 1) Maximize Arrow + data.table threads
+#    By default, Arrow tries to use all cores, but let's be explicit:
+arrow::set_cpu_count(parallel::detectCores())
+# Let data.table use all cores as well:
+setDTthreads(0)
+
+# 2) Parallel plan for multi-file processing
+plan(multicore, workers = max(1, parallel::detectCores() - 1))
+
+source("region_utils.R")  
+source("filtering_rules.R")  
+
+raw_parquet_dir <- "parquet_tables"
+filtered_parquet_dir <- "filtered_parquet_tables"
+dir_create(filtered_parquet_dir)
+
+# --------------------------------------------------------------------------------
+# Chunked processing function, with bigger chunk_size = 1e6
+# and optional col_select usage.
+# --------------------------------------------------------------------------------
+process_file_in_chunks <- function(file, table_name, rule, chunk_size = 1e6) {
+  # If you want to pre-select columns from the Parquet to reduce I/O,
+  # build col_select from the columns you truly need:
+  # e.g. parse them from rule$select plus the columns used in filter.
+  #
+  # For demonstration, we skip that step because your filter uses data.table syntax.
+  # If you know exactly which columns are used, you could do:
+  # required_cols <- unique(c("BIDTYPE","DIRECTION","DUID","SETTLEMENTDATE", ...))
+  # arrow_table <- read_parquet(file, as_data_frame = FALSE, col_select = required_cols)
+  #
+  # If you want to keep it simple, read all columns:
+  arrow_table <- read_parquet(file, as_data_frame = FALSE)
+  
+  nrows <- arrow_table$num_rows
+  chunks <- list()
+
+  for (start in seq(1, nrows, by = chunk_size)) {
+    end <- min(start + chunk_size - 1, nrows)
+    # Slice chunk from Arrow table
+    chunk <- arrow_table$Slice(offset = start - 1, length = end - start + 1)$to_data_frame()
+    dt <- as.data.table(chunk)
+
+    # OPERATIONAL_DEMAND fix: remove duplicate name columns
+    if (table_name == "OPERATIONAL_DEMAND") {
+      dupes <- which(names(dt) == "OPERATIONAL_DEMAND")
+      if (length(dupes) > 1) dt[, (dupes[-length(dupes)]) := NULL]
+    }
+
+    # Filter
+    dt_filtered <- tryCatch(rule$filter(dt), error = function(e) {
+      warning("⚠️ Filter failed: ", e$message)
+      return(NULL)
+    })
+    if (is.null(dt_filtered) || nrow(dt_filtered) == 0) next
+
+    # Merge region if DUID present
+    dt_filtered <- add_regionid_if_applicable(dt_filtered)
+
+    # Select
+    selected_cols <- rule$select(dt_filtered)
+    # In case select() returned NULL or empty
+    if (length(selected_cols) == 0) next
+
+    selected <- dt_filtered[, ..selected_cols]
+
+    # Timestamp
+    if (!is.null(rule$timestamp)) {
+      selected <- tryCatch({
+        rule$timestamp(selected)
+        selected
+      }, error = function(e) {
+        warning("⚠️ Timestamp failed on chunk: ", e$message)
+        selected
+      })
+    }
+
+    chunks[[length(chunks) + 1]] <- selected
+  }
+
+  if (length(chunks) > 0) rbindlist(chunks, use.names = TRUE) else NULL
+}
+
+# --------------------------------------------------------------------------------
+# Main processing logic
+# Here, we parallelize over files with future_lapply().
+# --------------------------------------------------------------------------------
+files_processor <- function(file, table_name, rule, output_dir) {
+  # Chunked read if table_name matches certain large tables
+  if (table_name %in% c("BIDPEROFFER_D", "OUTAGEDETAIL")) {
+    result_dt <- process_file_in_chunks(file, table_name, rule)
+  } else {
+    # Non-chunk approach
+    # Again, you could do col_select here if desired.
+    dt <- as.data.table(read_parquet(file))
+
+    if (table_name == "OPERATIONAL_DEMAND") {
+      dupes <- which(names(dt) == "OPERATIONAL_DEMAND")
+      if (length(dupes) > 1) dt[, (dupes[-length(dupes)]) := NULL]
+    }
+
+    dt_filtered <- rule$filter(dt)
+    dt_filtered <- add_regionid_if_applicable(dt_filtered)
+
+    sel_cols <- rule$select(dt_filtered)
+    if (length(sel_cols) == 0) return(NULL)
+
+    result_dt <- dt_filtered[, ..sel_cols]
+    if (!is.null(rule$timestamp)) rule$timestamp(result_dt)
+  }
+  result_dt
+}
+
+# --------------------------------------------------------------------------------
+# Run for each table
+# --------------------------------------------------------------------------------
+for (table_name in names(filtering_rules)) {
+  input_dir <- file.path(raw_parquet_dir, table_name)
+  output_dir <- file.path(filtered_parquet_dir, table_name)
+  meta_file <- file.path(output_dir, ".processed_files.txt")
+
+  if (!dir_exists(input_dir)) {
+    message("⚠️ Skipping missing directory: ", table_name)
+    next
+  }
+
+  dir_create(output_dir)
+  processed_files <- if (file_exists(meta_file)) readLines(meta_file) else character(0)
+  files_to_process <- dir(input_dir, pattern = "\\.parquet$", full.names = TRUE)
+  raw_filenames <- basename(files_to_process)
+  new_files <- files_to_process[!raw_filenames %in% processed_files]
+
+  if (length(new_files) == 0) {
+    message("✅ ", table_name, ": Up to date.")
+    next
+  }
+
+  rule <- filtering_rules[[table_name]]
+  message("🚀 Processing table: ", table_name, " with ", length(new_files), " new files ...")
+
+  # 3) Parallelize with future_lapply over the new_files
+  results_list <- future_lapply(new_files, function(file) {
+    message("🔍 [", table_name, "] ", basename(file))
+    # Do the same logic as your for-loop, but in parallel
+    filtered_dt <- tryCatch({
+      files_processor(file, table_name, rule, output_dir)
+    }, error = function(e) {
+      warning("❌ Failed to process ", file, ": ", e$message)
+      return(NULL)
+    })
+
+    # Write out
+    if (!is.null(filtered_dt) && nrow(filtered_dt) > 0) {
+      out_file <- file.path(output_dir, basename(file))
+      write_parquet(filtered_dt, out_file)
+      message("✅ Saved: ", out_file)
+      return(basename(file))
+    } else {
+      message("⚠️ No valid rows after filtering for: ", file)
+      return(NULL)
+    }
+  })
+
+  # 4) Update the meta file for processed files
+  processed_now <- unlist(results_list)
+  processed_now <- processed_now[!is.na(processed_now)]
+  if (length(processed_now) > 0) {
+    writeLines(unique(c(processed_files, processed_now)), meta_file)
+  }
+}
+
+```
+
+### Rerun one table only when rules changing
+```{r}
+file.remove("filtered_parquet_tables/BIDDAYOFFER_D/.processed_files.txt")
+```
+
+
+## not working
+```{r}
+library(arrow)
+library(dplyr)
+library(fs)
+library(rlang)
+
+# -----------------------------------------------------------------------------
+# 1) Define your categories, meta columns, variable columns, and filter logic
+# -----------------------------------------------------------------------------
+
+# For columns like PRICEBANDXX or BANDAVAILXX, you may have up to 10 (or more)
+# e.g., PRICEBAND1..PRICEBAND10, BANDAVAIL1..BANDAVAIL10. Adjust as needed.
+price_bands      <- paste0("PRICEBAND", 1:10)
+bandavail_bands  <- paste0("BANDAVAIL", 1:10)
+
+# Each list element: "IDENTIFIER_CATEGORY" = list(meta_cols = [...],
+#                                                var_cols  = [...],
+#                                                filter_expr = expression(...))
+
+categories_info <- list(
+  BIDDAYOFFER_D = list(
+    meta_cols   = c("DUID", "SETTLEMENTDATE"),
+    var_cols    = price_bands,  # e.g. PRICEBAND1..10
+    filter_expr = expression(BIDTYPE == "ENERGY" & DIRECTION == "GEN")
+  ),
+
+  BIDPEROFFER_D = list(
+    meta_cols   = c("DUID", "SETTLEMENTDATE", "PERIODID", "DIRECTION"),
+    var_cols    = c(bandavail_bands, "MAXAVAIL"),
+    filter_expr = expression(BIDTYPE == "ENERGY" & DIRECTION == "GEN")
+  ),
+
+  INTERMITTENT_GEN_SCADA = list(
+    meta_cols   = c("RUN_DATETIME", "DUID"),
+    var_cols    = c("SCADA_VALUE"),
+    filter_expr = expression(SCADA_TYPE == "LOCL")
+  ),
+
+  INTERMITTENT_DS_RUN = list(
+    meta_cols   = c("RUN_DATETIME", "DUID", "ORIGIN"),
+    var_cols    = character(0),         # no variable columns specified
+    filter_expr = NULL                  # no filter
+  ),
+
+  INTERMITTENT_DS_PRED = list(
+    meta_cols   = c("DUID", "INTERVAL_DATETIME", "ORIGIN"),
+    var_cols    = c("FORECAST_MEAN", "FORECAST_P50"),
+    filter_expr = NULL
+  ),
+
+  INTERMITTENT_FORECAST_TRK = list(
+    meta_cols   = c("SETTLEMENTDATE", "DUID", "ORIGIN", "FORECAST_PRIORITY"),
+    var_cols    = character(0),
+    filter_expr = NULL
+  ),
+
+  OPERATIONAL_DEMAND = list(
+    meta_cols   = c("REGIONID", "INTERVAL_DATETIME"),
+    var_cols    = c("OPERATIONAL_DEMAND"),
+    filter_expr = expression(REGIONID == "VIC1")
+  ),
+
+  FORECAST = list(
+    meta_cols   = c("REGIONID", "INTERVAL_DATETIME"),
+    var_cols    = c("POWERMEAN", "POWERPOE50"),
+    filter_expr = expression(REGIONID == "VIC1")
+  ),
+
+  UNIT_SOLUTION = list(
+    meta_cols   = c("DUID", "DISPATCHINTERVAL"),
+    var_cols    = c("AVAILABILITY", "TOTALCLEARED"),
+    filter_expr = NULL
+  ),
+
+  CONSTRAINT = list(
+    meta_cols   = c("CONSTRAINTID", "DISPATCHINTERVAL", "DUID"),
+    var_cols    = c("RHS", "MARGINALVALUE", "VIOLATIONDEGREE", "LHS"),
+    filter_expr = NULL
+  ),
+
+  OUTAGEDETAIL = list(
+    meta_cols   = c("SUBSTATIONID", "ACTUAL_STARTTIME", "ACTUAL_ENDTIME"),
+    var_cols    = character(0),
+    filter_expr = NULL
+  ),
+
+  DREGION = list(
+    meta_cols   = c("SETTLEMENTDATE", "REGIONID"),
+    var_cols    = c(
+      "RRP", "TOTALDEMAND", "DEMANDFORECAST", "DISPATCHABLEGENERATION",
+      "DISPATCHABLELOAD", "NETINTERCHANGE", "AVAILABLEGENERATION", 
+      "INITIALSUPPLY"
+    ),
+    filter_expr = expression(REGIONID == "VIC1")
+  )
+)
+
+# -----------------------------------------------------------------------------
+# 2) Function to read, filter, and select columns for a single category
+# -----------------------------------------------------------------------------
+process_category <- function(category_name, cat_info,
+                             parquet_root = "parquet_tables",
+                             output_root  = "cleaned_parquet_tables") {
+
+  cat_dir <- file.path(parquet_root, category_name)
+  if (!dir_exists(cat_dir)) {
+    message("No parquet directory found for: ", category_name)
+    return(invisible(NULL))
+  }
+
+  # Open the entire category’s dataset (all Parquet files in cat_dir)
+  ds <- open_dataset(cat_dir)
+
+  # Apply filters if provided
+  if (!is.null(cat_info$filter_expr)) {
+    ds <- ds %>%
+      filter(!!parse_expr(deparse(cat_info$filter_expr)))
+  }
+
+  # Decide which columns to keep
+  keep_cols <- union(cat_info$meta_cols, cat_info$var_cols)
+  # Only keep columns that exist in the actual dataset
+  keep_cols <- intersect(keep_cols, names(ds))
+
+  # Select them
+  ds_filtered <- ds %>% select(all_of(keep_cols))
+
+  # Write out cleaned data
+  out_dir <- file.path(output_root, category_name)
+  dir_create(out_dir, recurse = TRUE)
+
+  # This writes multiple parquet “part” files to out_dir (one per partition).
+  # If you prefer a single parquet file, see ?write_dataset’s file layout options
+  write_dataset(ds_filtered, out_dir)
+
+  message("✔ Processed category: ", category_name,
+          " -> columns kept: [", paste(keep_cols, collapse = ", "), "]")
+  invisible(NULL)
+}
+
+# -----------------------------------------------------------------------------
+# 3) Create the “cleaned” directory & run for all categories
+# -----------------------------------------------------------------------------
+cleaned_dir <- "cleaned_parquet_tables"
+dir_create(cleaned_dir, recurse = TRUE)
+
+for (cat_name in names(categories_info)) {
+  process_category(cat_name, categories_info[[cat_name]],
+                   parquet_root = "parquet_tables",
+                   output_root  = cleaned_dir)
+}
+
+message("All specified categories have been cleaned and written to '", cleaned_dir, "'.")
+
+```
