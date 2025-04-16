@@ -1,0 +1,980 @@
+```{r}
+library(data.table)
+library(forecast)
+library(fabletools)
+library(arrow)
+library(stringr)
+library(plotly)
+library(feasts)
+library(lubridate)
+library(ggplot2)
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(tsibble)
+```
+
+#load dataset
+```{r}
+table_names <- c(
+  "BIDDAYOFFER_D", "BIDPEROFFER_D", "DEMAND", "INTERMITTENT_DS_RUN",
+  "INTERMITTENT_DS_PRED", "INTERMITTENT_FORECAST_TRK", "OPERATIONAL_DEMAND",
+  "ROOFTOP", "UNIT_SOLUTION", "CONSTRAINT", "OUTAGEDETAIL", "PUBLIC_PRICES"
+)
+
+# Load all datasets into a named list
+datasets <- lapply(table_names, function(name) {
+  open_dataset(file.path("filtered_parquet_tables", name))
+})
+names(datasets) <- table_names
+
+# Access like this:
+#datasets$BIDDAYOFFER_D
+#datasets$ROOFTOP
+datasets$DEMAND %>%collect() %>%distinct(DUID)
+
+```
+
+### head of each clean table
+
+```{r}
+# Preview first 6 rows from each table
+walk(names(datasets), function(tbl) {
+  cat("\n\n🔍 Table:", tbl, "\n")
+  tryCatch({
+    datasets[[tbl]] %>%
+      collect() %>%
+      head() %>%
+      print()
+  }, error = function(e) {
+    cat("❌ Error collecting data for", tbl, ":", e$message, "\n")
+  })
+})
+
+```
+
+# EDA
+
+## Cov analysis Demand(scada), operational demand, rooftop, public prices system-level(timestamp based)
+
+```{r}
+source("AggregationTime.R")
+# ------------------ User Input: Region ------------------
+# Use NULL to aggregate all regions
+# Or use a vector of region IDs, e.g. region_filter <- c("VIC1", "NSW1")
+region_filter <- NULL
+
+# ------------------ Aggregation ------------------
+bidper_df_cov       <- safe_agg_by_region_and_time(datasets$BIDPEROFFER_D, grep("BANDAVAIL", names(datasets$BIDPEROFFER_D), value = TRUE), region_filter)
+bidday_df_cov       <- safe_agg_by_region_and_time(datasets$BIDDAYOFFER_D, grep("PRICEBAND", names(datasets$BIDDAYOFFER_D), value = TRUE), region_filter)
+demand_df_cov      <- safe_agg_by_region_and_time(datasets$DEMAND, "SCADA_VALUE", region_filter)
+op_demand_df_cov    <- safe_agg_by_region_and_time(datasets$OPERATIONAL_DEMAND, "OPERATIONAL_DEMAND", region_filter)
+rooftop_df_cov      <- safe_agg_by_region_and_time(datasets$ROOFTOP, c("POWERMEAN", "POWERPOE50"), region_filter)
+prices_df_cov       <- safe_agg_by_region_and_time(datasets$PUBLIC_PRICES, c("RRP", "TOTALDEMAND", "DEMANDFORECAST", "DISPATCHABLEGENERATION", "DISPATCHABLELOAD", "NETINTERCHANGE", "AVAILABLEGENERATION", "INITIALSUPPLY"), region_filter)
+constraint_df_cov   <- safe_agg_by_region_and_time(datasets$CONSTRAINT, c("VIOLATIONDEGREE", "MARGINALVALUE", "RHS", "LHS"), region_filter)
+in_ds_pred_df_cov   <- safe_agg_by_region_and_time(datasets$INTERMITTENT_DS_PRED, c("FORECAST_MEAN", "FORECAST_POE50"), region_filter)
+unit_df_cov         <- safe_agg_by_region_and_time(datasets$UNIT_SOLUTION, c("AVAILABILITY", "TOTALCLEARED"), region_filter)
+
+# ------------------ Join All Tables ------------------
+system_region_df <- reduce(
+  list(bidper_df_cov, bidday_df_cov, demand_df_cov, op_demand_df_cov, rooftop_df_cov, prices_df_cov, constraint_df_cov, in_ds_pred_df_cov, unit_df_cov),
+  full_join,
+  by = c("REGIONID", "timestamp_30m")
+)
+
+# Add residual demand
+system_region_df <- system_region_df %>%
+  mutate(residual_demand = OPERATIONAL_DEMAND - POWERMEAN)
+
+system_scaled <- system_region_df %>%
+  select(-REGIONID, -timestamp_30m) %>%
+  scale()
+```
+
+```{r}
+cov_matrix_region <- cov(system_scaled, use = "pairwise.complete.obs")
+cor_matrix_region <- cor(system_scaled, use = "pairwise.complete.obs")
+
+cov_matrix_region
+cor_matrix_region
+```
+
+### per duid
+
+```{r}
+# =======================
+# 🔁 Load Aggregation Function
+# =======================
+source("AggregationTime.R")  # Make sure this file contains your enhanced `safe_agg_by_duid_and_time()`
+
+# =======================
+# ⚙️ Variable Configuration
+# =======================
+aggregation_vars <- list(
+  BIDDAYOFFER_D = grep("PRICEBAND", names(datasets$BIDDAYOFFER_D), value = TRUE),
+  BIDPEROFFER_D = c(grep("BANDAVAIL", names(datasets$BIDPEROFFER_D), value = TRUE), "MAXAVAIL"),
+  UNIT_SOLUTION = c("AVAILABILITY", "TOTALCLEARED"),
+  DEMAND = "SCADA_VALUE",
+  INTERMITTENT_DS_PRED = c("FORECAST_MEAN", "FORECAST_POE50"),
+  CONSTRAINT = c("VIOLATIONDEGREE", "RHS", "LHS", "MARGINALVALUE"),
+  PUBLIC_PRICES = c("RRP", "TOTALDEMAND", "DEMANDFORECAST", "DISPATCHABLEGENERATION",
+                    "DISPATCHABLELOAD", "NETINTERCHANGE", "AVAILABLEGENERATION", "INITIALSUPPLY"),
+  OPERATIONAL_DEMAND = "OPERATIONAL_DEMAND",
+  ROOFTOP = c("POWERMEAN", "POWERPOE50")
+)
+
+# =======================
+# 🧠 User Input
+# =======================
+duid_filter <- "LOYYB1"  # or NULL to aggregate across all DUIDs
+
+# =======================
+# 🔄 Aggregation Loop
+# =======================
+aggregated_list <- lapply(names(aggregation_vars), function(tbl_name) {
+  if (!tbl_name %in% names(datasets)) return(NULL)
+  
+  vars <- aggregation_vars[[tbl_name]]
+  df <- datasets[[tbl_name]]
+  
+  message("📊 Aggregating ", tbl_name)
+  safe_agg_by_duid_and_time(df, vars, duid_filter)
+})
+
+# Remove any null results
+aggregated_list <- aggregated_list[!sapply(aggregated_list, is.null)]
+
+# =======================
+# 🔗 Dynamic Join of Tables
+# =======================
+
+# Start with the first table
+unit_level_df <- aggregated_list[[1]]
+
+# Loop through the rest and join based on common columns
+for (i in 2:length(aggregated_list)) {
+  next_df <- aggregated_list[[i]]
+  
+  # Get common join keys (must include timestamp_30m)
+  join_keys <- intersect(names(unit_level_df), names(next_df))
+  join_keys <- join_keys[join_keys %in% c("REGIONID", "DUID", "timestamp_30m")]
+  
+  if (length(join_keys) < 1) {
+    warning(paste("⚠️ Skipping join with dataset", i, "- no common join keys"))
+    next
+  }
+  
+  unit_level_df <- full_join(unit_level_df, next_df, by = join_keys)
+}
+
+# =======================
+# ⚙️ Scale Data & Compute Covariance/Correlation
+# =======================
+unit_scaled <- unit_level_df %>%
+  select(-REGIONID, -DUID, -timestamp_30m) %>%
+  scale()
+```
+
+```{r}
+head(unit_scaled)
+head(unit_level_df)
+# Run PCA
+pca_result <- prcomp(unit_scaled, center = TRUE, scale. = TRUE)
+
+# View variance explained
+summary(pca_result)
+
+# Scree plot
+plot(pca_result, type = "lines")
+
+# Biplot (first two PCs)
+biplot(pca_result, scale = 0)
+
+# Loadings (which variables influence each PC)
+loadings <- pca_result$rotation
+
+```
+
+```{r}
+cov_matrix_unit <- cov(unit_scaled, use = "pairwise.complete.obs")
+cor_matrix_unit <- cor(unit_scaled, use = "pairwise.complete.obs")
+
+# =======================
+# 📤 Output
+# =======================
+print("📈 Covariance Matrix:")
+print(cov_matrix_unit)
+
+print("🔗 Correlation Matrix:")
+print(cor_matrix_unit)
+
+# (Optional) Save to CSV
+# write.csv(cov_matrix_unit, "cov_matrix.csv")
+# write.csv(cor_matrix_unit, "cor_matrix.csv")
+
+```
+
+##Visualisation 
+### BID behaviour against other variable
+adding RPP and demand to the supply plot
+
+```{r}
+source("BidBehaviour.R")
+# Example usage
+plot_supply_curve_animation(datasets$BIDDAYOFFER_D%>%collect(), datasets$BIDPEROFFER_D %>%collect(), "LOYYB1")
+print(plot_band_avail_heatmap(datasets$BIDPEROFFER_D %>% collect(), "LOYYB1"))
+```
+
+#### RPP VS BID
+```{r}
+source("BidBehaviour.R")
+
+plot_bid_vs_rrp_overlay_animated(
+  bidday_df   = datasets$BIDDAYOFFER_D %>% collect(),
+  bidper_df   = datasets$BIDPEROFFER_D %>% collect(),
+  price_df    = datasets$PUBLIC_PRICES %>% collect(),
+  duid_filter = "LOYYB1",                # Replace with your unit
+  target_month = "2024-06"                   # NULL Or use "2024-06" for specific month
+)
+```
+#### RPP vs BID vs RESIDUAL DEMAND (adding variabel based on the pca)
+```{r}
+# Source your cleaned data and function
+source("BidBehaviour.R")
+
+plot_bid_vs_rrp_overlay_with_residual_animated(
+  bidday_df = datasets$BIDDAYOFFER_D %>% collect(),
+  bidper_df = datasets$BIDPEROFFER_D %>% collect(),
+  rrp_df    = datasets$PUBLIC_PRICES %>% collect(),
+  op_demand_df = datasets$OPERATIONAL_DEMAND %>% collect(),
+  rooftop_df = datasets$ROOFTOP %>% collect(),
+  duid_filter = "LOYYB1",
+  target_month = "2024-06",
+  log_y = FALSE
+)
+
+```
+
+
+```{r}
+source("BidBehaviour.R")
+# Option 1: Replace NA with 0
+bid_tsibble <- prepare_bid_tsibble(datasets$BIDPEROFFER_D %>% collect(), "LOYYB1", impute_method = "zero")
+
+
+# Plot with facets
+plot_seasonal_decomp_facet(bid_tsibble)
+
+```
+
+### time series linear, log, sqrt (per variable)
+
+```{r}
+vic_ts <- system_region_df %>%
+  filter(REGIONID == "VIC1") %>%
+  select(timestamp_30m, OPERATIONAL_DEMAND, SCADA_VALUE, RRP, POWERMEAN, TOTALCLEARED) %>%
+  as_tsibble(index = timestamp_30m)
+
+vic_ts %>%
+  pivot_longer(-timestamp_30m, names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = timestamp_30m, y = value)) +
+  geom_line() +
+  facet_wrap(~variable, scales = "free_y")
+
+vic_ts %>%
+  mutate(across(where(is.numeric), list(
+    sqrt = sqrt,
+    log = ~log(. + 1)
+  ))) %>%
+  pivot_longer(-timestamp_30m, names_to = "transformation", values_to = "value") %>%
+  ggplot(aes(x = timestamp_30m, y = value)) +
+  geom_line() +
+  facet_wrap(~transformation, scales = "free_y")
+```
+
+### Bid suppply curve, but only capture the lastest bidavail each day (perduid)
+
+```{r}
+plot_bids_paginated <- function(bidday_df, bidper_df, region = "VIC1", duid_filter = NULL, page = 1, page_size = 12) {
+  
+  # Step 1: Filter region & collect
+  bidday_df_filtered <- bidday_df %>%
+    filter(REGIONID == region) %>%
+    collect()
+  
+  bidper_df_filtered <- bidper_df %>%
+    filter(REGIONID == region) %>%
+    collect()
+  
+  # Step 2: Latest bids per DUID
+  latest_bidday <- bidday_df_filtered %>%
+    group_by(DUID) %>%
+    filter(timestamp == max(timestamp)) %>%
+    ungroup()
+  
+  latest_bidper <- bidper_df_filtered %>%
+    group_by(DUID) %>%
+    filter(timestamp == max(timestamp)) %>%
+    ungroup()
+  
+  # Step 3: Extract bands
+  price_cols <- grep("PRICEBAND", names(latest_bidday), value = TRUE)
+  avail_cols <- grep("BANDAVAIL", names(latest_bidper), value = TRUE)
+  
+  price_long <- latest_bidday %>%
+    select(DUID, all_of(price_cols)) %>%
+    pivot_longer(-DUID, names_to = "Band", values_to = "Price") %>%
+    mutate(Band = as.integer(str_extract(Band, "\\d+")))
+  
+  avail_long <- latest_bidper %>%
+    select(DUID, all_of(avail_cols)) %>%
+    pivot_longer(-DUID, names_to = "Band", values_to = "MW") %>%
+    mutate(Band = as.integer(str_extract(Band, "\\d+")))
+  
+  band_df <- left_join(price_long, avail_long, by = c("DUID", "Band"))
+  
+  # Step 4: Filter by DUIDs (optional)
+  if (!is.null(duid_filter)) {
+    band_df <- band_df %>% filter(DUID %in% duid_filter)
+  }
+  
+  # Step 5: Pagination
+  all_duids <- sort(unique(band_df$DUID))
+  start_idx <- ((page - 1) * page_size + 1)
+  end_idx <- min(start_idx + page_size - 1, length(all_duids))
+  selected_duids <- all_duids[start_idx:end_idx]
+  
+  band_df <- band_df %>% filter(DUID %in% selected_duids)
+  
+  # Supply curve
+  supply_df <- band_df %>%
+    arrange(DUID, Price) %>%
+    group_by(DUID) %>%
+    mutate(CumMW = cumsum(MW)) %>%
+    ungroup()
+  
+  # Plot 1 - Price
+  p1 <- ggplot(band_df, aes(x = Band, y = Price, fill = DUID)) +
+    geom_col(show.legend = FALSE) +
+    facet_wrap(~ DUID, scales = "free_y") +
+    labs(title = paste("Offered Price - Page", page), x = "Band", y = "Price") +
+    theme_minimal()
+  
+  # Plot 2 - Quantity
+  p2 <- ggplot(band_df, aes(x = Band, y = MW, fill = DUID)) +
+    geom_col(show.legend = FALSE) +
+    facet_wrap(~ DUID, scales = "free_y") +
+    labs(title = "Offered MW", x = "Band", y = "MW") +
+    theme_minimal()
+  
+  # Plot 3 - Supply Curve
+  p3 <- ggplot(supply_df, aes(x = CumMW, y = Price, group = DUID)) +
+    geom_step(aes(color = DUID), size = 1) +
+    facet_wrap(~ DUID, scales = "free") +
+    labs(title = "Supply Curve", x = "Cumulative MW", y = "Price") +
+    theme_minimal()
+  
+  # Return interactive plots
+  list(
+    ggplotly(p1),
+    ggplotly(p2),
+    ggplotly(p3)
+  )
+}
+
+```
+
+```{r}
+# Manually select DUIDs of interest
+plots_specific <- plot_bids_paginated(
+  bidday_df = datasets$BIDDAYOFFER_D,
+  bidper_df = datasets$BIDPEROFFER_D,
+  region = "VIC1"
+  #duid_filter = c("LYB1", "OSY2")  # any DUIDs you want
+)
+
+plots_specific[[1]]
+plots_specific[[2]]
+plots_specific[[3]]  # View supply curve
+
+```
+
+```{r}
+
+
+# Filter one unit
+target_duid <- "LOYYB1"
+bidper_df_graph4 <- datasets$BIDPEROFFER_D %>%
+  filter(DUID == target_duid) %>%
+  collect()
+
+# Get all BANDAVAIL columns
+avail_cols <- grep("BANDAVAIL", names(bidper_df), value = TRUE)
+
+# Convert from wide to long format
+long_bid <- bidper_df_graph4 %>%
+  select(timestamp, all_of(avail_cols)) %>%
+  pivot_longer(cols = starts_with("BANDAVAIL"), names_to = "Band", values_to = "MW") %>%
+  mutate(
+    Band = as.integer(str_extract(Band, "\\d+")),
+    date = as_date(timestamp)
+  )
+
+# Daily average to reduce noise
+long_bid_daily <- long_bid %>%
+  group_by(Band, date) %>%
+  summarise(MW = mean(MW, na.rm = TRUE), .groups = "drop")
+
+# Convert to tsibble
+bid_tsibble <- long_bid_daily %>%
+  as_tsibble(index = date, key = Band) %>%
+  fill_gaps(.full = TRUE)  # fills missing dates per band
+
+# Plot seasonal pattern using gg_season
+gg_season(bid_tsibble, MW) +
+  labs(title = "Seasonality of Offered MW by Band", y = "MW") +
+  theme_minimal() +
+  facet_wrap(~ Band)
+
+autoplot(bid_tsibble)
+```
+
+```{r}
+
+
+# 1. Choose the DUID
+target_duid <- "LOYYB1"
+
+# 2. Load and filter BIDPEROFFER_D
+bid_data <- datasets$BIDPEROFFER_D %>%
+  filter(DUID == target_duid) %>%
+  collect() %>%
+  mutate(timestamp_5min = floor_date(timestamp, "5 minutes"))
+
+# Combine all BANDAVAILXX columns into long format
+bid_long <- bid_data %>%
+  pivot_longer(
+    cols = starts_with("BANDAVAIL"),
+    names_to = "Band",
+    values_to = "MW"
+  )
+
+# 3. Load and filter PUBLIC_PRICES (VIC1 only for now)
+rrp_data <- datasets$PUBLIC_PRICES %>%
+  filter(REGIONID == "VIC1") %>%
+  collect() %>%
+  mutate(timestamp_5min = floor_date(timestamp, "5 minutes")) %>%
+  select(timestamp_5min, RRP)
+
+# 4. Join bid + RRP
+joined_df <- bid_long %>%
+  left_join(rrp_data, by = "timestamp_5min")
+
+# 5. Filter for valid numeric MW
+joined_df <- joined_df %>% filter(!is.na(MW), !is.na(RRP))
+
+# 6. Plot MW vs RRP per band
+ggplot(joined_df, aes(x = RRP, y = MW)) +
+  geom_point(alpha = 0.3) +
+  facet_wrap(~ Band, scales = "free_y") +
+  geom_smooth(method = "lm", se = FALSE, color = "steelblue") +
+  labs(
+    title = paste("Bid MW vs RRP for", target_duid),
+    subtitle = "Each band availability (MW) against 5-minute RRP",
+    x = "RRP ($/MWh)", y = "Band MW"
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+target_duid <- "LOYYB1"
+
+# 1. Extract BIDPEROFFER data
+bidper_df <- datasets$BIDPEROFFER_D %>%
+  filter(DUID == target_duid) %>%
+  collect() %>%
+  mutate(timestamp_5min = floor_date(timestamp, "5 minutes")) %>%
+  pivot_longer(
+    cols = starts_with("BANDAVAIL"),
+    names_to = "Band",
+    values_to = "MW"
+  ) %>%
+  filter(!is.na(MW)) # remove NA band MWs
+
+# 2. Extract PUBLIC_PRICES (e.g., VIC1)
+rrp_df <- datasets$PUBLIC_PRICES %>%
+  filter(REGIONID == "VIC1") %>%
+  select(RRP, timestamp) %>%
+  collect() %>%
+  mutate(timestamp_5min = floor_date(timestamp, "5 minutes")) %>%
+  distinct(timestamp_5min, .keep_all = TRUE) # Avoid duplicate RRP per interval
+
+# 3. Join bid data with RRP
+joined_df <- bidper_df %>%
+  left_join(rrp_df, by = "timestamp_5min", relationship = "many-to-many") %>%
+  filter(!is.na(RRP)) # clean post-join
+
+# 4. Plot: Band MW vs RRP to detect correlation
+ggplot(joined_df, aes(x = RRP, y = MW)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "lm", color = "#0077b6", se = FALSE) +
+  facet_wrap(~ Band, scales = "free_y") +
+  labs(
+    title = paste("Reactive Bidding of", target_duid, "across Price Bands"),
+    subtitle = "Does MW offered respond to changes in RRP?",
+    x = "RRP ($/MWh)",
+    y = "Offered MW (per Band)"
+  ) +
+  theme_minimal()
+
+```
+
+# not used
+
+## Standardise time into timestamp variable (done in data procesing and cleaning)
+
+```{r}
+normalize_timestamp <- function(df, table_name) {
+  df <- collect(df)
+  
+  if (table_name == "BIDDAYOFFER_D") {
+    df$timestamp <- as.POSIXct(df$SETTLEMENTDATE, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+  } else if (table_name == "BIDPEROFFER_D") {
+    df$timestamp <- as.POSIXct(df$SETTLEMENTDATE, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane") +
+      lubridate::minutes((df$PERIODID - 1) * 5)
+  } else if (table_name == "DEMAND") {
+    df$timestamp <- as.POSIXct(df$RUN_DATETIME, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+  } else if (table_name == "INTERMITTENT_DS_RUN") {
+    df$timestamp <- as.POSIXct(df$RUN_DATETIME, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+  } else if (table_name == "INTERMITTENT_FORECAST_TRK") {
+    df$timestamp <- as.POSIXct(df$SETTLEMENTDATE, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+  } else if (table_name == "OPERATIONAL_DEMAND") {
+    df$timestamp <- as.POSIXct(df$INTERVAL_DATETIME, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+  } else if (table_name == "ROOFTOP") {
+    df$timestamp <- as.POSIXct(df$INTERVAL_DATETIME, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+  } else if (table_name == "UNIT_SOLUTION" || table_name == "CONSTRAINT") {
+    date <- substr(df$DISPATCH_INTERVAL, 1, 8)
+    period <- as.numeric(substr(df$DISPATCH_INTERVAL, 9, 11))
+    df$timestamp <- as.POSIXct(date, format = "%Y%m%d", tz = "Australia/Brisbane") + lubridate::minutes((period - 1) * 5)
+  } else if (table_name == "PUBLIC_PRICES") {
+    df$timestamp <- as.POSIXct(df$SETTLEMENTDATE, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+  } else if (table_name == "OUTAGEDETAIL") {
+    df$actual_start <- as.POSIXct(df$ACTUAL_STARTTIME, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+    df$actual_end   <- as.POSIXct(df$ACTUAL_ENDTIME, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+  } else {
+    warning("⚠️ No timestamp logic defined for table: ", table_name)
+  }
+
+  return(df)
+}
+
+```
+
+```{r}
+normalized_datasets <- lapply(names(datasets), function(name) {
+  message("⏳ Normalizing: ", name)
+  tryCatch({
+    normalize_timestamp(datasets[[name]], name)
+  }, error = function(e) {
+    message("⚠️ Skipped ", name, ": ", e$message)
+    NULL
+  })
+})
+names(normalized_datasets) <- names(datasets)
+
+```
+
+## Normalised outgendetail alone
+
+```{r}
+library(arrow)
+library(dplyr)
+library(purrr)
+
+process_outage_in_chunks <- function(dataset, chunk_size = 500000) {
+  # Get total number of rows from metadata without full collect
+  total_rows <- dataset %>% Scanner$create() %>% count_rows()
+  num_chunks <- ceiling(total_rows / chunk_size)
+  message("🔄 Processing ", total_rows, " rows in ", num_chunks, " chunks")
+
+  
+  # Initialize output list to save chunks
+  result <- list()
+
+  for (i in seq_len(num_chunks)) {
+    message("⏳ Chunk ", i, " of ", num_chunks)
+
+    start <- (i - 1) * chunk_size
+    nrows <- min(chunk_size, total_rows - start)
+
+    # Efficiently read just the slice
+    chunk_df <- dataset %>%
+      Scanner$create(skip = start, take = nrows) %>%
+      collect()
+
+    # Parse the timestamps
+    chunk_df <- chunk_df %>%
+      mutate(
+        actual_start = as.POSIXct(ACTUAL_STARTTIME, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane"),
+        actual_end   = as.POSIXct(ACTUAL_ENDTIME, format = "%Y/%m/%d %H:%M:%S", tz = "Australia/Brisbane")
+      )
+
+    result[[i]] <- chunk_df
+  }
+
+  bind_rows(result)
+}
+
+```
+
+```{r}
+normalized_outage <- process_outage_in_chunks(datasets[["OUTAGEDETAIL"]])
+
+```
+
+```{r}
+normalized_datasets[["OUTAGEDETAIL"]] <- normalized_outage
+
+```
+
+## Data Visualisation
+
+### Visualisaiton mean availibiltiy vs time
+
+```{r}
+# Get the top 10 DUIDs by mean availability
+top_duids <- dispatchsumgraph %>%
+  group_by(DUID) %>%
+  summarise(total_availability = mean(mean_availability, na.rm = TRUE)) %>%
+  arrange(desc(total_availability)) %>%
+  slice_head(n = 10) %>%  # Select top 10
+  pull(DUID)
+
+# Filter dataset for only the top 10 DUIDs
+dispatch_filtered <- dispatchsumgraph %>%
+  filter(DUID %in% top_duids)
+
+# Plot with better x-axis formatting
+ggplot(dispatch_filtered, aes(x = HOUR, y = mean_availability, color = DUID)) +
+  geom_line() +
+  scale_x_datetime(date_breaks = "1 day", date_labels = "%b %d") +  # Reduce x-axis labels
+  labs(title = "Hourly Availability Trends (Top 10 DUIDs)",
+       x = "Time (Aggregated Hourly)",
+       y = "Mean Availability (MW)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis for readability
+
+```
+
+```{r}
+# Get the top 10 DUIDs by mean total cleared energy
+top_duids_cleared <- dispatchsumgraph %>%
+  group_by(DUID) %>%
+  summarise(total_cleared = mean(mean_cleared, na.rm = TRUE)) %>%
+  arrange(desc(total_cleared)) %>%
+  slice_head(n = 10) %>%  # Select top 10
+  pull(DUID)
+
+# Filter dataset for only the top 10 DUIDs (Total Cleared)
+dispatch_filtered_cleared <- dispatchsumgraph %>%
+  filter(DUID %in% top_duids_cleared)
+
+# Plot Hourly Total Cleared
+ggplot(dispatch_filtered_cleared, aes(x = HOUR, y = mean_cleared, color = DUID)) +
+  geom_line() +
+  scale_x_datetime(date_breaks = "1 day", date_labels = "%b %d") +  # Reduce x-axis labels
+  labs(title = "Hourly Total Cleared Energy (Top 10 DUIDs)",
+       x = "Time (Aggregated Hourly)",
+       y = "Mean Total Cleared (MW)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis for readability
+
+```
+
+```{r}
+ggplot(dispatchsumgraph, aes(x = mean_availability, y = mean_cleared)) +
+  geom_point(alpha = 0.6) +
+  labs(title = "Availability vs. Total Cleared Energy (Hourly)",
+       x = "Mean Availability (MW)",
+       y = "Mean Total Cleared (MW)") +
+  theme_minimal()
+
+```
+
+### Public price RPP vs unused energy
+
+```{r}
+dispatchsumgraph_joined <- dispatchsumgraph %>%
+  left_join(publicprice, by = "HOUR")
+
+#Unused Capacity vs RRP
+ggplot(dispatchsumgraph_joined, aes(x = RRP, y = unused_capacity)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Unused Capacity vs. Market Price (Hourly)",
+       x = "Spot Price (RRP $/MWh)",
+       y = "Unused Capacity (MW)") +
+  theme_minimal()
+
+```
+
+```{r}
+#Unused Capacity vs Availability (to show proportion)
+ggplot(dispatchsumgraph_joined, aes(x = mean_availability, y = unused_capacity)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  labs(title = "Unused vs Total Available Capacity (Hourly)",
+       x = "Mean Availability (MW)",
+       y = "Unused Capacity (MW)") +
+  theme_minimal()
+
+```
+
+```{r}
+#Add Price Color Gradient
+ggplot(dispatchsumgraph_joined, aes(x = mean_availability, y = unused_capacity, color = RRP)) +
+  geom_point(alpha = 0.7) +
+  scale_color_viridis_c() +
+  labs(title = "Unused Capacity vs. Availability, Colored by Price",
+       x = "Mean Availability (MW)",
+       y = "Unused Capacity (MW)",
+       color = "RRP ($/MWh)") +
+  theme_minimal()
+
+```
+
+### covariance analysis RRP with key variable
+
+```{r}
+cov_data <- dispatchsumgraph_joined %>%
+  select(RRP, TOTALDEMAND, mean_cleared, mean_availability, unused_capacity)
+
+cov_matrix <- cov(cov_data, use = "complete.obs")
+print(cov_matrix)
+
+cor_matrix <- cor(cov_data, use = "complete.obs")
+print(cor_matrix)
+
+library(reshape2)
+
+melted_cov <- melt(cov_matrix)
+
+ggplot(melted_cov, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile() +
+  scale_fill_viridis_c() +
+  labs(title = "Covariance Matrix: Factors Affecting RRP",
+       x = "", y = "", fill = "Covariance") +
+  theme_minimal()
+
+```
+
+#### Cov analysis explanation
+
+this could be like this because need to use region an duid
+
+or do normalision becasue each region unique, normalising region
+
+```{r}
+# Ensure publicprice has hourly aggregation
+publicprice <- publicprice %>%
+  mutate(HOUR = floor_date(SETTLEMENTDATE, unit = "hour"))
+
+# Merge price data with dispatchsumgraph
+dispatch_price <- left_join(dispatchsumgraph, publicprice, by = "HOUR")
+
+# Plot availability vs. RRP
+ggplot(dispatch_price, aes(x = RRP, y = mean_availability)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE) +  # Add trend line
+  labs(title = "Energy Availability vs. Market Price (RRP)",
+       x = "Market Price (RRP) in $/MWh",
+       y = "Mean Availability (MW)") +
+  theme_minimal()
+
+```
+
+```{r}
+# Merge demand data with dispatch summary
+dispatch_demand <- left_join(dispatchsumgraph, publicprice, by = "HOUR")
+
+# Plot Demand vs. Total Cleared
+ggplot(dispatch_demand, aes(x = TOTALDEMAND, y = mean_cleared)) +
+  geom_point(alpha = 0.1, color = "black") +
+  geom_density2d(color = "blue")  +
+  labs(title = "Total Cleared Energy vs. Market Demand",
+       x = "Market Demand (MW)",
+       y = "Mean Total Cleared (MW)") +
+  theme_minimal()
+
+```
+
+```{r}
+
+
+# Convert to time series format
+availability_ts <- ts(dispatchsumgraph$mean_availability, frequency = 24)
+
+# Fit an ARIMA model
+availability_forecast <- auto.arima(availability_ts)
+
+# Forecast for next 7 days
+forecast_result <- forecast(availability_forecast, h = 24*7)
+
+# Plot the forecast
+autoplot(forecast_result) +
+  labs(title = "Forecasted Availability for Next 7 Days",
+       x = "Time",
+       y = "Forecasted Availability (MW)")
+
+```
+
+## Public Prices data set
+
+drop off, could be 18-19 and have not releasing the net day 5 day interval. missing the 5 minutes interval
+
+```{r}
+hourly_demand_by_region <- publicprice %>%
+  mutate(HOUR = floor_date(ymd_hms(SETTLEMENTDATE), unit = "hour")) %>%
+  group_by(HOUR, REGIONID) %>%
+  summarise(TOTAL_DEMAND_MW = sum(TOTALDEMAND, na.rm = TRUE)) %>%
+  arrange(HOUR, REGIONID)
+
+# View result
+head(hourly_demand_by_region)
+
+```
+
+```{r}
+ggplot(hourly_demand_by_region, aes(x = HOUR, y = TOTAL_DEMAND_MW, color = REGIONID)) +
+  geom_line(size = 1) +
+  labs(
+    title = "Hourly Total Demand by Region",
+    x = "Hour",
+    y = "Total Demand (MW)",
+    color = "Region"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
+
+```
+
+## Bideperday and bidperoffer analysis
+
+### long format
+
+```{r}
+# 1. Bid prices long format
+bid_price_long <- biddayoffer %>%
+  pivot_longer(
+    cols = starts_with("PRICEBAND"),
+    names_to = "BAND",
+    values_to = "PRICE"
+  ) %>%
+  mutate(BAND = gsub("PRICEBAND", "BAND", BAND))
+
+# 2. Availability long format
+bid_avail_long <- bidperoffer %>%
+  pivot_longer(
+    cols = starts_with("BANDAVAIL"),
+    names_to = "BAND",
+    values_to = "AVAILABILITY"
+  ) %>%
+  mutate(BAND = gsub("BANDAVAIL", "BAND", BAND))
+
+```
+
+```{r}
+ggplot(bid_price_long, aes(x = PRICE)) +
+  geom_histogram(bins = 50, fill = "steelblue") +
+  labs(title = "Distribution of Bid Prices", x = "Price ($/MWh)", y = "Frequency") +
+  theme_minimal()
+```
+
+```{r}
+# Filter for one DUID
+duid_plot <- "LYA2"  # LYA 2-4
+
+bid_avail_long %>%
+  filter(DUID == duid_plot) %>%
+  ggplot(aes(x = as.POSIXct(INTERVAL_DATETIME), y = AVAILABILITY, color = BAND)) +
+  geom_line() +
+  labs(title = paste("Availibility perband perday for", duid_plot),
+       x = "Time", y = "AVAILIBILITY") +
+  theme_minimal()
+
+```
+
+```{r}
+#Correct join: by DUID, BAND, and DATE(INTERVAL_DATETIME)
+bid_combined <- bid_avail_long %>%
+  left_join(bid_price_long, 
+            by = c("DUID", "BAND", "SETTLEMENTDATE")) 
+
+ggplot(bid_combined,
+       aes(x = INTERVAL_DATETIME, y = AVAILABILITY, fill = BAND)) +
+  geom_area(position = "stack") +
+  labs(title = "Stacked Band Availability Over Time", x = "Time", y = "MW") +
+  theme_minimal()
+
+```
+
+```{r}
+ggplot(bid_combined,
+       aes(x = PRICE, y = AVAILABILITY, color = BAND)) +
+  geom_point(alpha = 0.6) +
+  labs(title = "Price vs Availability per Band", x = "Price ($/MWh)", y = "MW") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(bid_combined,
+       aes(x = PRICE, y = AVAILABILITY)) +
+  geom_jitter(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "Bid Price vs Availability", x = "Price", y = "MW") +
+  theme_minimal()
+
+```
+
+### ANALYTCAL ANALYSIS
+
+```{r}
+cor(bid_combined$PRICE, bid_combined$AVAILABILITY, use = "complete.obs")
+
+```
+
+```{r}
+bid_combined %>%
+  group_by(DUID) %>%
+  summarise(
+    avg_price = mean(PRICE, na.rm = TRUE),
+    avg_avail = mean(AVAILABILITY, na.rm = TRUE)
+  )
+```
+
+### shiny app - dashboard
+
+animated bid stack changes enable dynamic filtering handling very large dataset, donwloading and data cleaning - timeseries analysis
+
+## combined analysis with dispatchsum and publicprice, also other dataset
+
+## analyse bidding strategies
+
+## give region for each duid
+
+avalibility vs total cleared (difference that is not dispatched ) - shifting probably with price (high closer to one)-need to normalise. human error etc.
+
+correlates with the price, problably will highlight the external factor, the corr maybe not will be showing 0.5 or 0.7
+
+find the correlation the number
+
+find other correlation that is 0.4 or 0.1 find the correlation just any so
+
+residual demand (demand that is not meet by renewable, wind and solar ) higher residual demand (change to graph 3)
+
+is residual demand effecting the price shifting.
