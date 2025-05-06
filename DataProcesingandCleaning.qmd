@@ -5,6 +5,7 @@ editor: visual
 ---
 
 ## Filtering, and normalisaiton timestamp
+
 ```{r}
 library(arrow)
 library(data.table)
@@ -24,8 +25,8 @@ setDTthreads(0)
 # 2) Parallel plan for multi-file processing
 plan(multicore, workers = max(1, parallel::detectCores() - 1))
 
-source("region_utils.R")  
-source("filtering_rules.R")  
+source("function_script/region_utils.R")  
+source("function_script/filtering_rules.R")  
 
 raw_parquet_dir <- "parquet_tables"
 filtered_parquet_dir <- "filtered_parquet_tables"
@@ -36,16 +37,6 @@ dir_create(filtered_parquet_dir)
 # and optional col_select usage.
 # --------------------------------------------------------------------------------
 process_file_in_chunks <- function(file, table_name, rule, chunk_size = 1e6) {
-  # If you want to pre-select columns from the Parquet to reduce I/O,
-  # build col_select from the columns you truly need:
-  # e.g. parse them from rule$select plus the columns used in filter.
-  #
-  # For demonstration, we skip that step because your filter uses data.table syntax.
-  # If you know exactly which columns are used, you could do:
-  # required_cols <- unique(c("BIDTYPE","DIRECTION","DUID","SETTLEMENTDATE", ...))
-  # arrow_table <- read_parquet(file, as_data_frame = FALSE, col_select = required_cols)
-  #
-  # If you want to keep it simple, read all columns:
   arrow_table <- read_parquet(file, as_data_frame = FALSE)
   
   nrows <- arrow_table$num_rows
@@ -53,7 +44,6 @@ process_file_in_chunks <- function(file, table_name, rule, chunk_size = 1e6) {
 
   for (start in seq(1, nrows, by = chunk_size)) {
     end <- min(start + chunk_size - 1, nrows)
-    # Slice chunk from Arrow table
     chunk <- arrow_table$Slice(offset = start - 1, length = end - start + 1)$to_data_frame()
     dt <- as.data.table(chunk)
 
@@ -188,12 +178,25 @@ for (table_name in names(filtering_rules)) {
 ```
 
 ### Rerun one table only when rules changing
+
 ```{r}
 file.remove("filtered_parquet_tables/BIDDAYOFFER_D/.processed_files.txt")
+file.remove("filtered_parquet_tables/BIDPEROFFER_D/.processed_files.txt")
+file.remove("filtered_parquet_tables/DEMAND/.processed_files.txt")
+file.remove("filtered_parquet_tables/INTERMITTENT_DS_RUN/.processed_files.txt")
+file.remove("filtered_parquet_tables/INTERMITTENT_DS_PRED/.processed_files.txt")
+file.remove("filtered_parquet_tables/INTERMITTENT_FORECAST_TRK/.processed_files.txt")
+#file.remove("filtered_parquet_tables/OPERATIONAL_DEMAND/.processed_files.txt")
+#file.remove("filtered_parquet_tables/ROOFTOP/.processed_files.txt")
+file.remove("filtered_parquet_tables/UNIT_SOLUTION/.processed_files.txt")
+file.remove("filtered_parquet_tables/CONSTRAINT/.processed_files.txt")
+#file.remove("filtered_parquet_tables/OUTAGEDETAIL/.processed_files.txt")
+#file.remove("filtered_parquet_tables/PUBLIC_PRICES/.processed_files.txt")
+
 ```
 
-
 ## not working
+
 ```{r}
 library(arrow)
 library(dplyr)
