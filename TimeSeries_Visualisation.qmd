@@ -1,0 +1,401 @@
+---
+title: "TimeSeries_Visualisation"
+format: html
+editor: visual
+---
+
+##Visualisation \### Seasonality \#### BID behaviour against other variable adding RPP and demand to the supply plot
+
+```{r}
+source("function_script/BidBehaviour.R")
+# Example usage
+plot_supply_curve_animation(datasets$BIDDAYOFFER_D|>collect(), datasets$BIDPEROFFER_D |>collect(), "LOYYB1")
+print(plot_band_avail_heatmap(datasets$BIDPEROFFER_D |> collect(), "LOYYB1"))
+```
+ 
+##### RPP VS BID duid month
+
+```{r}
+source("function_script/BidBehaviour.R")
+
+plot_bid_vs_rrp_overlay_animated(
+  bidday_df   = datasets$BIDDAYOFFER_D |> collect(),
+  bidper_df   = datasets$BIDPEROFFER_D |> collect(),
+  price_df    = datasets$PUBLIC_PRICES |> collect(),
+  duid_filter = "NPS",                # Replace with your unit "NPS"
+  target_month = NULL                  # NULL Or use "2024-06" for specific month
+)
+```
+
+##### RPP vs BID vs RESIDUAL DEMAND vs OPERATIONAL DEMAND (adding variabel based on the pca)
+
+```{r}
+# Source your cleaned data and function
+source("function_script/BidBehaviour.R")
+
+plot_bid_vs_rrp_overlay_with_residual_animated(
+  bidday_df = datasets$BIDDAYOFFER_D |> collect(),
+  bidper_df = datasets$BIDPEROFFER_D |> collect(),
+  rrp_df    = datasets$PUBLIC_PRICES |> collect(),
+  op_demand_df = datasets$OPERATIONAL_DEMAND |> collect(),
+  rooftop_df = datasets$ROOFTOP |> collect(),
+  duid_filter = "LOYYB1pl;",
+  target_month = "2024-06", # NULL Or use "2024-06" for specific month
+)
+
+```
+#### Animated plot : Cumulative Offed Volume vs Offered Price 
+```{r}
+# source the helper
+source("function_script/CumuVol_Price.R")
+
+anim <- create_bidstack_animation(
+  bids_dir    = "filtered_parquet_tables/BIDDAYOFFER_D",
+  per_dir     = "filtered_parquet_tables/BIDPEROFFER_D",
+  units_dir   = "filtered_parquet_tables/UNIT_SOLUTION",
+  prices_dir  = "filtered_parquet_tables/PUBLIC_PRICES",
+  region      = "VIC1",
+  month_filter= "2024-06",
+  price_cap   = 500,
+  fps         = 10,
+  width       = 800,
+  height      = 500
+)
+
+anim
+
+
+```
+####static 
+```{r}
+# at the top of your document
+source("function_script/CumuVol_Price.R")
+
+# then in a code‐chunk:
+p <- create_bidstack_comparison(
+  bids_dir   = "filtered_parquet_tables/BIDDAYOFFER_D",
+  per_dir    = "filtered_parquet_tables/BIDPEROFFER_D",
+  units_dir  = "filtered_parquet_tables/UNIT_SOLUTION",
+  prices_dir = "filtered_parquet_tables/PUBLIC_PRICES",
+  region     = "VIC1",
+  month1     = "2024-06",   
+  month2     = "2024-10",   
+  price_cap  = 500
+)
+print(p)
+
+```
+
+
+#### Animated Plot: DUID Count by Price Band
+```{r}
+source("function_script/BidBehaviour.R")
+plot_duid_priceband_distribution_animated(
+  bidday_df = datasets$BIDDAYOFFER_D %>% collect(),
+  price_df = datasets$PUBLIC_PRICES %>% collect(),
+  region_filter = "VIC1",
+  price_cap = 1000,
+  month_filter = "2024-06"
+)
+```
+
+```{r}
+source("function_script/BidBehaviour.R")
+
+plot_duid_priceband_distribution_animated(
+  bidday_df = datasets$BIDDAYOFFER_D %>% collect(),
+  bidper_df = datasets$BIDPEROFFER_D %>% collect(),
+  price_df = datasets$PUBLIC_PRICES %>% collect(),
+  region_filter = "VIC1",
+  price_cap = 1000,
+  month_filter = "2024-06"
+)
+
+```
+
+
+#### Animated Plot: BandAvail Distribution with RRP and Demand
+```{r}
+source("function_script/BidBehaviour.R")
+
+p <- plot_bandavail_animation(
+  bidper_df = datasets$BIDPEROFFER_D %>% collect(),
+  price_df = datasets$PUBLIC_PRICES %>% collect(),
+  op_demand_df = datasets$OPERATIONAL_DEMAND %>% collect(),
+  region_filter = "VIC1",
+  month_filter = "2024-06",
+  bin_width = 50,
+  fps = 3
+)
+
+# Run this to preview
+p
+
+
+# OPTIONAL: Save animation to file
+#animate(p, fps = 10, width = 900, height = 600, duration = 15, renderer = gifski_renderer("duid_bandavail.gif"))
+
+```
+
+#### Seasonal Decom of offered MW by band , per DUID
+
+```{r}
+source("function_script/BidBehaviour.R")
+# Option 1: Replace NA with 0
+bid_tsibble <- prepare_bid_tsibble(datasets$BIDPEROFFER_D |> collect(), "NPS", impute_method = "zero")
+
+
+# Plot with facets
+plot_seasonal_decomp_facet(bid_tsibble)
+
+```
+
+```{r}
+source("function_script/BidBehaviour.R")
+tsib_bandavail <- prepare_single_variable_tsibble(
+  df = datasets$BIDPEROFFER_D %>% collect(),
+  value_pattern = "^BANDAVAIL",
+  key_col = "DUID",
+  filter_val = "LOYYB1",
+  impute_method = "locf"
+)
+
+plot_seasonal_decomp_facet(tsib_bandavail)
+plot_seasonal_decomp_facet(tsib_priceband)
+plot_seasonal_decomp_facet(tsib_rrp)
+
+```
+
+#### Over time linear, log, sqrt (per variable)
+
+```{r}
+vic_ts <- system_region_df |>
+  filter(REGIONID == "VIC1") |>
+  select(timestamp_30m, OPERATIONAL_DEMAND, SCADA_VALUE, RRP, POWERMEAN, TOTALCLEARED) |>
+  as_tsibble(index = timestamp_30m)
+
+vic_ts |>
+  pivot_longer(-timestamp_30m, names_to = "variable", values_to = "value") |>
+  ggplot(aes(x = timestamp_30m, y = value)) +
+  geom_line() +
+  facet_wrap(~variable, scales = "free_y")
+
+vic_ts |>
+  mutate(across(where(is.numeric), list(
+    sqrt = sqrt,
+    log = ~log(. + 1)
+  ))) |>
+  pivot_longer(-timestamp_30m, names_to = "transformation", values_to = "value") |>
+  ggplot(aes(x = timestamp_30m, y = value)) +
+  geom_line() +
+  facet_wrap(~transformation, scales = "free_y")
+```
+
+#### Bid suppply curve, but only capture the lastest bidavail each day (perduid) - not animated
+
+```{r}
+source("function_script/plot_bids_paginated.R")
+# Manually select DUIDs of interest
+plots_specific <- plot_bids_paginated(
+  bidday_df = datasets$BIDDAYOFFER_D,
+  bidper_df = datasets$BIDPEROFFER_D,
+  region = "VIC1"
+  #duid_filter = c("LYB1", "OSY2")  # any DUIDs you want
+)
+
+plots_specific[[1]]
+plots_specific[[2]]
+plots_specific[[3]]  # View supply curve
+
+```
+
+#### Seasonality offerd mw by band
+
+```{r}
+
+# Filter one unit
+target_duid <- "LOYYB1"
+bidper_df_graph4 <- datasets$BIDPEROFFER_D |>
+  filter(DUID == target_duid) |>
+  collect()
+
+# Get all BANDAVAIL columns
+avail_cols <- grep("BANDAVAIL", names(bidper_df), value = TRUE)
+
+# Convert from wide to long format
+long_bid <- bidper_df_graph4 |>
+  select(timestamp, all_of(avail_cols)) |>
+  pivot_longer(cols = starts_with("BANDAVAIL"), names_to = "Band", values_to = "MW") |>
+  mutate(
+    Band = as.integer(str_extract(Band, "\\d+")),
+    date = as_date(timestamp)
+  )
+
+# Daily average to reduce noise
+long_bid_daily <- long_bid |>
+  group_by(Band, date) |>
+  summarise(MW = mean(MW, na.rm = TRUE), .groups = "drop")
+
+# Convert to tsibble
+bid_tsibble <- long_bid_daily |>
+  as_tsibble(index = date, key = Band) |>
+  fill_gaps(.full = TRUE)  # fills missing dates per band
+
+# Plot seasonal pattern using gg_season
+gg_season(bid_tsibble, MW) +
+  labs(title = "Seasonality of Offered MW by Band", y = "MW") +
+  theme_minimal() +
+  facet_wrap(~ Band)
+
+autoplot(bid_tsibble)
+```
+
+```{r}
+# 1. Choose the DUID
+target_duid <- "LOYYB1"
+
+# 2. Load and filter BIDPEROFFER_D
+bid_data <- datasets$BIDPEROFFER_D |>
+  filter(DUID == target_duid) |>
+  collect() |>
+  mutate(timestamp_5min = floor_date(timestamp, "5 minutes"))
+
+# Combine all BANDAVAILXX columns into long format
+bid_long <- bid_data |>
+  pivot_longer(
+    cols = starts_with("BANDAVAIL"),
+    names_to = "Band",
+    values_to = "MW"
+  )
+
+# 3. Load and filter PUBLIC_PRICES (VIC1 only for now)
+rrp_data <- datasets$PUBLIC_PRICES |>
+  filter(REGIONID == "VIC1") |>
+  collect() |>
+  mutate(timestamp_5min = floor_date(timestamp, "5 minutes")) |>
+  select(timestamp_5min, RRP)
+
+# 4. Join bid + RRP
+joined_df <- bid_long |>
+  left_join(rrp_data, by = "timestamp_5min")
+
+# 5. Filter for valid numeric MW
+joined_df <- joined_df |> filter(!is.na(MW), !is.na(RRP))
+
+# 6. Plot MW vs RRP per band
+ggplot(joined_df, aes(x = RRP, y = MW)) +
+  geom_point(alpha = 0.3) +
+  facet_wrap(~ Band, scales = "free_y") +
+  geom_smooth(method = "lm", se = FALSE, color = "steelblue") +
+  labs(
+    title = paste("Bid MW vs RRP for", target_duid),
+    subtitle = "Each band availability (MW) against 5-minute RRP",
+    x = "RRP ($/MWh)", y = "Band MW"
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+target_duid <- "LOYYB1"
+
+# 1. Extract BIDPEROFFER data
+bidper_df <- datasets$BIDPEROFFER_D |>
+  filter(DUID == target_duid) |>
+  collect() |>
+  mutate(timestamp_5min = floor_date(timestamp, "5 minutes")) |>
+  pivot_longer(
+    cols = starts_with("BANDAVAIL"),
+    names_to = "Band",
+    values_to = "MW"
+  ) |>
+  filter(!is.na(MW)) # remove NA band MWs
+
+# 2. Extract PUBLIC_PRICES (e.g., VIC1)
+rrp_df <- datasets$PUBLIC_PRICES |>
+  filter(REGIONID == "VIC1") |>
+  select(RRP, timestamp) |>
+  collect() |>
+  mutate(timestamp_5min = floor_date(timestamp, "5 minutes")) |>
+  distinct(timestamp_5min, .keep_all = TRUE) # Avoid duplicate RRP per interval
+
+# 3. Join bid data with RRP
+joined_df <- bidper_df |>
+  left_join(rrp_df, by = "timestamp_5min", relationship = "many-to-many") |>
+  filter(!is.na(RRP)) # clean post-join
+
+# 4. Plot: Band MW vs RRP to detect correlation
+ggplot(joined_df, aes(x = RRP, y = MW)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "lm", color = "#0077b6", se = FALSE) +
+  facet_wrap(~ Band, scales = "free_y") +
+  labs(
+    title = paste("Reactive Bidding of", target_duid, "across Price Bands"),
+    subtitle = "Does MW offered respond to changes in RRP?",
+    x = "RRP ($/MWh)",
+    y = "Offered MW (per Band)"
+  ) +
+  theme_minimal()
+
+```
+
+### Clustering
+
+####Umap-demultidimensional, see some cluster but not that usefull
+
+```{r}
+source("function_script/PCAanalysis.R")
+res <- run_pca_umap_clusters_animated(
+  unit_level_df,
+  start_time = "2024-06-01",
+  end_time = "2024-06-07",
+  k = 4,
+  show_labels = TRUE
+)
+
+# Render and save PCA animation
+animate(res$pca_animation, fps = 5, width = 800, height = 500)
+#anim_save("pca_cluster_animation.gif")
+
+# Render and save UMAP animation
+animate(res$umap_animation, fps = 5, width = 800, height = 500)
+#anim_save("umap_cluster_animation.gif")
+```
+
+#### PCA - might not be useful
+
+```{r}
+# `unit_scaled_clean` is your PCA-ready matrix
+# `pca_result` is your prcomp object
+
+fviz_pca_biplot(pca_result,
+                geom.ind = "point",      # don't show too many row labels
+                fill.ind = "black",
+                col.var = "firebrick",   # color of variable arrows
+                repel = TRUE,            # spread out labels
+                label = "var",           # show only variables
+                arrowsize = 1.2) +
+  theme_minimal() +
+  labs(title = "PCA Biplot: Bidding Unit Behaviour vs Market Conditions")
+
+```
+
+```{r}
+fviz_pca_biplot(pca_logged, repel = TRUE, col.var = "brown", title = "Logged PCA Biplot")
+
+```
+
+#### K-means
+
+```{r}
+#clustring and k-means
+source("function_script/PCAanalysis.R")
+k_clusters <- kmeans(unit_scaled_clean, centers = 5)
+fviz_cluster(k_clusters, data = unit_scaled_logged)
+
+unit_level_df$cluster <- k_clusters$cluster
+unit_level_df %>%
+  group_by(cluster) %>%
+  summarise(across(where(is.numeric), mean, na.rm = TRUE))
+
+```
