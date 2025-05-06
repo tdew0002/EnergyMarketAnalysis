@@ -32,10 +32,11 @@ plot_supply_curve_animation <- function(bidday_df, bidper_df, duid_filter) {
   
   ggplot(joined, aes(x = CumMW, y = Price, group = timestamp)) +
     geom_step(color = "#0077b6") +
-    labs(title = "Supply Curve — {frame_time}", x = "Cumulative MW", y = "Price ($/MWh)") +
+    labs(title = paste("Supply Curve for", duid_filter, "— {frame_time}"), x = "Cumulative MW", y = "Price ($/MWh)") +
     transition_time(timestamp) +
     ease_aes('linear') +
-    theme_minimal()
+    theme_minimal()+
+    scale_y_log10()
 }
 
 #Band Availability Heatmap (Time vs Band)
@@ -170,6 +171,40 @@ prepare_bid_tsibble <- function(bidper_df, duid_filter, impute_method = c("zero"
   return(bid_tsibble)
 }
 
+prepare_single_variable_tsibble <- function(df, value_pattern, timestamp_col = "timestamp", 
+                                            key_col = NULL, filter_val = NULL, 
+                                            impute_method = c("zero", "locf")) {
+  impute_method <- match.arg(impute_method)
+  
+  df <- df %>% 
+    mutate(timestamp = as.POSIXct(.data[[timestamp_col]]))
+  
+  # Optional filtering (e.g., by REGIONID or DUID)
+  if (!is.null(key_col) && !is.null(filter_val)) {
+    df <- df %>% filter(.data[[key_col]] == filter_val)
+  }
+  
+  # Select & reshape
+  tsib <- df %>%
+    select(timestamp, matches(value_pattern)) %>%
+    pivot_longer(cols = -timestamp, names_to = "Band", values_to = "MW") %>%
+    mutate(
+      Band = as.integer(stringr::str_extract(Band, "\\d+"))
+    ) %>%
+    as_tsibble(index = timestamp, key = Band) %>%
+    fill_gaps(.full = TRUE)
+  
+  # Impute
+  if (impute_method == "zero") {
+    tsib <- tsib %>% mutate(MW = ifelse(is.na(MW), 0, MW))
+  } else {
+    tsib <- tsib %>% group_by(Band) %>% tidyr::fill(MW, .direction = "downup") %>% ungroup()
+  }
+  
+  return(tsib)
+}
+
+
 # --- 2. Plot seasonal decomposition per band
 plot_seasonal_decomp_facet <- function(bid_tsibble) {
   bid_tsibble %>%
@@ -180,12 +215,13 @@ plot_seasonal_decomp_facet <- function(bid_tsibble) {
     geom_line(aes(y = trend), color = "#1d3557", linewidth = 1) +
     facet_wrap(~ Band, scales = "free_y", ncol = 2) +
     labs(
-      title = "Seasonal Decomposition of Offered MW by Band",
+      title = paste("Seasonal Decomposition of Offered MW by Band",duid_filter),
       subtitle = "Red = raw values | Blue = smoothed trend",
       y = "MW", x = "Time"
     ) +
     theme_minimal()
 }
+
 
 
 ### RPP BID RSIDUAL DEMAND
@@ -204,11 +240,11 @@ plot_bid_vs_rrp_overlay_with_residual_animated <- function(
   
   # Filter month if needed
   if (!is.null(target_month)) {
-    bidday_df   <- bidday_df   %>% filter(format(as.Date(timestamp), "%Y-%m") == target_month)
-    bidper_df   <- bidper_df   %>% filter(format(as.Date(timestamp), "%Y-%m") == target_month)
-    rrp_df      <- rrp_df      %>% filter(format(as.Date(timestamp), "%Y-%m") == target_month)
+    bidday_df    <- bidday_df    %>% filter(format(as.Date(timestamp), "%Y-%m") == target_month)
+    bidper_df    <- bidper_df    %>% filter(format(as.Date(timestamp), "%Y-%m") == target_month)
+    rrp_df       <- rrp_df       %>% filter(format(as.Date(timestamp), "%Y-%m") == target_month)
     op_demand_df <- op_demand_df %>% filter(format(as.Date(timestamp), "%Y-%m") == target_month)
-    rooftop_df  <- rooftop_df  %>% filter(format(as.Date(timestamp), "%Y-%m") == target_month)
+    rooftop_df   <- rooftop_df   %>% filter(format(as.Date(timestamp), "%Y-%m") == target_month)
   }
   
   # Identify region from BIDPEROFFER
@@ -224,7 +260,7 @@ plot_bid_vs_rrp_overlay_with_residual_animated <- function(
     filter(DUID == duid_filter) %>%
     pivot_longer(cols = all_of(price_cols), names_to = "Band", values_to = "Price") %>%
     mutate(
-      Band = as.integer(str_extract(Band, "\\d+")),
+      Band      = as.integer(str_extract(Band, "\\d+")),
       timestamp = floor_date(as.POSIXct(timestamp), "5 minutes")
     )
   
@@ -234,7 +270,7 @@ plot_bid_vs_rrp_overlay_with_residual_animated <- function(
     filter(DUID == duid_filter) %>%
     pivot_longer(cols = all_of(avail_cols), names_to = "Band", values_to = "MW") %>%
     mutate(
-      Band = as.integer(str_extract(Band, "\\d+")),
+      Band      = as.integer(str_extract(Band, "\\d+")),
       timestamp = floor_date(as.POSIXct(timestamp), "5 minutes")
     )
   
@@ -247,51 +283,216 @@ plot_bid_vs_rrp_overlay_with_residual_animated <- function(
     select(timestamp, RRP) %>%
     distinct()
   
-  # Residual demand = OPERATIONAL - ROOFTOP (POWERMEAN)
+  # Raw operational demand (new)
   op_df <- op_demand_df %>%
     filter(REGIONID == region) %>%
     mutate(timestamp = floor_date(as.POSIXct(timestamp), "5 minutes")) %>%
-    select(timestamp, OPERATIONAL_DEMAND)
+    select(timestamp, OPERATIONAL_DEMAND) %>%
+    distinct()
   
-  rooftop_df <- rooftop_df %>%
+  # Residual demand = OPERATIONAL - ROOFTOP
+  rooftop_vals <- rooftop_df %>%
     filter(REGIONID == region) %>%
     mutate(timestamp = floor_date(as.POSIXct(timestamp), "5 minutes")) %>%
-    select(timestamp, POWERMEAN)
+    select(timestamp, POWERMEAN) %>%
+    distinct()
   
-  residual_df <- full_join(op_df, rooftop_df, by = "timestamp") %>%
+  residual_df <- full_join(op_df, rooftop_vals, by = "timestamp") %>%
     mutate(residual_demand = OPERATIONAL_DEMAND - POWERMEAN) %>%
-    filter(!is.na(residual_demand)) %>%
-    select(timestamp, residual_demand) %>%
+    # keep OPERATIONAL_DEMAND so we can plot it
+    select(timestamp, OPERATIONAL_DEMAND, residual_demand) %>%
     distinct()
   
   # Final merge
   merged_all <- merged_bid %>%
     left_join(rrp_filtered, by = "timestamp") %>%
-    left_join(residual_df, by = "timestamp") %>%
+    left_join(residual_df,   by = "timestamp") %>%
     filter(!is.na(MW), !is.na(Price), !is.na(RRP), !is.na(residual_demand)) %>%
     distinct(timestamp, Band, .keep_all = TRUE)
   
-  # Plot
+  
+  # Plot: added the operational demand line
   p <- ggplot(merged_all, aes(x = timestamp)) +
-    geom_line(aes(y = MW, color = "MW"), alpha = 0.6) +
-    geom_line(aes(y = Price, color = "Price"), alpha = 0.6) +
-    geom_line(aes(y = RRP, color = "RRP"), size = 1) +
-    geom_line(aes(y = residual_demand, color = "Residual Demand"), linetype = "dashed", size = 1) +
+    geom_line(aes(y = MW,                  color = "MW"),               alpha       = 0.6) +
+    geom_line(aes(y = Price,               color = "Price"),            alpha       = 0.6) +
+    geom_line(aes(y = RRP,                 color = "RRP"),              linewidth   = 1) +
+    geom_line(aes(y = OPERATIONAL_DEMAND,  color = "Operational Demand"), linetype  = "dotdash", linewidth = 1) +
+    geom_line(aes(y = residual_demand,     color = "Residual Demand"),  linetype     = "dashed",   linewidth = 1) +
     facet_wrap(~ Band, scales = "free_y") +
     labs(
-      title = paste("Bid Dynamics for", duid_filter, "| Region:", region, "— {frame_along}"),
+      title = paste("Bid & Demand Dynamics for", duid_filter,
+                    "| Region:", region, "— {frame_along}"),
       y = "Value", x = "Time", color = "Legend"
     ) +
     theme_minimal() +
     transition_reveal(along = timestamp) +
     ease_aes("linear")
-  
-  if (log_y) {
-    p <- p + scale_y_continuous(trans = "log1p")
-  }
+    #scale_y_log10()
+    #scale_y_continuous(trans = "log1p")
   
   return(p)
 }
 
+# plot count of bandavail and band price
+plot_duid_priceband_distribution_animated <- function(
+    bidday_df, bidper_df, price_df,
+    region_filter = "VIC1",
+    price_cap = 10000,
+    month_filter = NULL
+) {
+  library(dplyr)
+  library(ggplot2)
+  library(tidyr)
+  library(stringr)
+  library(gganimate)
+  library(lubridate)
+  
+  # Extract PRICEBAND columns from BIDDAYOFFER_D
+  price_cols <- grep("PRICEBAND", names(bidday_df), value = TRUE)
+  avail_cols <- grep("BANDAVAIL", names(bidper_df), value = TRUE)
+  
+  # Pivot bidday_df (prices)
+  price_long <- bidday_df %>%
+    filter(REGIONID == region_filter) %>%
+    select(timestamp, DUID, all_of(price_cols)) %>%
+    pivot_longer(cols = starts_with("PRICEBAND"),
+                 names_to = "Band", values_to = "Price") %>%
+    mutate(
+      Band = as.integer(str_extract(Band, "\\d+")),
+      timestamp = floor_date(as.POSIXct(timestamp), "1 day")
+    )
+  
+  # Pivot bidper_df (availabilities)
+  avail_long <- bidper_df %>%
+    filter(REGIONID == region_filter) %>%
+    select(timestamp, DUID, all_of(avail_cols)) %>%
+    pivot_longer(cols = starts_with("BANDAVAIL"),
+                 names_to = "Band", values_to = "MW") %>%
+    mutate(
+      Band = as.integer(str_extract(Band, "\\d+")),
+      timestamp = floor_date(as.POSIXct(timestamp), "1 day")
+    )
+  
+  # Join on timestamp, DUID, Band
+  bid_long <- inner_join(price_long, avail_long, by = c("timestamp", "DUID", "Band"))
+  
+  if (!is.null(month_filter)) {
+    bid_long <- bid_long %>%
+      filter(format(timestamp, "%Y-%m") == month_filter)
+  }
+  
+  bid_long <- bid_long %>%
+    filter(Price <= price_cap)
+  
+  # Aggregate: Sum MW per day per Band + Price
+  mw_df <- bid_long %>%
+    group_by(timestamp, Band, Price) %>%
+    summarise(TotalMW = sum(MW, na.rm = TRUE), .groups = "drop")
+  
+  # Daily RRP
+  rrp_daily <- price_df %>%
+    filter(REGIONID == region_filter) %>%
+    mutate(timestamp = floor_date(as.POSIXct(timestamp), "1 day")) %>%
+    group_by(timestamp) %>%
+    summarise(RRP = mean(RRP, na.rm = TRUE), .groups = "drop")
+  
+  # Merge
+  plot_df <- left_join(mw_df, rrp_daily, by = "timestamp")
+  
+  # Animated Plot
+  p <- ggplot(plot_df, aes(x = Price, y = TotalMW, group = interaction(Band, timestamp, Price))) +
+    geom_col(fill = "firebrick", alpha = 0.8, width = 25) +
+    geom_vline(aes(xintercept = RRP), color = "blue", linetype = "dashed", linewidth = 1) +
+    facet_wrap(~ Band, scales = "free_y") +
+    labs(
+      title = paste("DUID Band Availability —", region_filter, "| {frame_time}"),
+      x = "Offered Price ($/MWh)", y = "Total MW (BANDAVAIL)"
+    ) +
+    theme_minimal() +
+    transition_time(timestamp) +
+    ease_aes("linear")
+  
+  p
+}
 
 
+
+
+
+#plot duid count vs bandavail
+plot_bandavail_animation <- function(
+    bidper_df, price_df, op_demand_df,
+    region_filter = "VIC1", month_filter = NULL,
+    bin_width = 50, fps = 5
+) {
+  library(dplyr)
+  library(ggplot2)
+  library(gganimate)
+  library(stringr)
+  library(tidyr)
+  library(lubridate)
+  
+  # Preprocessing
+  avail_cols <- grep("BANDAVAIL", names(bidper_df), value = TRUE)
+  
+  bid_long <- bidper_df %>%
+    filter(REGIONID == region_filter) %>%
+    select(timestamp, DUID, all_of(avail_cols)) %>%
+    pivot_longer(cols = starts_with("BANDAVAIL"), names_to = "Band", values_to = "MW") %>%
+    mutate(
+      Band = as.integer(str_extract(Band, "\\d+")),
+      timestamp = floor_date(as.POSIXct(timestamp), unit = "5 minutes")
+    ) %>%
+    filter(!is.na(MW))
+  
+  # Optional month filter
+  if (!is.null(month_filter)) {
+    bid_long <- bid_long %>%
+      filter(format(timestamp, "%Y-%m") == month_filter)
+  }
+  
+  # Histogram binning
+  bid_long <- bid_long %>%
+    mutate(MW_bin = cut(MW, breaks = seq(0, max(MW, na.rm = TRUE) + bin_width, by = bin_width), include.lowest = TRUE)) %>%
+    group_by(timestamp, Band, MW_bin) %>%
+    summarise(DUID_Count = n_distinct(DUID), .groups = "drop")
+  
+  # RRP line
+  rrp_filtered <- price_df %>%
+    filter(REGIONID == region_filter) %>%
+    mutate(timestamp = floor_date(as.POSIXct(timestamp), unit = "5 minutes")) %>%
+    group_by(timestamp) %>%
+    summarise(RRP = mean(RRP, na.rm = TRUE), .groups = "drop")
+  
+  # Demand line
+  demand_filtered <- op_demand_df %>%
+    filter(REGIONID == region_filter) %>%
+    mutate(timestamp = floor_date(as.POSIXct(timestamp), unit = "5 minutes")) %>%
+    group_by(timestamp) %>%
+    summarise(Demand = mean(OPERATIONAL_DEMAND, na.rm = TRUE), .groups = "drop")
+  
+  # Merge all
+  merged <- bid_long %>%
+    left_join(rrp_filtered, by = "timestamp") %>%
+    left_join(demand_filtered, by = "timestamp") %>%
+    filter(!is.na(MW_bin))
+  
+  # Plot
+  p <- ggplot(merged, aes(x = MW_bin, y = DUID_Count)) +
+    geom_col(fill = "#1d3557", width = 0.8) +
+    geom_hline(aes(yintercept = RRP), color = "purple", linetype = "dashed", linewidth = 0.4) +
+    geom_hline(aes(yintercept = Demand), color = "darkgreen", linetype = "dotted", linewidth = 0.4) +
+    facet_wrap(~ Band, scales = "free_y") +
+    labs(
+      title = paste("Offered Availability Distribution —", region_filter, "| Time: {frame_time}"),
+      subtitle = "Dashed = RRP, Dotted = Operational Demand",
+      x = "Availability Bin (MW)",
+      y = "DUID Count"
+    ) +
+    theme_minimal(base_size = 10) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    transition_time(timestamp) +
+    ease_aes("linear")
+  
+  animate(p, fps = fps, duration = 20, width = 1000, height = 600)
+}
