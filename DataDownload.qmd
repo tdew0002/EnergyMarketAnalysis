@@ -5,13 +5,14 @@ editor: visual
 ---
 
 ## basic table mapping
+
 ```{r}
 dataset_table_mapping <- list(
   BIDMOVE_COMPLETE = c("BIDDAYOFFER_D", "BIDPEROFFER_D"),
   OPERATIONAL_DEMAND = "OPERATIONAL_DEMAND",
   ROOFTOP = "ROOFTOP",
   NEXT_DAY_DISPATCH = c("CONSTRAINT", "LOCAL_PRICE", "MNSPBIDTRK", "OFFERTRK", "UNIT_SOLUTION"),
-  PUBLIC_PRICE = "PUBLIC_PRICE",
+  PUBLIC_PRICES = "PUBLIC_PRICES",
   NETWORK = c("EQUIPMENTDETAIL", "OUTAGECONSTRAINTSET", "OUTAGEDETAIL", "OUTAGESTATUSCODE", "RATING", "STATICRATING", "SUBSTATIONDETAIL"),
   NEXT_DAY_INTERMITTENT_DS = c("INTERMITTENT_DS_RUN", "INTERMITTENT_DS_PRED", "INTERMITTENT_FORECAST_TRK")
 )
@@ -20,10 +21,10 @@ saveRDS(dataset_table_mapping, "~/Documents/internshipSEC/EnergyMarketAnalysis-R
 
 ```
 
-
-
 ## Downloader + Extractor Zip to CSV + Parquet Converter from CSV for AEMO Data
+
 ### WOrking final
+
 ```{r}
 # Combined Efficient Downloader + Extractor + Parquet Converter for AEMO Data
 
@@ -45,8 +46,8 @@ options(arrow.use_threads = TRUE)
 handlers(global = TRUE)
 handlers("txtprogressbar")
 
-base_archive <- "https://nemweb.com.au/Reports/Archive/"
-root_page <- read_html(base_archive)
+base_archive      <- "https://nemweb.com.au/Reports/Archive/"
+root_page         <- read_html(base_archive)
 
 local_data_base   <- "data"
 parquet_output    <- "parquet_tables"
@@ -66,13 +67,12 @@ if (file.exists(mapping_rds)) {
 # Function to update and save table map
 update_table_map <- function(dataset_name, new_table_names) {
   dataset_upper <- toupper(dataset_name)
-  current_tables <- table_map[[dataset_upper]] %||% character(0)
-  updated_tables <- unique(c(current_tables, new_table_names))
-  if (!setequal(current_tables, updated_tables)) {
-    table_map[[dataset_upper]] <<- updated_tables
-    saveRDS(table_map, mapping_rds)
-    message("📌 Updated mapping for ", dataset_upper, ": ", paste(updated_tables, collapse = ", "))
-  }
+  existing      <- table_map[[dataset_upper]] %||% character()
+  to_add        <- setdiff(new_table_names, existing)
+  if (length(to_add) == 0) return(invisible(NULL))
+  table_map[[dataset_upper]] <<- c(existing, to_add)
+  saveRDS(table_map, mapping_rds)
+  message("📌 Added to ", dataset_upper, ": ", paste(to_add, collapse = ", "))
 }
 
 # Step 1: Choose dataset
@@ -86,24 +86,24 @@ cat("\U0001F4E6 Available dataset folders from AEMO Archive:\n")
 for (i in seq_along(dataset_folders)) {
   cat(sprintf("[%02d] %s\n", i, dataset_folders[[i]]))
 }
-index <- as.integer(readline("\U0001F522 Enter the number of the dataset folder to download from: "))
+index        <- as.integer(readline("\U0001F522 Enter the number of the dataset folder to download from: "))
 dataset_path <- dataset_folders[index]
-current_url <- paste0(base_archive, dataset_path)
+current_url  <- paste0(base_archive, dataset_path)
 dataset_name <- gsub("/$", "", dataset_path)
-dataset_upper <- toupper(dataset_name)
+dataset_upper<- toupper(dataset_name)
 
-local_base <- file.path(local_data_base, dataset_name)
-output_base <- parquet_output
+local_base   <- file.path(local_data_base, dataset_name)
+output_base  <- parquet_output
 
-# Use the table map to determine the correct table folders to check for parquet files
-expected_tables <- table_map[[dataset_upper]] %||% character(0)
-expected_dirs <- file.path(output_base, expected_tables)
+# Determine which tables to check for existing parquet files
+expected_tables <- table_map[[dataset_upper]] %||% character()
+expected_dirs   <- file.path(output_base, expected_tables)
 
 # Create necessary directories
 if (!dir_exists(local_base)) dir_create(local_base)
 if (!dir_exists(output_base)) dir_create(output_base)
 
-# Check for existing parquet files across expected table folders
+# Scan all expected parquet dirs for existing dates
 existing_parquet_dates <- unique(unlist(
   lapply(expected_dirs[file.exists(expected_dirs)], function(dir) {
     dir(dir, pattern = "\\.parquet$", full.names = TRUE) %>%
@@ -112,60 +112,70 @@ existing_parquet_dates <- unique(unlist(
   })
 )) %>% na.omit() %>% unique()
 
+# Helper: extract tables from a CSV-like file with multiple I, rows
 extract_id_tables <- function(file_path) {
-  raw_lines <- readLines(file_path, warn = FALSE)
+  raw_lines      <- readLines(file_path, warn = FALSE)
   header_indices <- grep("^I,", raw_lines, ignore.case = TRUE)
   if (length(header_indices) == 0) return(NULL)
 
-  tables <- list()
+  tables       <- list()
   total_tables <- length(header_indices)
 
   get_dataset_name <- function(path) {
-    parts <- str_split(normalizePath(path), .Platform$file.sep)[[1]]
+    parts      <- str_split(normalizePath(path), .Platform$file.sep)[[1]]
     data_index <- which(parts == "data")
-    if (length(data_index) > 0 && length(parts) > data_index) toupper(parts[data_index + 1]) else "UNKNOWNTABLE"
+    if (length(data_index) > 0 && length(parts) > data_index)
+      toupper(parts[data_index + 1])
+    else
+      "UNKNOWNTABLE"
   }
-
   fallback_name <- get_dataset_name(file_path)
 
   for (i in seq_along(header_indices)) {
-    start_idx <- header_indices[i]
-    end_idx <- if (i < length(header_indices)) header_indices[i + 1] - 1 else length(raw_lines)
-    table_lines <- raw_lines[start_idx:end_idx]
+    start_idx  <- header_indices[i]
+    end_idx    <- if (i < length(header_indices)) header_indices[i + 1] - 1 else length(raw_lines)
+    table_lines<- raw_lines[start_idx:end_idx]
     table_data <- fread(text = paste(table_lines, collapse = "\n"), fill = TRUE, showProgress = FALSE)
     header_row <- fread(text = raw_lines[start_idx], fill = TRUE, header = FALSE)
-    name_col <- if (total_tables == 1) 2 else 3
+    name_col   <- if (total_tables == 1) 2 else 3
     table_name <- gsub("[^A-Za-z0-9_]", "_", as.character(header_row[[name_col]]))
     table_name <- toupper(table_name)
     if (is.na(table_name) || table_name == "") table_name <- fallback_name
-    tables[[table_name]] <- if (!is.null(tables[[table_name]])) rbind(tables[[table_name]], table_data, fill = TRUE) else table_data
+
+    if (!is.null(tables[[table_name]])) {
+      tables[[table_name]] <- rbind(tables[[table_name]], table_data, fill = TRUE)
+    } else {
+      tables[[table_name]] <- table_data
+    }
   }
   tables
 }
 
+# Walk down into the archive until we find ZIPs
 navigate_until_zip <- function(url, level = 1) {
-  page <- read_html(url)
-  links <- html_elements(page, "a") %>% html_attr("href") %>% discard(is.na)
-  zip_links <- links %>% str_subset("\\.zip$")
-  folder_links <- links %>% str_subset("/$") %>% discard(~ .x %in% c("../"))
+  page        <- read_html(url)
+  links       <- html_elements(page, "a") %>% html_attr("href") %>% discard(is.na)
+  zip_links   <- links %>% str_subset("\\.zip$")
+  folder_links<- links %>% str_subset("/$") %>% discard(~ .x %in% c("../"))
 
   if (length(zip_links) > 0) return(list(zip_files = zip_links, final_url = url))
   if (length(folder_links) == 0) stop("❌ No zip files or subfolders found.")
   cat("\n", strrep("—", level), "\U0001F4C1 Subfolders:\n", sep = "")
   folder_names <- basename(str_remove(folder_links, "/$"))
   for (i in seq_along(folder_links)) cat(sprintf("[%02d] %s\n", i, folder_names[i]))
-  sub_index <- as.integer(readline("\U0001F522 Select a subfolder: "))
-  next_url <- url_absolute(folder_links[sub_index], url)
+  sub_index   <- as.integer(readline("\U0001F522 Select a subfolder: "))
+  next_url    <- url_absolute(folder_links[sub_index], url)
   navigate_until_zip(next_url, level + 1)
 }
 
-result <- navigate_until_zip(current_url)
-zip_files <- result$zip_files
-final_url <- result$final_url
+# Find our ZIP listings and dates
+result         <- navigate_until_zip(current_url)
+zip_files      <- result$zip_files
+final_url      <- result$final_url
+available_dates<- str_extract(zip_files, "\\d{8}") %>% na.omit() %>% unique() %>% sort()
 
-available_dates <- str_extract(zip_files, "\\d{8}") %>% na.omit() %>% unique() %>% sort()
-
-existing_csv_dirs <- dir(local_base, full.names = TRUE, recursive = FALSE)
+# Also track any CSV-only dates (in case of reprocessing)
+existing_csv_dirs  <- dir(local_base, full.names = TRUE, recursive = FALSE)
 existing_csv_dates <- existing_csv_dirs %>%
   keep(~ length(fs::dir_ls(.x, recurse = TRUE, regexp = "(?i)\\.csv$", type = "file")) > 0) %>%
   basename() %>%
@@ -173,50 +183,55 @@ existing_csv_dates <- existing_csv_dirs %>%
   na.omit() %>%
   unique()
 
+# What still needs doing?
 processable_dates <- setdiff(available_dates, union(existing_parquet_dates, existing_csv_dates))
-reprocess_dates <- setdiff(existing_csv_dates, existing_parquet_dates)
+reprocess_dates  <- setdiff(existing_csv_dates, existing_parquet_dates)
 
 if (length(processable_dates) == 0 && length(reprocess_dates) == 0) {
   message("✅ You are already up to date. Nothing to download.")
   return(invisible(NULL))
 }
-
 if (length(processable_dates) > 0) {
-  cat("\n📅 Dates to be downloaded and processed:\n")
-  print(processable_dates)
+  cat("\n📅 Dates to be downloaded and processed:\n"); print(processable_dates)
 }
 if (length(reprocess_dates) > 0) {
-  cat("\n🔄 Dates with CSVs but missing parquet (to be reprocessed):\n")
-  print(reprocess_dates)
+  cat("\n🔄 Dates with CSVs but missing parquet (to be reprocessed):\n"); print(reprocess_dates)
 }
 
-all_dates <- c(processable_dates, reprocess_dates)
-user_input <- readline("📥 Press Enter to process all, or enter a specific YYYYMMDD date: ")
+all_dates   <- c(processable_dates, reprocess_dates)
+user_input  <- readline("📥 Press Enter to process all, or enter a specific YYYYMMDD date: ")
 missing_dates <- if (user_input == "") all_dates else if (user_input %in% all_dates) user_input else stop("❌ That date is not available.")
 
 with_progress({
   p <- progressor(along = missing_dates)
+
   for (date in missing_dates) {
     tryCatch({
-      zip_match <- zip_files[str_detect(zip_files, date)]
-      if (length(zip_match) == 0) {
-        message("⚠️ No zip found for date: ", date)
+      # —————— Parquet‐exists guard ——————
+      if (date %in% existing_parquet_dates) {
+        message("⏭️  Parquet for ", date, " already exists; skipping.")
+        p()
         next
       }
 
-      file_name <- basename(zip_match[1])
-      full_url <- paste0(final_url, file_name)
-      zip_path <- file.path(tempdir(), file_name)
-      zip_base <- file_path_sans_ext(file_name)
+      zip_match  <- zip_files[str_detect(zip_files, date)]
+      if (length(zip_match) == 0) {
+        message("⚠️ No zip found for date: ", date)
+        p()
+        next
+      }
+
+      file_name   <- basename(zip_match[1])
+      full_url    <- paste0(final_url, file_name)
+      zip_path    <- file.path(tempdir(), file_name)
+      zip_base    <- file_path_sans_ext(file_name)
       extract_dir <- file.path(local_base, zip_base)
 
       new_download <- FALSE
-
-      if (!dir_exists(extract_dir) || length(dir(extract_dir, pattern = "(?i)\\.csv$", recursive = TRUE)) == 0) {
-        if (!file_exists(zip_path)) {
-          message("⬇️  Downloading: ", file_name)
-          GET(full_url, write_disk(zip_path, overwrite = TRUE), timeout(600))
-        }
+      # Download & unzip if needed
+      if (!dir_exists(extract_dir) || length(dir(extract_dir, "\\.csv$", recursive = TRUE)) == 0) {
+        message("⬇️  Downloading and extracting ", file_name)
+        GET(full_url, write_disk(zip_path, overwrite = TRUE), timeout(download_timeout))
         dir_create(extract_dir)
         unzip(zip_path, exdir = extract_dir)
         inner_zips <- dir(extract_dir, pattern = "\\.zip$", full.names = TRUE)
@@ -229,54 +244,56 @@ with_progress({
         message("📁 Using existing CSVs for ", date)
       }
 
-      csv_files <- dir(extract_dir, pattern = "(?i)\\.csv$", full.names = TRUE, recursive = TRUE)
-      if (length(csv_files) == 0) {
-        warning("⚠️ No CSVs found in: ", extract_dir)
-        return(NULL)
-      }
-
-      # Only update mapping if new CSVs were downloaded
+      # Update mapping if new tables discovered
       if (new_download) {
-        discovered_tables <- unique(unlist(lapply(csv_files, function(file) {
-          raw_lines <- readLines(file, warn = FALSE)
-          header_indices <- grep("^I,", raw_lines, ignore.case = TRUE)
-          if (length(header_indices) == 0) return(NULL)
-          total_tables <- length(header_indices)
-          sapply(seq_along(header_indices), function(i) {
-            header_row <- fread(text = raw_lines[header_indices[i]], fill = TRUE, header = FALSE)
-            name_col <- if (total_tables == 1) 2 else 3
-            tname <- gsub("[^A-Za-z0-9_]", "_", as.character(header_row[[name_col]]))
-            toupper(ifelse(is.na(tname) || tname == "", "UNKNOWNTABLE", tname))
-          })
-        })))
+        discovered_tables <- unique(unlist(lapply(
+          dir(extract_dir, pattern="\\.csv$", full.names=TRUE, recursive=TRUE),
+          function(file) {
+            raw_lines      <- readLines(file, warn = FALSE)
+            header_indices <- grep("^I,", raw_lines, ignore.case = TRUE)
+            if (length(header_indices) == 0) return(NULL)
+            total_tables   <- length(header_indices)
+            sapply(seq_along(header_indices), function(i) {
+              header_row <- fread(text = raw_lines[header_indices[i]], fill = TRUE, header = FALSE)
+              name_col   <- if (total_tables == 1) 2 else 3
+              tname      <- gsub("[^A-Za-z0-9_]", "_", as.character(header_row[[name_col]]))
+              toupper(ifelse(is.na(tname)||tname=="","UNKNOWNTABLE", tname))
+            })
+          }
+        )))
         update_table_map(dataset_name, discovered_tables)
       }
 
+      # Extract and combine
       combined_tables <- list()
+      csv_files       <- dir(extract_dir, pattern="\\.csv$", full.names=TRUE, recursive=TRUE)
       for (csv_file in csv_files) {
         tables <- extract_id_tables(csv_file)
         if (is.null(tables)) next
-        for (name in names(tables)) {
-          if (!is.null(combined_tables[[name]])) {
-            combined_tables[[name]] <- rbind(combined_tables[[name]], tables[[name]], fill = TRUE)
+        for (nm in names(tables)) {
+          if (!is.null(combined_tables[[nm]])) {
+            combined_tables[[nm]] <- rbind(combined_tables[[nm]], tables[[nm]], fill=TRUE)
           } else {
-            combined_tables[[name]] <- tables[[name]]
+            combined_tables[[nm]] <- tables[[nm]]
           }
         }
       }
 
-      for (name in names(combined_tables)) {
-        dir_create(file.path(output_base, name))
-        parquet_path <- file.path(output_base, name, paste0(zip_base, ".parquet"))
-        write_parquet(combined_tables[[name]], parquet_path)
-        message("✅ Saved: ", parquet_path)
+      # Write out parquet per table
+      for (nm in names(combined_tables)) {
+        dir_create(file.path(output_base, nm))
+        pq_path <- file.path(output_base, nm, paste0(zip_base, ".parquet"))
+        write_parquet(combined_tables[[nm]], pq_path)
+        message("✅ Saved: ", pq_path)
       }
 
+      # Clean up CSVs
       file_delete(csv_files)
       message("🧹 Deleted original CSVs for ", date)
     }, error = function(e) {
-      warning("❌ Error while processing ", date, ": ", e$message)
+      warning("❌ Error processing ", date, ": ", e$message)
     })
+
     p()
   }
 })
@@ -284,7 +301,9 @@ with_progress({
 message("🎉 All downloads, extraction, and parquet conversion completed.")
 
 ```
+#not used
 ##not working
+
 ```{r}
 library(rvest)
 library(stringr)
@@ -751,7 +770,8 @@ cat("🎉 Done. All folders processed.\n")
 
 ```
 
-# old code not used
+## old code not used
+
 ```{r}
 
 library(arrow)
