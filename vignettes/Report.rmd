@@ -1,7 +1,6 @@
 ---
-title: "NEM Bidding Analysis Report"
+title: "Report : Dive into National Energy Market through Visual Analytics"
 author: "TYCIA DEWI"
-date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -10,7 +9,7 @@ output:
     includes:
       after_body: scrollspy.js
 vignette: >
-  %\VignetteIndexEntry{NEM Bidding Analysis Report}
+  %\VignetteIndexEntry{Report : Dive into National Energy Market through Visual Analytics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,6 +17,11 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(eval = FALSE)
 ```
+
+
+Github Link : https://github.com/tdew0002/EnergyMarketAnalysis
+
+Presentation link : https://docs.google.com/presentation/d/1yVcWWZ_z72S5vb33L57Zjs8xLefBXYcJIEHV01zcc5I/edit?usp=sharing
 
 # National Energy Market (NEM)
 
@@ -503,14 +507,14 @@ These enhancements will transform the dashboard from a static set of analyses in
 
 # References
 
--   Dungey et al. 2017 CESifo Working Paper no. 6819 Strategic Bidding of Electric Power Generating Companies: Evidence from the Australian National Energy Market https://download.ssrn.com/18/02/20/ssrn_id3126673_code459177.pdf?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKj%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIHSzRpcMXzTTz%2Bu1Z%2B3klP2NDPjTE9rQZaBF2b4n%2BVvNAiA5jCIeqKeo2rKVbJUfnHdqxoAl0t6GyC2gMoNnYbdrzirFBQiA%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAQaDDMwODQ3NTMwMTI1NyIMCU9W1Z8wQtYb8GnVKpkFc7bwU9DwpqxT7xobezfD41Tj6nCiXyB498uJGiYQ%2FuSPo8u0KkYQPj9cAGjXKksDLZ20YwoGiPYm1z0A19wUuY6ozQaNj7%2BHejJOHQuduLEE1U77hG8eNUjoNdLyz%2B2v8H1NqLWSvFoLwfHaj5OO89KTvOn14yHpAZrCtNVNJHgtO63xCWi9hP6fD%2BkYpKZ%2BbyWPi1DHp1zu7vd9EPk5ou5e9akPIint7zlUleJ8HgfxGPDyE6WPhF3bQ0hcNd50gpCV%2FssNqJ6ePloRpn%2FUsK6PrHoT0SFMBOFk19ekwnOmrJovPulgki6u9sBSsQjDqkx49jLxMYv5rXWmCzz16y4nUFbe7GF0ioZ%2B6MAzurTvgkTc9%2BHeGCY40g9bqXChwM6CE8IOT%2FNUgKH9Qe8piav%2BoIQvTwKCbUVOT%2FvJNeIsVnBMpsWnPkHzozqC0SKJo892Xg7ATKQODcxsKl4eVOVOlxJ6CJUypDz0G6SYrux3hE4w8upf52sDUiW7QdA2%2BwAb%2BNCtEzT%2FlG2VBOo4Gimc0loGTD0Joa2rLHJeutr8mjuh7%2BTIAoihH%2FH71s1UJl2djWbK%2BZLIhctIUJAfLRzx6R6G%2F4w%2BXBd0t8Eic%2FK9QLq5hC%2BTxCzdV8S50gpPtMvuzNlzqP%2FKRqN7CA9PiFGXTaRCf60qgqa2uYKFswUJCFObD%2F%2FYNxhkztiKpg1Xw%2BUlzSPf9N9bmbxadLuHCcEuWXvHHLDJCTzEbuhK5LacJfUFbz9aNgDRGpC1Izc7MZvpZ%2B3Qim%2FXZ4bYVW53i6QJJWoYeOGD30KNMDCVP2If1dX3ktZ51PlOuudBf8Rwi7rLF1Azw56gBFq6sZrd3Z9ssd8MCjxTMnp0WZp8K2g0xCKSUSCzTtkwio6TwgY6sgHnEthZ7CbZ2JkDkvZnFVxXoxLjFkewLqgwqsKjefThPGgHGaFpMNmnduvJWBgVsm0gwauVJGRgzwRtM0FAvs640DDFkZC2cL161wA15ojiipxtb6KtV3%2FG6ms223q1r4Mz73G%2Bkp12Etn6kVyWSbREjPfbEh82R8igU3%2Fv8Z308ZRWTnjBY1uUBW7NMxHx3SHZ2JD%2Ba7sjIh8Yzu15FdkWEC93H8lfzOwOhnt4YYRHMKlK&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250607T233548Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUPUUPRWEQVR3KP4D%2F20250607%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=d7f62073ed0c4fac8235dfd577def99680e24acba6e739d105254b359978d466&abstractId=3126673
+-   Dungey et al. 2017 CESifo Working Paper no. 6819 Strategic Bidding of Electric Power Generating Companies: Evidence from the Australian National Energy Market <https://download.ssrn.com/18/02/20/ssrn_id3126673_code459177.pdf?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKj%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIHSzRpcMXzTTz%2Bu1Z%2B3klP2NDPjTE9rQZaBF2b4n%2BVvNAiA5jCIeqKeo2rKVbJUfnHdqxoAl0t6GyC2gMoNnYbdrzirFBQiA%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAQaDDMwODQ3NTMwMTI1NyIMCU9W1Z8wQtYb8GnVKpkFc7bwU9DwpqxT7xobezfD41Tj6nCiXyB498uJGiYQ%2FuSPo8u0KkYQPj9cAGjXKksDLZ20YwoGiPYm1z0A19wUuY6ozQaNj7%2BHejJOHQuduLEE1U77hG8eNUjoNdLyz%2B2v8H1NqLWSvFoLwfHaj5OO89KTvOn14yHpAZrCtNVNJHgtO63xCWi9hP6fD%2BkYpKZ%2BbyWPi1DHp1zu7vd9EPk5ou5e9akPIint7zlUleJ8HgfxGPDyE6WPhF3bQ0hcNd50gpCV%2FssNqJ6ePloRpn%2FUsK6PrHoT0SFMBOFk19ekwnOmrJovPulgki6u9sBSsQjDqkx49jLxMYv5rXWmCzz16y4nUFbe7GF0ioZ%2B6MAzurTvgkTc9%2BHeGCY40g9bqXChwM6CE8IOT%2FNUgKH9Qe8piav%2BoIQvTwKCbUVOT%2FvJNeIsVnBMpsWnPkHzozqC0SKJo892Xg7ATKQODcxsKl4eVOVOlxJ6CJUypDz0G6SYrux3hE4w8upf52sDUiW7QdA2%2BwAb%2BNCtEzT%2FlG2VBOo4Gimc0loGTD0Joa2rLHJeutr8mjuh7%2BTIAoihH%2FH71s1UJl2djWbK%2BZLIhctIUJAfLRzx6R6G%2F4w%2BXBd0t8Eic%2FK9QLq5hC%2BTxCzdV8S50gpPtMvuzNlzqP%2FKRqN7CA9PiFGXTaRCf60qgqa2uYKFswUJCFObD%2F%2FYNxhkztiKpg1Xw%2BUlzSPf9N9bmbxadLuHCcEuWXvHHLDJCTzEbuhK5LacJfUFbz9aNgDRGpC1Izc7MZvpZ%2B3Qim%2FXZ4bYVW53i6QJJWoYeOGD30KNMDCVP2If1dX3ktZ51PlOuudBf8Rwi7rLF1Azw56gBFq6sZrd3Z9ssd8MCjxTMnp0WZp8K2g0xCKSUSCzTtkwio6TwgY6sgHnEthZ7CbZ2JkDkvZnFVxXoxLjFkewLqgwqsKjefThPGgHGaFpMNmnduvJWBgVsm0gwauVJGRgzwRtM0FAvs640DDFkZC2cL161wA15ojiipxtb6KtV3%2FG6ms223q1r4Mz73G%2Bkp12Etn6kVyWSbREjPfbEh82R8igU3%2Fv8Z308ZRWTnjBY1uUBW7NMxHx3SHZ2JD%2Ba7sjIh8Yzu15FdkWEC93H8lfzOwOhnt4YYRHMKlK&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250607T233548Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUPUUPRWEQVR3KP4D%2F20250607%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=d7f62073ed0c4fac8235dfd577def99680e24acba6e739d105254b359978d466&abstractId=3126673>
 -   SEC Victoria, 2025 <https://www.secvictoria.com.au/?utm_source=google&utm_medium=sem&utm_campaign=poweringvictoria24&utm_content=generic&gad_source=1&gad_campaignid=22404807562&gclid=CjwKCAjw3f_BBhAPEiwAaA3K5MKDN_qn5U7Yt_T31C3W6WzOnJiD1XXXNxrRGmWqIXmfgs6Q5mth6RoCdCAQAvD_BwE>
--   State Government of Victoria, 2025 Government-owned renewable energy is leading the way \| vic.gov.au https://www.vic.gov.au/victorian-skills-plan-2023-publication/supporting-clean-economy-ambitions/sec-government-owned-renewables
--   State Government of Victoria, 2024 The SEC Is Back For Good \| Premier https://www.premier.vic.gov.au/sec-back-good
--   AEMO, 2025 AEMO \| National Electricity Market (NEM) https://aemo.com.au/energy-systems/electricity/national-electricity-market-nem
--   DCCEEW, 2024 National Electricity Market - DCCEEW https://www.dcceew.gov.au/energy/markets/national-electricity-market
+-   State Government of Victoria, 2025 Government-owned renewable energy is leading the way \| vic.gov.au <https://www.vic.gov.au/victorian-skills-plan-2023-publication/supporting-clean-economy-ambitions/sec-government-owned-renewables>
+-   State Government of Victoria, 2024 The SEC Is Back For Good \| Premier <https://www.premier.vic.gov.au/sec-back-good>
+-   AEMO, 2025 AEMO \| National Electricity Market (NEM) <https://aemo.com.au/energy-systems/electricity/national-electricity-market-nem>
+-   DCCEEW, 2024 National Electricity Market - DCCEEW <https://www.dcceew.gov.au/energy/markets/national-electricity-market>
 -   AEMO 2023 <https://aemo.com.au/-/media/files/electricity/nem/planning_and_forecasting/solar-and-wind/enablement-of-bid-max-avail-for-semi-scheduled-generators/australian-wind-energy-forecasting-system-awefs-and-australian-solar-energy-forecasting-system-asefs.pdf>
--   AER 2023 State of the energy market 2023 https://www.aer.gov.au/system/files/2023-10/State%20of%20the%20energy%20market%202023%20-%20Chapter%203%20-%20National%20Electricity%20Market.pdf
+-   AER 2023 State of the energy market 2023 <https://www.aer.gov.au/system/files/2023-10/State%20of%20the%20energy%20market%202023%20-%20Chapter%203%20-%20National%20Electricity%20Market.pdf>
 -   AEMC 2025 <https://www.aemc.gov.au/energy-system/electricity/electricity-market/spot-and-contract-markets#:~:text=The%20spot%20price%20tells%20generators,kWh%20and%209.8c/kWh>.
 -   A. Stan Hurn, Annastiina Silvennoinen, Timo Teräsvirta <https://doi.org/10.1002/jae.2452> CESifo Working Paper no. 6819 found in here
 -   Breeze, P (2021) <https://www.sciencedirect.com/topics/engineering/open-cycle-gas-turbine>
