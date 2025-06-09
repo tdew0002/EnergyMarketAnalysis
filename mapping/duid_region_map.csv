@@ -1,0 +1,1491 @@
+﻿REGIONID,DUID,AssetType,SiteName,Owner,TechnologyType,FuelType
+ QLD1 ,,Project,Abermain BESS,FIrm Power P/L, Storage - Battery ,Other - Other
+ SA1 ,ADPBA1,Existing Plant,Adelaide Desalination Plant,South Australian Water Corporation, Storage - Battery ,Other - Other
+ SA1 ,ADPPV1,Existing Plant,Adelaide Desalination Plant,South Australian Water Corporation, Solar PV - Fixed ,Solar - Solar
+ SA1 ,ADPPV2,Existing Plant,Adelaide Desalination Plant,South Australian Water Corporation, Solar PV - Fixed ,Solar - Solar
+ SA1 ,ADPMH1,Existing Plant,Adelaide Desalination Plant,South Australian Water Corporation, Hydro - Run of River ,Hydro - Water
+ SA1 ,ADPPV3,Existing Plant,Adelaide Desalination Plant,South Australian Water Corporation, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Alberton Wind Farm,Synergy Wind Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Aldoga BESS Stage 1,Acciona Energy Australia Global, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Aldoga Solar Farm,Acciona Energy Australia Global Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Altona BESS,Ausnet Transmission Group Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,ANGAST1,Existing Plant,Angaston,Snowy Hydro Ltd, Reciprocating Engine - Compression ignition ,Fossil - Diesel
+ SA1 ,ANGAST1,Existing Plant,Angaston,Snowy Hydro Ltd, Reciprocating Engine - Compression ignition ,Fossil - Diesel
+ NSW1 ,APPIN,Existing Plant,Appin,EDL CSM NSW Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ NSW1 ,,Project,Apsley BESS Project,ACENergy Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Aquila Wind,ACEN Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Aramara Solar Farm,Aramara Solar Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,ARWF1,Existing Plant,Ararat Wind Farm,Ararat Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Argoon Wind Farm (RES Group) - KCI,RES Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Argyle Solar Farm,Argyle Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Armidale BESS,VALENT ENERGY DEVELOPMENTS PTY LTD, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Armidale Big BESS,ACEnergy Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Augusta BESS,Trina Solar (Australia) Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Aurora Solar Energy Project - Phase 1,SiliconAurora, Storage - Battery ,Other - Other
+ VIC1 ,,Project,AusNet Services Deakin University Victoria Geelong PV Plant,AusNet Services Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Australia Plains Solar Farm,UPC-AC, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,AVLSF1,Existing Plant,Avonlie Solar Farm,Iberdrola Australia Limited, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Axedale Solar Farm,UPC Renewables Australia, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Axedale Solar Farm,UPC Renewables Australia, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,BDL01,Existing Plant,Bairnsdale,Alinta DEBO, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,BDL02,Existing Plant,Bairnsdale,Alinta DEBO, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,,Project,Bairnsdale BESS,Bison Energy, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Baking Board Battery Storage - KCI,Solar Projects Australia Pty Ltd, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Baking Board BESS (MMT),MMT Projects T/A Renewable Projects Management, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Baking Board Solar Farm - KCI,Solar Projects Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Baking Board Solar Farm (MMT),MMT Projects T/A Renewable Projects Management, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,BAKING1,Existing Plant,Baking Board Solar Farm Chinchilla,Chinchilla Solar Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,BALDHWF1,Existing Plant,Bald Hills Wind Farm,Bald Hills Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Baldon Wind Farm,Baldon Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Baldon Wind Farm Stage 2,Baldon Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Baldon Wind Farm Stage 2 - BESS,Baldon Wind Farm Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,BBASEHOS,Existing Plant,Ballarat Base Hospital Plant,Ballarat Health Services, Reciprocating Engine - Compression ignition ,Fossil - Diesel
+ VIC1 ,BALB1,Existing Plant,Ballarat Energy Storage System,Ausnet Transmission Group Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Banana Range Wind Farm,Orange Creek Energy Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Banana Range Wind Farm,Orange Creek Energy Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,BANGOWF1,Existing Plant,Bango 973 Wind Farm,BWF Nominees Pty Ltd as trustee for the BWF Trust, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,BANGOWF2,Existing Plant,Bango 999 Wind Farm,BWF Nominees Pty Ltd as trustee for the BWF Trust, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,BAPS,Existing Plant,Banimboola,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ VIC1 ,BAPS,Existing Plant,Banimboola,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ QLD1 ,,Project,Banksia Solar Farm,Venn Energy Pty / Banksia Solar Project Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Bannaby BESS,Penso Power Australia Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,,Project,Bannaby BESS (AMPYR) - KCI,AMPYR, Storage - Battery ,Other - Other
+ VIC1 ,BANN1,Existing Plant,Bannerton Solar Park,Foresight Solar Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,BEER01,Project,Baranduda Electrical Energy Reserve,Birdwood Energy Reserve Pty Ltd (ACN 658 507 441) as Trustee for Birdwood Energy Reserve Trust, Storage - Battery ,Other - Other
+ QLD1 ,BARCALDN,Existing Plant,Barcaldine Power Station,Ergon Energy Queensland Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ QLD1 ,BARCSF1,Existing Plant,Barcaldine Remote Community Solar Farm,Barcaldine Remote Community Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,BARKIPS1,Existing Plant,Barker Inlet Power Station,AGL Barker Inlet Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Natural Gas Pipeline
+ SA1 ,,Project,Barker Inlet Power Station 2,AGL Energy Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,,Project,Barn Hill,Barn HIll Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Barn Hill BESS,AGL Energy Limited, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Barnawartha Solar & Energy Storage,Gentari, Solar PV - Single axis tracking ,Other - Other
+ VIC1 ,,Project,Barnawartha Solar & Energy Storage,Gentari, Storage - Battery ,Other - Other
+ SA1 ,,Project,Baroota Pumped Hydro Project,ACEN Renewables, Hydro - Dam ,Hydro - Water
+ QLD1 ,BARRON-1,Existing Plant,Barron Gorge,CleanCo Queensland Limited, Hydro - Run of River ,Hydro - Water
+ QLD1 ,BARRON-2,Existing Plant,Barron Gorge,CleanCo Queensland Limited, Hydro - Run of River ,Hydro - Water
+ NSW1 ,,Project,Barwon Solar Farm & BESS,Elgin Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Barwon Solar Farm & BESS,Elgin Energy Pty Ltd, Storage - Battery ,Other - Other
+ TAS1 ,,Project,Bashan 1 Wind Farm,Goldwind Australia, Wind Turbine - Onshore ,Wind - Wind
+ TAS1 ,,Project,Bass Offshore Wind Energy Project,Nexsphere Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ TAS1 ,BASTYAN,Existing Plant,Bastyan,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,,Project,Battery of the Nation - Stage 2b,Hydro Tasmania, Storage - Pumped hydro ,Hydro - Water
+ TAS1 ,,Project,Battery of the Nation - Stage 3b,Hydro Tasmania, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,BW01,Existing Plant,Bayswater,AGL Macquarie Pty Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,BW02,Existing Plant,Bayswater,AGL Macquarie Pty Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,BW03,Existing Plant,Bayswater,AGL Macquarie Pty Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,BW04,Existing Plant,Bayswater,AGL Macquarie Pty Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,,Project,Beebo Battary - KCI,Jinko Power Australia P/L, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Beebo Solar Farm - KCI,Jinko Power Australia P/L, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Beelbee Solar Farm,Darling Downs Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Belhaven Renewable Project,Vena Energy Services (Australia) Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Belhaven Renewable Project,Vena Energy Services (Australia) Pty Ltd, Storage - Battery ,Other - Other
+ TAS1 ,BBTHREE1,Existing Plant,Bell Bay Three,AETV Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ TAS1 ,BBTHREE2,Existing Plant,Bell Bay Three,AETV Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ TAS1 ,BBTHREE3,Existing Plant,Bell Bay Three,AETV Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,Bellambi Heights Renewables Project,Vena Energy, Storage - Battery ,Other - Other
+ TAS1 ,,Project,Bellbay Wind Farm (Low Heads Wind Farm Stage 2),The Trustee for Equis Wind (Australia) LHWF2 Asset Trust, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Ben Bullen BESS,Tetris Energy, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Ben Bullen Solar Farm,Tetris Energy, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Ben Bullen Wind Farm,Tetris Energy, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Bendemeer Renewable Energy Hub - Solar - KCI,Athena Energy Australia (Holdings) Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Bendemeer Renewable Energy Hub - Storage - KCI,Athena Energy Australia (Holdings) Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Bendemeer Renewable Energy Hub - Wind - KCI,Athena Energy Australia (Holdings) Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Bennetts Creek BESS,Aries Energy Project Pty Ltd in its capacity as Trustee for the Aries Energy Project Trust, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Berrimal Wind Farm,Acciona Energy Australia Global, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Berrybank 1 BESS - Storage - KCI,Global Power Generation Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,BRYB1WF1,Existing Plant,Berrybank Wind Farm,Berrbank Development Pty ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,BRYB2WF2,Existing Plant,Berrybank Wind Farm,Berrbank Development Pty ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Beryl BESS,Ratch-Australia Corporation, Storage - Battery ,Other - Other
+ NSW1 ,BERYLSF1,Existing Plant,Beryl Solar Farm,FS NSW Project No 1 AT Pty Ltd as trustee of FS NSW Project No 1 Asset Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,BESS Finley,BESS Finley P/L, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Big G Pumped Hydro Project,BE Power, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,,Project,Big T Pumped Hydro Project,BE Power, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,,Project,Big-T Project,BE Power, Storage - Pumped hydro ,Hydro - Water
+ VIC1 ,BIRKHG,Project,Birkins Solar Farm - Hydrogen - KCI,FRV Services Australia Pty Ltd, Other - Other ,Other - Other
+ VIC1 ,BIRKPV,Project,Birkins Solar Farm - Solar - KCI,FRV Services Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,BIRKBESS,Project,Birkins Solar Farm - Storage - KCI,FRV Services Australia Pty Ltd, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Blackstone BESS,FIrm Power P/L, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Blackstone BESS 2 - KCI,FIrm Power P/L, Storage - Battery ,Other - Other
+ SA1 ,,Project,Blacktop BESS - KCI,BESS Officer Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Blackwater Hybrid System,Blackwater Project Nominees Pty Ltd as trustee for the Blackwater Project Trust, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Blackwater Hybrid System,Blackwater Project Nominees Pty Ltd as trustee for the Blackwater Project Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Blair Athol Solar Power Station,TerraCom Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Blanche BESS - KCI,Blanche BESS Pty Ltd as trustee for Blanche BESS Trust, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Blenheim BESS - KCI,Gatton Solar Farm Pty Ltd, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Blenheim Solar Farm - KCI,Gatton Solar Farm Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Blind Creek Solar Farm and Battery Energy Storage System,Ms BCSF Holdings Pty Ltd as trustee for the Blind Creek Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Blind Creek Solar Farm and Battery Energy Storage System,Ms BCSF Holdings Pty Ltd as trustee for the Blind Creek Solar Farm Trust, Storage - Battery ,Solar - Solar
+ NSW1 ,BLOWERNG,Existing Plant,Blowering,Snowy Hydro Ltd, Hydro - Dam ,Hydro - Water
+ VIC1 ,,Project,Blue Mackerel North Off Shore Wind Farm,Arup Australia Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ QLD1 ,BLUEGSF1,Existing Plant,Bluegrass Solar Farm,X-Elio Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,BLYTHB1,Existing Plant,Blyth BESS,Blyth Battery P/L as trustee for Blyth Battery Trust, Storage - Battery ,Other - Other
+ NSW1 ,BOCORWF1,Existing Plant,Boco Rock Wind Farm,South Pacific Power Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,BOCORWF1,Existing Plant,Boco Rock Wind Farm,South Pacific Power Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,BOCOROC2,Project,Boco Rock Wind Farm,South Pacific Power Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,BODWF1,Existing Plant,Bodangora Wind Farm,Bodangora Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Boggabri solar and storage project,Photon Energy, Storage - Battery ,Solar - Solar
+ VIC1 ,MCKAY1,Existing Plant,Bogong / Mackay,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ VIC1 ,MCKAY1,Existing Plant,Bogong / Mackay,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Boiling Down BESS,Hanwha Energy Australia Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,BOLIVPS1,Existing Plant,Bolivar Power Station,Iberdrola Australia Energy Markets Pty Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,BOWWPV1,Existing Plant,Bolivar Waste Water Treatment,South Australian Water Corporation, Solar PV - Fixed ,Solar - Solar
+ SA1 ,BOWWBA1,Existing Plant,Bolivar Waste Water Treatment,South Australian Water Corporation, Storage - Battery ,Other - Other
+ SA1 ,,Existing Plant,Bolivar Waste Water Treatment,South Australian Water Corporation, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Biogas
+ QLD1 ,,Project,Boma Solar Farm,Solis Industria, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,BOMENSF1,Existing Plant,Bomen Solar Farm,Spark Infrastructure Holdings No. 6 Pty Limited, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Bonnie Brae Hybrid Plant,Barathrum Energy Pty Ltd, Storage - Battery ,Solar - Solar
+ NSW1 ,,Project,Bonshaw Solar Farm,GAIA Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Bookaar Solar Farm,Infinergy Australia Pty ltd , Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Boomber Green Energy Hub,Boomer Green Energy Hub Pty Ltd (a subsidiary of the Ark Energy Group), Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Boomer Green Energy Hub,ARK Energy Corporation Pty Ltd, Other - Other ,Other - Other
+ QLD1 ,,Project,Borumba,Queensland Hydro, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,,Project,Boulder Creek Wind Farm,ARK Energy Corporation Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,BBATTERY1,Existing Plant,Bouldercombe Battery project,Genex Power Limited, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Bouldercombe Battery project - Stage 2 - KCI,Genex Power Limited, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Bouldercombe BESS - Quintas,Quintas Energy P/L, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Bouldercombe Solar Farm,EEW Eco Energy World Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Boulka Park BESS,The Trustee for X-ELIO BOULKA PARK TRUST, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Boulka Park Solar Farm,The Trustee for X-ELIO BOULKA PARK TRUST, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Bowen Basin Sun Farm - KCI,Bowen Basin Sun Farm Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Bowen PHES - KCI,Blue Hydro Project Pty Ltd, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,,Project,Bowmans Creek Wind Farm,ARK Energy Corporation Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Bracewell Energy Project,TotalEnergies Renewables Australia, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Bracewell Energy Project,TotalEnergies Renewables Australia, Storage - Battery ,Solar - Solar
+ QLD1 ,BRAEMAR1,Existing Plant,Braemar,Braemar Power Project Pty Ltd, Turbine - OCGT ,Fossil - Coal Seam Methane
+ QLD1 ,BRAEMAR2,Existing Plant,Braemar,Braemar Power Project Pty Ltd, Turbine - OCGT ,Fossil - Coal Seam Methane
+ QLD1 ,BRAEMAR3,Existing Plant,Braemar,Braemar Power Project Pty Ltd, Turbine - OCGT ,Fossil - Coal Seam Methane
+ QLD1 ,BRAEMAR5,Existing Plant,Braemar 2 Power Station,NewGen Braemar 2 Partnership comprising Arrow Braemar 2 Pty Ltd and Arrow Southern Generation Pty Ltd, Turbine - OCGT ,Fossil - Coal Seam Methane
+ QLD1 ,BRAEMAR6,Existing Plant,Braemar 2 Power Station,NewGen Braemar 2 Partnership comprising Arrow Braemar 2 Pty Ltd and Arrow Southern Generation Pty Ltd, Turbine - OCGT ,Fossil - Coal Seam Methane
+ QLD1 ,BRAEMAR7,Existing Plant,Braemar 2 Power Station,NewGen Braemar 2 Partnership comprising Arrow Braemar 2 Pty Ltd and Arrow Southern Generation Pty Ltd, Turbine - OCGT ,Fossil - Coal Seam Methane
+ QLD1 ,,Project,Brendale BESS,Brendale Battery ProjectCo Pty Lt, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Brendale Supernode Data Centre and BESS Stage 1 And 2 (KCI),Quinbrook Infrastructure Partners Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Brendale Supernode Data Centre and BESS Stage 3 (KCI),Quinbrook Infrastructure Partners Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Brewongle Solar Farm,Photon Energy, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Bridle Track Solar Project,ACEN Renewables, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Brigalow GT (Kogan Creek GT),CSE H2 Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas
+ SA1 ,,Project,Brinkworth BESS,Brinkworth Solar Farm Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Broadsound Solar Farm,Broadsound Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Broadsound_BESS,Broadsound Solar Farm Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,BWTR1,Existing Plant,Broadwater,Cape Byron Management PTY LTD, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Biomass
+ NSW1 ,,Project,Brocklehurst Solar Farm,TBA, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Broken Creek Solar Farm - KCI,BSR EPC Pty Limited, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,BHB1,Existing Plant,Broken Hill,MACQGEN, Storage - Battery ,Other - Other
+ NSW1 ,GB01,Existing Plant,Broken Hill GT,Transgrid, Turbine - OCGT ,Fossil - Diesel
+ NSW1 ,BROKENH1,Existing Plant,Broken Hill Solar Plant,PARF Company 6 Pty Limited, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,BROOKLYN,Existing Plant,Brooklyn LFG U1-3,EDL LFG Vic Pty Ltd, Reciprocating Engine - Spark ignition ,Other - Other
+ NSW1 ,BROWNMT,Existing Plant,Brown Mountain Hydro Power Station,Cochrane Dam Pty Ltd, Hydro - Dam ,Hydro - Water
+ QLD1 ,BPLANDF1,Existing Plant,Browns Plains,EDL LFG (Qld) Pty Ltd, Reciprocating Engine - Spark ignition ,Other - Other
+ QLD1 ,BPLANDF1,Existing Plant,Browns Plains,EDL LFG (Qld) Pty Ltd, Reciprocating Engine - Spark ignition ,Other - Other
+ VIC1 ,BULBES1,Existing Plant,Bulgana Green Power Hub - BESS,Bulgana Wind Farm Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,BULGANA1,Existing Plant,Bulgana Green Power Hub - Wind Farm,Bulgana Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Bullawah Wind Farm – Stage 1,Bullawah Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Bulli Creek Battery,Genex Power Limited, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Bulli Creek BESS (Trina),Bulli Creek Hybrid Nominee Pty Ltd on behalf of Bulli Creek Hybrid Trust, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Bulli Creek Solar Farm,Genex Power Limited, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Bulli Creek Solar Farm,Genex Power Limited, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Bulli Creek Solar Farm (Trina),Bulli Creek Hybrid Nominee Pty Ltd on behalf of Bulli Creek Hybrid Trust, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Bullyard Solar Farm,EnerTECH PV Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Bundaberg Renewable Energy Park,Bundaberg Renewable Energy Park, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Bundaberg Solar Farm,Bundaberg Development Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Bundey BESS and Solar Project,Genaspi Energy Group Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Bundey BESS and Solar Project,Genaspi Energy Group Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Bundey BESS and Solar Project,Genaspi Energy Group Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Bundey BESS and Solar Project,Genaspi Energy Group Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Bundy Energy Hub A (BESS),Syn-Co Global, Storage - Battery ,Other - Other
+ SA1 ,,Project,Bundy Energy Hub B (BESS),SynCo Global, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Bungaban Wind Farm,Windlab Developments Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,BNGSF1,Existing Plant,Bungala One Solar Farm,Bungala One Operations Pty Ltd as trustee for the Bungala One Operations Trust, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,BNGSF2,Existing Plant,Bungala Two Solar Farm,Bungala Two Operations Pty Ltd as trustee for the Bungala Two Operations Trust, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Bungama BESS (ARENA ),Bungama Bess Trust, Storage - Battery ,Other - Other
+ SA1 ,,Project,Bungama Solar,Bungama Project (Solar) Operations Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Bungama Solar,Bungama Project (Solar) Operations Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Bunkers Hill Pumped Hydro,Pacific Hydro, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,,Project,Bunkers Hill Wind Farm,Pacific Hydro, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Burdekin BESS,BURDEKIN SOLAR FARM PTY LTD ATF BURDEKIN GENESIS PROJECT TRUST, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Burdekin Solar Farm - KCI,BURDEKIN SOLAR FARM PTY LTD ATF BURDEKIN GENESIS PROJECT TRUST, Solar PV - Single axis tracking ,Solar - Other
+ NSW1 ,,Project,Burgmanns BESS,Trina Projects Holding Australia Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,,Project,Buronga BESS - Storage - KCI,BESS Clyde North Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Burrawong Wind Farm,Windlab Development Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Burrawong Wind Farm,Windlab Development Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,BDONGHYD,Existing Plant,Burrendong,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Burrendong Wind Farm,ARK Energy Corporation Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,BURRIN,Existing Plant,Burrinjuck,GSP Energy Pty Ltd, Hydro - Dam ,Hydro - Water
+ NSW1 ,BURRIN,Existing Plant,Burrinjuck,GSP Energy Pty Ltd, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Bushranger Hybrid Facility - Battery,SynCo Global, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Bushranger Hybrid Facility - Solar,SynCo Global, Solar PV - Fixed ,Solar - Solar
+ TAS1 ,,Existing Plant,Butlers Gorge,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,BUTLERSG,Existing Plant,Butlers Gorge,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Calala Battery Energy Storage System 1 (CABESS1),EquisEquis Energy (Australia) Projects (Ngumi 4) Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Calala Battery Energy Storage System 2 (CABESS2),EquisEquis Energy (Australia) Projects (Ngumi 4) Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,CALL_B_1,Existing Plant,Callide B,CS Energy, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,CALL_B_2,Existing Plant,Callide B,CS Energy, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,CPP_3,Existing Plant,Callide C,Joint Venture; Callide Energy Pty Ltd and IG Power (Callide) Ltd., Turbine - Steam Super Critical ,Fossil - Black Coal
+ QLD1 ,CPP_4,Existing Plant,Callide C,Joint Venture; Callide Energy Pty Ltd and IG Power (Callide) Ltd., Turbine - Steam Super Critical ,Fossil - Black Coal
+ QLD1 ,,Project,Callide Energy Hub - KCI,CSE BESS P/L, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Callide Gas Peaker - KCI,CSE H2 Pty Ltd, Turbine - Other ,Other - Other
+ QLD1 ,,Project,Callide Power Station Solar Farm,Edify Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Callide Solar Power Station BESS,Edify Energy Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Callide Wind Farm,DP Green Energy Pty Limited, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Calvale BESS,Lightsource BP, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Calvale Solar Farm,Lightsource BP, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Campbells Forest Solar Farm,4067 Pyramid Development Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Camperdown BESS - Quintas,Quintas Energy P/L, Storage - Battery ,Other - Other
+ SA1 ,CNUNDAWF,Existing Plant,Canunda,Canunda Power Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Canyonleigh BESS,X-Elio Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Cape Winds Offshore Wind Farm,NeuGen Technology P/L, Wind Turbine - Offshore ,Wind - Wind
+ NSW1 ,,Project,Capital 2 Wind Farm,Capital Wind Farm 2 Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,CAPBES1,Existing Plant,Capital Battery,Capital Battery Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,CESF1,Existing Plant,Capital East Solar Farm P1,IBERDROLA AUSTRALIA HOLDINGS PTY LIMITED, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,CAPTL_WF,Existing Plant,Capital Wind Farm,Renewable Power Ventures Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Capricorn BESS - KCI,ENEL Green Power Australia, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Capricornia Energy Hub (CEH) PHES,Eungella PHES Pty Ltd ATF Eungella PHES Trust, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,,Project,Captains Mountain Wind Farm,vestas_NR, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Carag Solar Farm,Enerparc Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Carmody BESS,GHRE, Storage - Battery ,Other - Other
+ SA1 ,,Project,Carmodys Hill Wind Farm,Georgetown Hills Renewable Energy Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Carmodys Hill Wind Farm,Georgetown Hills Renewable Energy Pty Ltd, Storage - Battery ,Wind - Wind
+ VIC1 ,,Project,Carwarp BESS,Canadian Solar, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Carwarp Solar Farm - Stage I,Canadian Solar (Australia) Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Carwarp Solar Farm - Stage II,Canadian Solar (Australia) Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ TAS1 ,LI_WY_CA,Existing Plant,Catagunya / Liapootah / Wayatinah,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,LI_WY_CA,Existing Plant,Catagunya / Liapootah / Wayatinah,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,LI_WY_CA,Existing Plant,Catagunya / Liapootah / Wayatinah,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,LI_WY_CA,Existing Plant,Catagunya / Liapootah / Wayatinah,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,LI_WY_CA,Existing Plant,Catagunya / Liapootah / Wayatinah,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ SA1 ,CATHROCK,Existing Plant,Cathedral Rocks,JV Cathedral Rock Investments Pty Ltd - Acciona Energy Australia Global Pty Ltd and EnergyAustralia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Cattle Creek Wind Farm - KCI,RWE Renewables Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Cattle Creek Wind Farm - KCI,RWE Renewables Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ TAS1 ,CTHLWF1,Existing Plant,Cattle Hill Wind Farm,Wild Cattle Hill Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Central Para Wind Farm (KCI),Macleay Ventures Pty Ltd., Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Central West Pumped Hydro,ATCO Australia Pumped Hydro Pty Ltd, Hydro - Dam ,Hydro - Water
+ TAS1 ,CETHANA,Existing Plant,Cethana,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,,Project,Cethana Pumped Hydro Option,Hydro-Electric Corporation, Storage - Pumped hydro ,Hydro - Water
+ SA1 ,CHMLBESS,Project,Chaff Mill (Mintaro) BESS,FRV Services Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Existing Plant,Challicum Hills,Pacific Hydro Challicum Hills Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Chances Plain Solar Farm,juwi Renewable Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,CHPSTWF1,Existing Plant,Chepstowe Wind Farm - VIC,Chepstowe Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,CHYTWF1,Existing Plant,Cherry Tree Wind Farm,Cherry Tree Wind Farm Pty Limited A.T.F. Cherry Tree Project Trust, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,CHILDSF1,Existing Plant,Childers Solar Farm,Childers Solar Pty Ltd as trustee for the Childers Solar Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,CHBESS1,Existing Plant,Chinchilla BESS,CSE BESS Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Chinchilla Solar Farm,First Solar Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Chipping Norton Waste to Energy,Benedict Indistries P/L, Turbine - Steam Sub Critical ,Other - Other
+ SA1 ,CBWWPV1,Existing Plant,Christies Beach Wastewater Treatment Plant,South Australian Water Corporation, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,CBWWBA1,Existing Plant,Christies Beach Wastewater Treatment Plant,South Australian Water Corporation, Storage - Battery ,Other - Other
+ TAS1 ,,Project,Cimitiere Plains Solar Farm,Sun Spot 9 Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,CLARESF1,Existing Plant,Clare Solar Farm,Clare Asset Co Pty Ltd ATF Clare Asset Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Clarke Creek 2 BESS - KCI,Isaac Wind and Solar Energy Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,CLRKCWF1,Project,Clarke Creek Wind Farm,Squadron Energy Services Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,CLRKCWF2,Project,Clarke Creek Wind Farm,Squadron Energy Services Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,CLAYTON,Existing Plant,Clayton,EDL LFG Vic Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ SA1 ,,Project,Clements Gap - BESS,Pacific Hydro Clements Gap Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,CLEMGPWF,Existing Plant,Clements Gap Wind Farm,Pacific Hydro Clements Gap Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,CLERMSF1,Existing Plant,Clermont Solar Farm,Clermont Asset Co Pty Ltd as Trustee for Clerrmont Solar Unit Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,CLOVER,Existing Plant,Clover,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ TAS1 ,CLUNY,Existing Plant,Cluny,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Cobbora BESS,Pacific Partnerships, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Cobbora Solar Farm,pacificp_NR, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Cobden BESS - Quintas,Quintas Energy P/L, Storage - Battery ,Other - Other
+ VIC1 ,CODRNGTON,Existing Plant,Codrington Wind Farm,Energy Pacific (Vic) Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,COHUNSF1,Existing Plant,Cohuna Solar Farm,Cohuna Solar Farm Pty Ltd as trustee for the Cohuna Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Coleambally BESS,Coleambally BESS Trust, Storage - Battery ,Other - Other
+ NSW1 ,COLEASF1,Existing Plant,Coleambally Solar Farm,Coleambally Solar Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,COLWF01,Existing Plant,Collector,Ratch Australia, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Collinsville Coal Fired Power Station Project - KCI,Shine Energy, Other - Other ,Fossil - Black Coal
+ QLD1 ,,Project,Collinsville Green Energy Hub,COLLINSVILLE GREEN ENERGY HUB PTY LTD, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Collinsville North Battery Project,TBSOL, Storage - Battery ,Other - Other
+ QLD1 ,CSPVPS1,Existing Plant,Collinsville PV,Ratch Australia, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,CG1,Existing Plant,Colongra,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,CG2,Existing Plant,Colongra,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,CG3,Existing Plant,Colongra,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,CG4,Existing Plant,Colongra,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ QLD1 ,,Project,Columboola BESS,Columboola BESS Nominees Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Columboola BESS - KCI,StorEnergy P/L, Storage - Battery ,Other - Other
+ QLD1 ,COLUMSF1,Existing Plant,Columboola Solar Farm,Luminous Energy, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Comet Energy Park,Hadstone Energy Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Comet Park BESS - KCI,Samsung C&T Renewable Energy Australia Pty Ltd., Storage - Battery ,Other - Other
+ QLD1 ,CPSA,Existing Plant,Condamine A,QGC Sales QLD Pty Ltd, Turbine - CCGT ,Fossil - Coal Seam Methane
+ QLD1 ,CPSA,Existing Plant,Condamine A,QGC Sales QLD Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Coal Seam Methane
+ NSW1 ,CONDONG1,Existing Plant,Condong,Cape Byron Management PTY LTD, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ NSW1 ,,Project,Conroys Gap WF - KCI,Waldren Construction Pty Ltd., Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Cooba Solar Farm - KCI,Venn Energy Pty Ltd / Cooba Solar Project Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Cooma BESS (ACEN),ACEN RENEWABLES, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Cooma Hybrid BESS and Solar Farm (ACEN),ACEN RENEWABLES, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Cooma Hybrid BESS and Solar Farm (ACEN),ACEN RENEWABLES, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Cooma Solar Farm,BE PRO CM pty ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Cooma Solar Farm (Lightsource),Lightsource Development Services Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Coonawarren BESS - KCI,Akaysha Energy, Storage - Battery ,Other - Other
+ VIC1 ,CBWF1,Existing Plant,Coonooer Bridge Wind Farm,Coonooer Bridge Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,COOPGWF1,Existing Plant,Coopers Gap Wind Farm,PARF Company 6 Pty Limited, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,COOPGWF1,Existing Plant,Coopers Gap Wind Farm,PARF Company 6 Pty Limited, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Cooroy BESS,Enervest Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,COPTNHYD,Existing Plant,Copeton,AGL, Hydro - Dam ,Hydro - Water
+ NSW1 ,COPBEL,Project,Coppabella Wind Farm,Coppabella Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Corop BESS,Leeson Solar Pty Ltd., Storage - Battery ,Other - Other
+ VIC1 ,,Project,Corop Solar Farm,Leeson Solar Pty Ltd., Solar PV - Fixed ,Solar - Solar
+ NSW1 ,CRWASF1,Existing Plant,Corowa Solar Farm,Corowa Operationsco Pty Ltd as trustee for Corowa Operations Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Cranbourne BESS (Macquarie),Macquarie Corporate Holdings Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,CROOKWF2,Existing Plant,Crookwell 2 Wind Farm,Crookwell Development Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,CROOKWF3,Existing Plant,Crookwell 3 Wind Farm,Crookwell 3 Development Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Cross Roads Energy Solar Farm - KCI,Crossroads Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,CROWLWF1,Existing Plant,Crowlands Wind Farm,Pacific Hydro Crowlands Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,CRURWF1,Existing Plant,Crudine Ridge Wind Farm,CRWF Nominees Pty Ltd as trustee of the CRWF Trust, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Culcairn Solar Farm,Culcairn Solar Farm Pty Ltd as trustee for Culcairn Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,CULLRGWF,Existing Plant,Cullerin Range Wind Farm,Cullerin Range Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Cultana Solar Farm,Cultana Solar Project Company Pty Ltd as trustee for the Cultana Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Dalby Solar Farm,Dalby Asset Trust, Solar PV - Fixed ,Solar - Solar
+ SA1 ,DALNTH1,Existing Plant,Dalrymple BESS,ElectraNet, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Dalvui BESS,Tilt Renewables Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Dapper Solar Farm,BORAL, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,DDPS1,Existing Plant,Darling Downs,Origin Energy Power Limited, Turbine - CCGT ,Fossil - Coal Seam Methane
+ QLD1 ,DDPS1,Existing Plant,Darling Downs,Origin Energy Power Limited, Turbine - CCGT ,Fossil - Coal Seam Methane
+ QLD1 ,,Project,Darling Downs Battery,BORAL, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Darling Downs Battery,BORAL, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Darling Downs BESS (APA),APA Group, Storage - Battery ,Other - Other
+ QLD1 ,DDSF1,Existing Plant,Darling Downs Solar Farm,Darling Downs Solar Farm Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,DPNTB1,Existing Plant,Darlington Point Energy Storage System,DPESS Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,DARLSF1,Existing Plant,Darlington Point Solar Farm,Darlington Point Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Darlington Wind Farm - GPG,globalpower-generation_NR, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Daroobalgie Solar Farm,Pacific Hydro Australia Developments Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,DARTM1,Existing Plant,Dartmouth,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ SA1 ,,Project,Davenport BESS,Green Gold, Storage - Battery ,Other - Other
+ QLD1 ,DAYDSF1,Existing Plant,Daydream Solar Farm,The Daydream Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Deal 1 (West) Off Shore Wind Farm,BayWa r.e. Australia Offshore Wind Projects 1 Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ VIC1 ,,Project,Deal 2 (East) Off Shore Wind Farm,BayWa r.e. Australia Offshore Wind Projects 2 Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ VIC1 ,,Project,Dederang BESS,Mint Renewables, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Deepwater BESS,Ib vogt Development Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Deepwater Solar Farm,Ib vogt Development Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Delburn Wind Farm,Delburn Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Deniliquin BESS - Storage - KCI,Enervest Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Deniliquin East BESS,BESS Arctic Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Denman BESS - KCI,NEMMCOM Renewables Australia Developments Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Derby Solar Farm & BESS,DERBY SOLAR PROJECT PTY LTD, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Derby Solar Farm & BESS,DERBY SOLAR PROJECT PTY LTD, Storage - Battery ,Solar - Solar
+ TAS1 ,,Project,Derwent Valley Wind Farm,West Coast Renewable Energy, Wind Turbine - Onshore ,Wind - Wind
+ TAS1 ,DEVILS_G,Existing Plant,Devils Gate,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ VIC1 ,DIAPURWF1,Existing Plant,Diapur Wind Farm,Diapur Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Dinawan Energy Hub,Spark Renewables Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Dinawan Energy Hub,Spark Renewables Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Dinawan Energy Hub,Spark Renewables Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Dinawan Energy Hub,Spark Renewables Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Dinawan Energy Hub,Spark Renewables Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Dingo Solar Farm,ESCO Pacific, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Direk BESS,BESS DIREK PTY LTD, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Doreen BESS,BZ Renewables Holdings Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Dry Creek BESS - KCI,International Power (Energy) Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,DRYCGT1,Existing Plant,Dry Creek GT,Synergen Power Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,DRYCGT2,Existing Plant,Dry Creek GT,Synergen Power Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,DRYCGT3,Existing Plant,Dry Creek GT,Synergen Power Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ QLD1 ,,Project,Dulacca Solar,juwi Renewable Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,DULAWF1,Existing Plant,Dulacca Wind Farm,Dulacca Energy Project Co Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Dumaresq Solar Farm,Dumaresq Solar Farm Pty Limited, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,DUNDWF1,Existing Plant,Dundonnell Wind Farm,Tilt Renewables, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,DUNDWF2,Existing Plant,Dundonnell Wind Farm,Tilt Renewables, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,DUNDWF3,Existing Plant,Dundonnell Wind Farm,Tilt Renewables, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Dunedoo Solar Farm,ib vogt GmbH / Sun Spot 4, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,"Dungowan 3,000 MWH PHES",Dungowan Pumped Hydro Pty Ltd, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,,Project,Dunmore BESS,Samsung C&T, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Dunmore Solar Farm,Samsung C&T, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Dunmore Solar PV,"Samsung C&T Renewable Energy Australia Pty, Ltd", Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Dunmore Solar PV,"Samsung C&T Renewable Energy Australia Pty, Ltd", Storage - Battery ,Other - Other
+ NSW1 ,EASTCRK,Existing Plant,Eastern Creek,EDL LFG NSW Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ NSW1 ,,Existing Plant,Eastern Creek 2 Gas Utilisation Facility,LMS Energy Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ NSW1 ,,Project,Eastern Rise Offshore Wind,Eastern Rise OWP Project Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ NSW1 ,,Project,Edderton Hybrid Faciility - Solar,Voltere Pty Ltd., Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Edderton Hybrid Facility - BESS,Voltere Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,,Project,Eden Offshore Wind Farm,OceanEx Energy, Wind Turbine - Offshore ,Wind - Wind
+ QLD1 ,EDENVSF1,Existing Plant,Edenvale Solar Park,Edenvale Solar Park Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,EILDON1,Existing Plant,Eildon,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ VIC1 ,EILDON1,Existing Plant,Eildon,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ VIC1 ,EILDON2,Existing Plant,Eildon,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ VIC1 ,EILDON2,Existing Plant,Eildon,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ VIC1 ,EILDON3,Existing Plant,Eildon Pondage Power Station (EPPS),Pacific Hydro Investments Pty Ltd, Hydro - Run of River ,Hydro - Water
+ QLD1 ,,Project,Elai Genesis Battery Storage System,Elai Energy Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Elaine BESS,Elaine ProjectCo Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Elaine Solar Farm & BESS Hybrid,Elgin Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Elaine Solar Farm & BESS Hybrid,Elgin Energy Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,ELAINWF1,Existing Plant,Elaine Wind Farm,Northleaf /InfraRed/Macquarie Capital, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,EMERASF1,Existing Plant,Emerald Solar Park,Lighthouse Infrastructure Management Limited, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Emeroo BESS,Potentia Energy Group Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Emu Park BESS,M Renweables Australia, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Emu Park Solar Farm,M Renweables Australia, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,ER01,Existing Plant,Eraring,Origin Energy Eraring Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,ER02,Existing Plant,Eraring,Origin Energy Eraring Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,ER03,Existing Plant,Eraring,Origin Energy Eraring Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,ER04,Existing Plant,Eraring,Origin Energy Eraring Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,,Project,Eraring Big Battery,Origin Energy Electricity Limited, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Eraring Big Battery,Origin Energy Electricity Limited, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Eraring Big Battery,Origin Energy Electricity Limited, Storage - Battery ,Other - Other
+ NSW1 ,ERGT01,Existing Plant,Eraring GT,Origin Energy Eraring Pty Ltd, Turbine - OCGT ,Fossil - Diesel
+ QLD1 ,,Project,Eurimbula Hybrid Facility - Battery Storage,unitedgreen_NR, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Eurimbula Solar Farm,Unitedgreen_NR, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Euston Wind Farm - KCI,Balranald Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Everleigh Solar Farm & BESS - KCI,Everleigh Solar Park Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Everleigh Solar Farm & BESS - KCI,Everleigh Solar Park Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Exmoor,Acciona Energy, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Ferguson South Wind Farm,Ferguson Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,FNWF1,Existing Plant,Ferguson Wind Farm,Ferguson Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Fiery Creek Wind Farm,Tilt Renewables Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,FINLYSF1,Existing Plant,Finley Solar Farm,Finley Solar Farm Pty Ltd as The trustee for Finley Solar Trust, Solar PV - Single axis tracking ,Solar - Solar
+ TAS1 ,FISHER,Existing Plant,Fisher,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ NSW1 ,FLYCRKWF,Existing Plant,Flyers Creek Wind Farm,Flyers Creek Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,FNQ BESS 1 (KCI),Solquartz Holdings Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,FNQ BESS 2 (KCI),Solquartz Holdings Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,FNQ BESS 3 (KCI),Solquartz Holdings Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Forbes Solar Farm & BESS,Forbes Solar Farm Pty Ltd ATF Forbes Genesis Project Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Forbes Solar Farm & BESS,Forbes Solar Farm Pty Ltd ATF Forbes Genesis Project Trust, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Forest Glen Solar Farm,X-Elio Roma Hub Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Forest Wind,CleanSight P/L, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Forsayth Wind Farm,Forsayth Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,FTVBESS,Project,Fosterville SF and BESS,FRV Services Australia, Storage - Battery ,Solar - Solar
+ VIC1 ,FTVPV,Project,Fosterville SF and BESS,FRV Services Australia, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Fraser Coast Solar Park,FRASER COAST SOLAR PARK PTY LTD, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Frasers Solar Farm,Frasers Lane Development Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Fulham Solar Farm,Fulham Solar Farm Pty Ltd (ATF Fulham Solar Farm Trust), Storage - Battery ,Solar - Solar
+ VIC1 ,,Project,Fulham Solar Farm,Fulham Solar Farm Pty Ltd (ATF Fulham Solar Farm Trust), Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Galore Energy Project - Solar And BESS - KCI,Utilacor P/L, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Galore Energy Project - Solar And BESS - KCI,Utilacor P/L, Storage - Battery ,Solar - Solar
+ NSW1 ,,Project,Galore Hybrid Facility - Battery,NEMMCOTrina Projects Holding Australia Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,,Project,Galore Hybrid Facility - Solar,Trina Projects Holding Australia Pty Ltd., Solar PV - Fixed ,Solar - Solar
+ QLD1 ,GANGARR1,Existing Plant,Gangarri Solar Farm,Shell New Energies Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,GANNB1,Existing Plant,Gannawarra Energy Storage System,GESS ProjectCo, Storage - Battery ,Other - Other
+ VIC1 ,GANNSF1,Existing Plant,Gannawarra Solar Farm,Gannawarra Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Ganymirra Solar Power Station,Edify Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Ganymirra Solar Power Station,Edify Energy Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Garoo BESS,Greenpulse solar farm and BESS as trustee for Greenpulse Solar Farm & Bess Unit Trust, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Garoo Solar Farm,Greenpulse solar farm and BESS as trustee for Greenpulse Solar Farm & Bess Unit Trust, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,GBBATT1,Project,Gawara Baya Wind Farm,UPPER BURDEKIN WIND FARM PTY LTD, Storage - Battery ,Other - Other
+ QLD1 ,GBWF1,Project,Gawara Baya Wind Farm,UPPER BURDEKIN WIND FARM PTY LTD, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Gayndah Wind Farm,Mainstream Renewable Power Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ TAS1 ,,Project,George Town BESS - KCI,Recurrent Energy, Storage - Battery ,Other - Other
+ TAS1 ,,Project,George Town Wind Farm,West Coast Renewables, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Geranium Plains Solar and BESS,Risen Energy (Australia) Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Geranium Plains Solar and BESS,Risen Energy (Australia) Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,GERMCRK,Existing Plant,German Creek,EDL CSM Qld Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ QLD1 ,GERMCRK,Existing Plant,German Creek,EDL CSM Qld Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ NSW1 ,,Project,Gerogery Battery - KCI,Elgin Energy Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Gerogery Solar Farm - KCI,Elgin Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Gidginbung,Epho, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Gin Gin BESS,Iberdrola Australia Development Pty Limited, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Gin Gin Solar Farm - KCI,EIWA Gin Gin Renewable Energy Park Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,GIRGSF,Existing Plant,Girgarre Solar Farm,Giragarre Solar Farm Pty Ltd as trustee for Giragarre Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,GSTONE1,Existing Plant,Gladstone,Gladstone Power Station Participants, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,GSTONE2,Existing Plant,Gladstone,Gladstone Power Station Participants, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,GSTONE3,Existing Plant,Gladstone,Gladstone Power Station Participants, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,GSTONE4,Existing Plant,Gladstone,Gladstone Power Station Participants, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,GSTONE5,Existing Plant,Gladstone,Gladstone Power Station Participants, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,GSTONE6,Existing Plant,Gladstone,Gladstone Power Station Participants, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,,Project,Glanmire Solar Farm,Elgin Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Glanmire Solar Farm,Elgin Energy Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Glen Inness BESS - KCI,FIrm Power P/L, Storage - Battery ,Other - Other
+ NSW1 ,,Existing Plant,Glenbawn,AGL, Hydro - Dam ,Hydro - Water
+ VIC1 ,,Project,Glenbrae BESS,Acenergy, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Glenellen Solar Farm,Glenellen Solar Farm Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,GLENMAG1,Existing Plant,Glenmaggie Hydro,Pacific Hydro Investments Pty Ltd, Hydro - Dam ,Hydro - Water
+ NSW1 ,GLENNCRK,Existing Plant,Glennies Creek,EDL OCI Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ VIC1 ,,Project,Glenrowan BESS - Storage - KCI,Enervest Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Glenrowan BESS (KCI),Akaysha Energy, Storage - Battery ,Other - Other
+ VIC1 ,GLENSF1,Existing Plant,Glenrowan Solar Farm,Glenrowan Solar Farm Pty Ltd as trustee for Glenrowan Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,GLRWNSF1,Existing Plant,Glenrowan West Solar Farm,Glenrowan Sun Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Gnarwarre BESS Facility,FRV SA Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Goat Hill Pumped Hydro,Altura Group, Storage - Pumped hydro ,Hydro - Water
+ VIC1 ,,Project,Golden Plains BESS,Tag Energy Australia P/L, Storage - Battery ,Other - Other
+ VIC1 ,GPWFEST1,Project,Golden Plains Wind Farm East,Golden Plains WF1 Pty Ltd as trustee for the Golden Plains WF1 Unit Trust, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,GPWFEST2,Project,Golden Plains Wind Farm East,Golden Plains WF1 Pty Ltd as trustee for the Golden Plains WF1 Unit Trust, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,GPWFEST3,Project,Golden Plains Wind Farm East,Golden Plains WF1 Pty Ltd as trustee for the Golden Plains WF1 Unit Trust, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Golden Plains Wind Farm West,Golden Plains WF2 Unit Trust, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,GOONSF1,Existing Plant,Goonumbla Solar Farm,Goonumbla Asset Co Pty Ltd as trustee for the Goonumbla Asset Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Goorambat BESS (Lighthouse),Lightsource Development Services Australia, Other - Other ,Other - Other
+ VIC1 ,,Project,Goorambat East Solar Farm (ENGIE),Engie, Solar PV - Single axis tracking ,Solar - Solar
+ TAS1 ,GORDON,Existing Plant,Gordon,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Goulburn River Solar Farm And BESS,Goulburn River Fund Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Goulburn River Solar Farm And BESS,Goulburn River Fund Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Gould Creek BESS,Valent Energy, Storage - Battery ,Other - Other
+ SA1 ,,Project,Goyder BESS,Neoen Australia Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Goyder North Renewable Energy Facility,Neoen Australia, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,GSWF1A,Existing Plant,Goyder South Wind Farm 1A,Goyder Wind Farm 1A Pty Ltd as trustee for Goyder Wind Farm 1A Trust, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,GSWF1B1,Project,Goyder South Wind Farm 1B,Goyder Wind Farm 1B Pty Ltd as trustee for Goyder Wind Farm 1B Trust, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Grafton Rd BESS (KCI),Eku Energy Projects (Australia) Trust, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Grahamvale BESS - KCI,AE BESS 3 Pty Ltd as Trustee for AE BESS 3 Unit Trust, Storage - Battery ,Other - Other
+ NSW1 ,GRANGEAV,Existing Plant,Grange Avenue,EDL LFG NSW Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ NSW1 ,,Project,Granite Hills Wind Farm,Akuo Energy, Wind Turbine - Onshore ,Wind - Wind
+ TAS1 ,GRANWF1,Existing Plant,Granville Harbour Wind Farm,Granville Harbour Operations Pty Ltd as trustee for Granville Harbour Operations Trust, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Great Eastern Offshore Wind - KCI,GIG Australian Offshore Wind Energy Holdings Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ TAS1 ,,Project,Great Lakes Battery,Neoen Australia Pty Ltd, Storage - Battery ,Other - Other
+ TAS1 ,,Project,Great Lakes BESS,Neoen Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Great Western Battery Project,Neoen Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Greater Gippsland Offshore Wind Project,Greater Gippsland OWP Project Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ VIC1 ,,Project,Greater Southern Offshore Wind - KCI,Greater Southern Offshore Wind Farm Project Co Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ QLD1 ,,Project,Green Poly BESS Project (KCI),Solquartz Holdings Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,GREENB1,Project,Greenbank BESS,CSE BESS Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Greenpulse BESS (KCI),Greenpulse solar farm and BESS as trustee for Greenpulse Solar Farm & Bess Unit Trust, Storage - Battery ,Solar - Solar
+ NSW1 ,,Project,Greenpulse Solar Farm (KCI),Greenpulse solar farm and BESS as trustee for Greenpulse Solar Farm & Bess Unit Trust, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Gregadoo Solar Farm,Gregadoo Solar Farm Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Griffith BESS - KCI,Eku Energy Projects (Australia) Trust, Storage - Battery ,Other - Other
+ NSW1 ,GRIFSF1,Existing Plant,Griffith Solar Farm,Griffith Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,GROSV1,Existing Plant,Grosvenor 1,EDL Projects Australia Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ QLD1 ,GROSV2,Project,Grosvenor 2 Waste Coal Mine Gas Power Station,EDL Projects Australia Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Coal Seam Methane
+ QLD1 ,,Project,Group Linen - Maryborough,Group Linen, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Group Linen - Prince Charles,Group Linen, Solar PV - Fixed ,Solar - Solar
+ TAS1 ,,Project,Guildford Wind Farm,ARK Energy Corporation Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Gullen Range Battery Energy System,goldwindaustralia_NR, Storage - Battery ,Other - Other
+ NSW1 ,GULLRSF1,Existing Plant,Gullen Range Solar Farm,New Gullen Range Wind Farm Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,GULLRWF1,Existing Plant,Gullen Range Wind Farm,New Gullen Range Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,GULLRWF1,Existing Plant,Gullen Range Wind Farm,New Gullen Range Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,GULLRWF2,Existing Plant,Gullen Range Wind Farm 2,BEIJING JINGNENG CLEAN ENERGY (AUSTRALIA) HOLDING PTY LTD, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Gundary Solar Farm - KCI,Lightsource Development Services Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Gundary Solar Farm - KCI,Lightsource Development Services Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Gunnedah BESS,Gunnedah Battery Subco Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Gunnedah East BESS (Green Leap) - KCI,Green Leap P/L, Storage - Battery ,Other - Other
+ NSW1 ,GNNDHSF1,Existing Plant,Gunnedah Solar Farm,Gunnedah SF Pty Ltd atf Gunnedah Asset Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Gunning Solar Farm (Canadian),Canadian Solar, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Gunning Solar Farm (Canadian),Canadian Solar, Storage - Battery ,Other - Other
+ NSW1 ,GUNNING1,Existing Plant,Gunning Wind Farm,Gunning Wind Energy Developments, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,GUNNING1,Existing Plant,Gunning Wind Farm,Gunning Wind Energy Developments, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Gunsynd Solar Farm,ARP, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Gurambilbarra Energy Hub,365 Future Energy, Other - Other ,Other - Other
+ NSW1 ,GUTHEGA,Existing Plant,Guthega,Snowy Hydro Ltd, Hydro - Dam ,Hydro - Water
+ VIC1 ,,Project,GV Community Energy,GV Community Energy, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,HALAMRD1,Existing Plant,Hallam Road,LMS Energy Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ SA1 ,NBHWF1,Existing Plant,Hallett 4 North Brown Hill,Brown Hill North Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,BLUFF1,Existing Plant,Hallett 5 The Bluff WF,Eurus Energy, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Hallett BESS,EnergyAustralia Hallett Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,AGLHAL,Existing Plant,Hallett GT,EnergyAustralia Hallett Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,AGLHAL,Existing Plant,Hallett GT,EnergyAustralia Hallett Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,AGLHAL,Existing Plant,Hallett GT,EnergyAustralia Hallett Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,AGLHAL,Existing Plant,Hallett GT,EnergyAustralia Hallett Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,AGLHAL,Existing Plant,Hallett GT,EnergyAustralia Hallett Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,AGLHAL,Existing Plant,Hallett GT,EnergyAustralia Hallett Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,AGLHAL,Existing Plant,Hallett GT,EnergyAustralia Hallett Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,AGLHAL,Existing Plant,Hallett GT,EnergyAustralia Hallett Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,HALLWF1,Existing Plant,Hallett Stage 1 Brown Hill,Palisade Investment Partner Limited, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,HALLWF2,Existing Plant,Hallett Stage 2 Hallett Hill,Infrastructure Capital Group Limited, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Halys BESS - Iberdrola,IBERDROLA AUSTRALIA DEVELOPMENT PTY LIMITED, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Halys BESS (Akaysha),Halys BESS ProjectCo Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Halys BESS (X-Elio),X-Elio Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Halys Hybrid Facility - BESS,Elements Green Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Halys Hybrid Facility - Solar,Elements Green Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Halys to Chinchilla DCA Battery - KCI,UGL Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,HAMISF1,Existing Plant,Hamilton Solar Farm,Hamilton Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Hanworth BESS - KCI,Enervest Operations Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,HVWWPV1,Existing Plant,Happy Valley Reservoir,South Australian Water Corporation, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,HVWWBA1,Existing Plant,Happy Valley Reservoir,South Australian Water Corporation, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Harlin Solar Farm,Harlin Solar Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Harlin Solar Farm,Harlin Solar Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Harrami Wind Farm,Mainstream, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Harrogate BESS,Enel Green Power Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Hastings Generation Site,Esso Australia Pty Ltd and BHP Petroleum (Bass Strait) Pty Ltd, Turbine - OCGT ,Fossil - N/A
+ VIC1 ,,Project,Hastings Generation Site,Esso Australia Pty Ltd and BHP Petroleum (Bass Strait) Pty Ltd, Turbine - OCGT ,Fossil - N/A
+ QLD1 ,,Project,Haughton BESS,Pacific Hydro Haughton Solar Farm Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,HAUGHT11,Existing Plant,Haughton Solar Farm Stage 1,Pacific Hydro Haughton Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Haughton Solar Farm Stage 2,Pacific Hydro Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Haunted Gully BESS - KCI,Vena Energy Services (Australia) Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,HD1WF1,Existing Plant,Hawkesdale Wind Farm,Hawkesdale Asset Pty Ltd as trustee for Hawkesdale Asset Trust, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Hay Sun Farm,Overland Sun Farming Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,HAYMSF1,Existing Plant,Hayman Solar Farm,The Hayman Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Hazeldean BESS - Storage - KCI,Enervest Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,HBESS1,Existing Plant,Hazelwood Battery Energy Storage System (HBESS),Hazelwood BESS Project Co Pty Ltd as trustee for the HBESS Asset Trust, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Hazelwood BESS - KCI,Engie, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Hazelwood BESS (Ironwood) - KCI,International Power (Australia) Pty Ltd (trading as ENGIE), Storage - Battery ,Other - Other
+ VIC1 ,,Project,Hazelwood North Solar Farm - KCI,Manthos Investments Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Heathgate Resources Beverley mine - BESS,SunSHIFT, Storage - Battery ,Other - Other
+ TAS1 ,,Project,Hellyer Wind Farm,ARK Energy Corporation Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Herries Range Wind Farm,Acciona Energy Global Australia, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Hexham,Wind Prospect WA Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Highbury Pumped Hydro Energy Storage,Tilt Renewables, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,,Project,Hills of Gold Wind Farm,Hills of Gold Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,HILLSTN1,Existing Plant,Hillston Sun Farm,Hillston Sun Farm Operations Pty Ltd ATF Hillston, Solar PV - Single axis tracking ,Solar - Solar
+ TAS1 ,,Project,Hobart Show Grounds BESS,Gravitas, Storage - Battery ,Other - Other
+ TAS1 ,,Project,Hollow Tree Wind Farm,Goldwind Australia, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Holloway BESS - KCI,Bushranger Project Pty Ltd., Storage - Battery ,Other - Other
+ QLD1 ,,Project,Hookey Creek Hybrid - Solar And BESs - KCI,Zen Energy Future Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Hookey Creek Hybrid - Solar And BESs - KCI,Zen Energy Future Pty Ltd, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Hopeland BESS,Pacific Partnerships, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Hopeland Solar Farm,Hopeland Solar Farm Pty Ltd as trustee for the Hopeland Solar Farm Trust, Solar PV - Fixed ,Solar - Solar
+ SA1 ,HPR1,Existing Plant,Hornsdale Power Reserve Unit 1,Hornsdale Power Reserve Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,HPR1,Existing Plant,Hornsdale Power Reserve Unit 1,Hornsdale Power Reserve Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,HDWF1,Existing Plant,Hornsdale Wind Farm Stage 1,HWF 1 Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,HDWF2,Existing Plant,Hornsdale Wind Farm Stage 2,HWF 2 Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,HDWF3,Existing Plant,Hornsdale Wind Farm Stage 3,HWF 3 Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Horsham BESS,ESCO Solar Farm 7 Trust, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Horsham Solar Farm,ESCO SOLAR FARM 7 PTY LTD, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,HUGSF1,Existing Plant,Hughenden Sun Farm,Hughenden Solar Pty Ltd as Trustee for Hughenden Solar Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Hughes Road BESS,BayWA r.e Projects Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Hume BESS,GSP Energy Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Hume Bess (ARIF),The Trustee for the ARIF Hume BESS Holdings Trust, Storage - Battery ,Other - Other
+ NSW1 ,HUMENSW,Existing Plant,Hume Dam NSW,GSPOWER, Hydro - Dam ,Hydro - Water
+ VIC1 ,HUMEV,Existing Plant,Hume Dam VIC,GSP Energy Pty Ltd, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Hunter Central Coast Offshore Energy (Wind),Energy Estate, Wind Turbine - Offshore ,Wind - Wind
+ NSW1 ,HEZ1,Existing Plant,Hunter EconomicZone,Snowy Hydro Ltd, Reciprocating Engine - Compression ignition ,Fossil - Diesel
+ NSW1 ,HUNTER1,Project,Hunter Power Station,Snowy Hydro Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,HUNTER2,Project,Hunter Power Station,Snowy Hydro Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,,Project,Hydrogen Jobs Plan,Office of Hydrogen SA, Turbine - OCGT ,Other - Other
+ SA1 ,,Project,Hydrogen Jobs Plan,Office of Hydrogen SA, Turbine - OCGT ,Other - Other
+ VIC1 ,HLMSEW01,Existing Plant,HYMIVC06 Belgrave-Hallam Rd Micro Hydro,South East Water Corporation, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Ilford Green Energy Hub,brightnightpower_NR, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Ilford Green Energy Hub,brightnightpower_NR, Storage - Battery ,Solar - Solar
+ NSW1 ,,Project,Ilford Green Energy Hub,brightnightpower_NR, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Illawarra Offshore Wind Farm,OceanEx Energy, Wind Turbine - Offshore ,Wind - Wind
+ QLD1 ,,Project,Innes Park Solar Farm,Enerparc Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Inverleigh Solar Farm,TBA, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Inverleigh Wind Farm,Inverleigh Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Existing Plant,Invicta Mill,Haughton Sugar Company Pty Limited, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ QLD1 ,,Existing Plant,Invicta Mill,Haughton Sugar Company Pty Limited, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ QLD1 ,,Existing Plant,Invicta Mill,Haughton Sugar Company Pty Limited, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ QLD1 ,,Project,Isaac Wind Farm,Squadron Energy Services Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Existing Plant,ISIS Central Sugar Mill Co-generation Plant,SUSTAINABLE ENERGY INFRASTRUCTURE, Turbine - Steam Sub Critical ,Other - Other
+ NSW1 ,JACKSGUL,Existing Plant,Jacks Gully,EDL LFG NSW Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ QLD1 ,,Project,Jackson North BESS,Equis Energy (Australia) Projects (Ngumi 6) Pty Ltd as trustee for the Equis Energy(Australia) Ngumi 6 Asset Trust, Storage - Battery ,Other - Other
+ VIC1 ,JLA01,Existing Plant,Jeeralang A,EnergyAustralia Ecogen Py Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,JLA02,Existing Plant,Jeeralang A,EnergyAustralia Ecogen Py Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,JLA03,Existing Plant,Jeeralang A,EnergyAustralia Ecogen Py Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,JLA04,Existing Plant,Jeeralang A,EnergyAustralia Ecogen Py Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,JLB01,Existing Plant,Jeeralang B,EnergyAustralia Ecogen Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,JLB02,Existing Plant,Jeeralang B,EnergyAustralia Ecogen Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,JLB03,Existing Plant,Jeeralang B,EnergyAustralia Ecogen Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,JEMALNG1,Existing Plant,Jemalong Solar,Genex Power, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Jeremiah Wind Farm,Squadron Energy Services Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,JNDABNE1,Existing Plant,Jindabyne,Snowy Hydro Ltd, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Jindera BESS - Storage - KCI,BESS Atlantic, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Jindera Solar Farm,Jindera Solar Farm Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Joel BESS,ACEnergy Pty Ltd, Storage - Battery ,Other - Other
+ TAS1 ,JBUTTERS,Existing Plant,John Butters,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ NSW1 ,JOUNAMA1,Existing Plant,Jounama,Snowy Hydro Ltd, Hydro - Dam ,Hydro - Water
+ NSW1 ,JRBATT1,Project,Junction Rivers,Junction Rivers Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,JRWF1,Project,Junction Rivers,Junction Rivers Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,JUNEESF1,Existing Plant,Junee Solar Farm,Junee Operationsco Pty Ltd as trustee for Junee Operations Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Juno BESS,Tilt Renewables Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Juno Wind Farm,Tilt Renewables Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,KABANWF1,Existing Plant,Kaban Wind Farm,Kaban Wind Farm Trust, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Kaloya Moa Standalone BESS,Samsung C&T Renewable Energy Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Kangaroo Hills Wind Farm,Origin Energy Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Kangaroo Hills Wind Farm,Origin Energy Pty Ltd, Storage - Battery ,Wind - Wind
+ NSW1 ,,Project,Kangaroo Valley BESS,FIrm Power P/L, Storage - Battery ,Other - Other
+ VIC1 ,KARSF1,Existing Plant,Karadoc Solar Farm,Iraak Sun Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Karara BESS - KCI,ACCIONA Energy, Storage - Battery ,Other - Other
+ QLD1 ,KAREEYA1,Existing Plant,Kareeya,CleanCo Queensland Limited, Hydro - Run of River ,Hydro - Water
+ QLD1 ,KAREEYA2,Existing Plant,Kareeya,CleanCo Queensland Limited, Hydro - Run of River ,Hydro - Water
+ QLD1 ,KAREEYA3,Existing Plant,Kareeya,CleanCo Queensland Limited, Hydro - Run of River ,Hydro - Water
+ QLD1 ,KAREEYA4,Existing Plant,Kareeya,CleanCo Queensland Limited, Hydro - Run of River ,Hydro - Water
+ QLD1 ,KAREEYA5,Existing Plant,Kareeya 5,CleanCo Queensland Limited, Hydro - Dam ,Hydro - Water
+ QLD1 ,,Project,Kariboe Wind Farm,Kariboe Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Karma Wind Farm - KCI,NEMMCOCI Karma Pty Ltd as trustee for the CI Karma Trust, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,KEEPIT,Existing Plant,Keepit,GSP Energy Pty Ltd, Hydro - Dam ,Hydro - Water
+ QLD1 ,,Project,Kelsey Creek Solar Farm,BayWa r.e. Solar Project Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,KEPSF1,Existing Plant,Kennedy Energy Park - Phase 1 - Solar,Windlab / Eurus, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,KEPBG1,Existing Plant,Kennedy Energy Park - Phase 1 - Storage,Windlab/Eurus, Storage - Battery ,Other - Other
+ QLD1 ,KEPWF1,Existing Plant,Kennedy Energy Park - Phase 1 - Wind,Windlab / Eurus, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Kentbruck Green Power Hub,Neoen Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Kerang BESS,Kerang Bess Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Kerang Hybrid,Kerang Power Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Kerang Hybrid,Kerang Power Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Kerang Solar Farm,Acciona Energy Australia Global, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Kerang Solar Farm Green Switch,Kerang Solar Plant Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Kerrawary Power Station,Origin Energy, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,Kerrs Creek Wind Farm,RES Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Kestrel Waste Coal Mine Gas Power Station,Enernet Kestrel Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ VIC1 ,KIAMBE,Project,Kiamal BESS,TotalEnergies Renewables Australia, Storage - Battery ,Other - Other
+ VIC1 ,KIAMSF1,Existing Plant,Kiamal Solar Farm - Stage 1,KSF Project Nominees Pty Ltd ATF KSF Project Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Kiamal Solar Farm - Stage 2,KSF2 Project Nominees Pty Ltd ATF KSF2 Project Trust, Storage - Battery ,Solar - Solar
+ VIC1 ,,Project,Kiamal Solar Farm - Stage 2,KSF2 Project Nominees Pty Ltd ATF KSF2 Project Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,KiataWF1,Existing Plant,Kiata Wind Farm,Kiata ProjectCo Pty Ltd atf Kiata Project Trust, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Kidston Pumped Storage Hydro Project 250MW,Genex Power Ltd, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,KSP1,Existing Plant,Kidston Solar Project Phase One 50MW,Genex Power Limited, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Kidston Solar Project Phase Two 270MW,Genex Power Limited, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Kidston Stage 3 Wind Project,Genex Power Limited, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Kidston Wind Farm - KCI,Kidston (Wind Farm) Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,KIEWA VALLEY BESS,KIEWA VALLEY BESS NOMINEES PTY LTD on behalf of KIEWA VALLEY BESS Trust, Storage - Battery ,Other - Other
+ QLD1 ,KINGASF1,Existing Plant,Kingaroy Solar Farm,Kingaroy PropertyCo Pty Ltd as trustee for Kingaroy Property Trust, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Kingfisher Solar Storage - Solar,Lyon Solar, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Kingfisher Solar Storage - Storage,Lyon Solar, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Kings Plain Wind Farm,Enerfin Energy Services Pty Ltd., Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Kingswood BESS,Iberdrola Australia Development Pty Ltd., Storage - Battery ,Other - Other
+ QLD1 ,,Project,Koberinga Solar Farm,ESCO Pacific, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,KPP_1,Existing Plant,Kogan Creek,Kogan Creek Power Station Pty Ltd, Turbine - Steam Super Critical ,Fossil - Black Coal
+ SA1 ,,Project,Koolunga Battery Energy Storage System 1,Equis Energy (Australia) Projects (Ngumi 6) Pty Ltd as trustee for the Equis Energy (Australia) Ngumi 6 Asset Trust, Storage - Battery ,Other - Other
+ SA1 ,,Project,Koolunga Battery Energy Storage System 2,Equis Energy (Australia) Projects (Ngumi 6) Pty Ltd as trustee for the Equis Energy (Australia) Ngumi 6 Asset Trust, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Koorangie Energy Storage System,Edify Energy, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Kurri Kurri Battery,CEP Energy, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Kut Wut Brataualung,NEMMCO, Wind Turbine - Offshore ,Wind - Wind
+ VIC1 ,,Project,Kyabram Wind Farm,FERA Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,LADBROK1,Existing Plant,Ladbroke Grove,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,LADBROK2,Existing Plant,Ladbroke Grove,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,LKBONNY1,Existing Plant,Lake Bonney 1 Wind Farm,Lake Bonney Wind Power Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,LKBONNY2,Existing Plant,Lake Bonney 2 Wind Farm,Lake Bonney Wind Power Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,LKBONNY3,Existing Plant,Lake Bonney 3 Wind Farm,Lake Bonney Wind Power Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,LBB1,Existing Plant,Lake Bonney Battery Energy Storage,Lake Bonney BESS Pty Limited, Storage - Battery ,Other - Other
+ TAS1 ,LK_ECHO,Existing Plant,Lake Echo,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Lake Lyell Pumped Hydro,EnergyAustralia NSW Pty Ltd, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Lake Victoria Energy Park - KCI,Lake Victoria Wind Farm Pty Ltd atf Lake Victoria Wind Farm unit trust, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Lake Victoria Energy Park - KCI,Lake Victoria Wind Farm Pty Ltd atf Lake Victoria Wind Farm unit trust, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Lakeland Wind Farm,Lakeland Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Lambruk Solar Project,Venn Energy Pty Ltd / Acacia Solar Project Pty Ltd., Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Lancaster Solar Farm,Ox2 Holdings Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Latrobe Solar Farm,Canadian Solar (Australia) Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,LaTrobe Valley BESS,Tilt Renewables Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,LNGS1,Existing Plant,Laverton North,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,LNGS2,Existing Plant,Laverton North,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,,Project,Learmonth BESS,Torchlight Energy Group, Storage - Battery ,Other - Other
+ SA1 ,,Project,Leigh Creek Energy Project,Leigh Creek Energy, Turbine - Steam Sub Critical ,Other - Other
+ TAS1 ,LEM_WIL,Existing Plant,Lemonthyme / Wilmot,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,LEM_WIL,Existing Plant,Lemonthyme / Wilmot,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ VIC1 ,HEPWIND1,Existing Plant,Leonards Hill,Hepburn Community Wind Park Co-operative Limited, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Lerida BESS,Elgin EnergyP/L, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Lerida Solar Farm,Elgin EnergyP/L, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Liddell BESS,MACQGEN, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Lilyvale BESS - KCI,Acen Australia, Storage - Battery ,Other - Other
+ QLD1 ,LILYSF1,Existing Plant,Lilyvale Solar Farm,Lilyvale Asset Co Pty Ltd ATF Lilyvale Asset Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Limondale BESS,LIMONDALE BATTERY PTY. LTD, Storage - Battery ,Other - Other
+ NSW1 ,LIMOSF11,Existing Plant,Limondale Solar Farm 1,Limondale Sun Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,LIMOSF21,Existing Plant,Limondale Solar Farm 2,Limondale Sun Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,LGAPBS1,Project,LINCOLN GAP BESSBDU,Lincoln Gap Wind Farm (Operations) Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,LGAPWF1,Existing Plant,Lincoln Gap Wind Farm - stage 1,Lincoln Gap Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,LGAPWF2,Existing Plant,Lincoln Gap Wind Farm - Stage 2,Lincoln Gap Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Lincoln Gap Wind Farm stage 3,Nexif RATCH Energy Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Lindley BESS,NEMMCO, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Lindsay Gap BESS,Acciona Energy Australia Global, Storage - Battery ,Other - Other
+ SA1 ,,Project,Lionsgate Battery,CEP Energy, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Little River BESS,ACEnergy Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Little River Solar Farm - KCI,Clean Technology Partners, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Liverpool Range Wind Farm,Liverpool Range Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Lockhart Hybrid Facility - Battery,Better Energy Technology Pty Ltd, Storage - Battery ,Solar - Solar
+ NSW1 ,,Project,Lockhart Hybrid Facility - Solar,Better Energy Technology Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Lockyer BESS - KCI,Lockyer Energy Management Pty, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Lockyer Valley Energy Project,Quinbrook Asset Management as Trustee for The Australian Clean Power Trust, Turbine - OCGT ,Fossil - Natural Gas
+ QLD1 ,,Project,Lockyer Valley Energy Project,Quinbrook Asset Management as Trustee for The Australian Clean Power Trust, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Lockyer Valley Energy Project,Quinbrook Asset Management as Trustee for The Australian Clean Power Trust, Storage - Battery ,Solar - Solar
+ QLD1 ,LRSF1,Existing Plant,Longreach Solar Farm,Longreach Asset Company, Solar PV - Fixed ,Solar - Solar
+ SA1 ,LONSDALE,Existing Plant,Lonsdale,Lumo Generation SA Pty Ltd, Reciprocating Engine - Compression ignition ,Fossil - Diesel
+ QLD1 ,,Project,Lotus Creek Wind Farm,CSENERGY, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Lovely Banks Renewable Energy Hub - KCI,Syncline Energy Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Lower Wonga BESS,Equis Energy (Australia) Projects (Ngumi 7) Pty Ltd as trustee for the Equis Energy(Australia) Ngumi 7 Asset Trust, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Lower Wonga BESS - KCI,Lightsource BP, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Lower Wonga Solar Farm - KCI,Lower Wonga Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,LYA1,Existing Plant,Loy Yang A Power Station,AGL Loy Yang Marketing Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Brown Coal
+ VIC1 ,LYA2,Existing Plant,Loy Yang A Power Station,AGL Loy Yang Marketing Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Brown Coal
+ VIC1 ,LYA3,Existing Plant,Loy Yang A Power Station,AGL Loy Yang Marketing Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Brown Coal
+ VIC1 ,LYA4,Existing Plant,Loy Yang A Power Station,AGL Loy Yang Marketing Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Brown Coal
+ VIC1 ,LOYYB1,Existing Plant,Loy Yang B,Gippsland Power Pty Ltd ABN 30 077 851 079 / LYB Ventures Australia Pty Ltd ABN 57 055 984 499 / Traralgon Power Pty Ltd ABN 64 056 292 623 / Latrobe Power Pty Ltd ABN 42 055 983 563 / LYB Australia Limited ABN 87 055 563 785, Turbine - Steam Sub Critical ,Fossil - Brown Coal
+ VIC1 ,LOYYB2,Existing Plant,Loy Yang B,Gippsland Power Pty Ltd ABN 30 077 851 079 / LYB Ventures Australia Pty Ltd ABN 57 055 984 499 / Traralgon Power Pty Ltd ABN 64 056 292 623 / Latrobe Power Pty Ltd ABN 42 055 983 563 / LYB Australia Limited ABN 87 055 563 785, Turbine - Steam Sub Critical ,Fossil - Brown Coal
+ VIC1 ,,Project,Loy Yang B Power Station - BESS Stage 1 - KCI,Alinta Energy Clean Energy Development Pty Ltd, Storage - Battery ,Other - Other
+ TAS1 ,,Project,LST02 Data Hall BESS,Firmus Grid P/L, Storage - Battery ,Other - Other
+ NSW1 ,LUCAS2S2,Existing Plant,Lucas Heights 2,EDL LFG NSW Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ NSW1 ,LUCASHGT,Existing Plant,Lucas Heights 2,EDL LFG NSW Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ VIC1 ,,Project,LYA BESS,LOYYANGA, Storage - Battery ,Other - Other
+ VIC1 ,MACARTH1,Existing Plant,Macarthur Wind Farm,Macarthur Wind Farm Pty Ltd and Meridian Wind Macarthur Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,MCINTYR1,Project,MacIntyre Wind Farm,Macintyre Windfarm Pty Ltd and Arc Energy Macintyre Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ TAS1 ,MACKNTSH,Existing Plant,Mackintosh,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ QLD1 ,,Project,Madeline Downs BESS,AGL Energy Limited, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Maison Dieu Solar Farm,terrainsolar_NR, Solar PV - Dual axis tracking ,Solar - Solar
+ QLD1 ,,Project,Majors Creek Solar Power Station,Edify Energy Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Majors Creek Solar Power Station,Edify Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Mallee Wind Farm,Mallee Wind PTY LTD, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Mallee Wind Farm,Mallee Wind PTY LTD, Storage - Battery ,Wind - Wind
+ VIC1 ,,Project,Malunga BESS - KCI,Green Switch Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Mangoplah BESS - KCI,Samsung C&T Renewable Energy Australia Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,MANSLR1,Existing Plant,Manildra Solar Farm,Manildra Prop Pty Ltd as trustee for the Manildra Asset Trust, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,MAPS2PV1,Existing Plant,Mannum Adelaide Pumping Station No 2 - MAPL2 (Palmer),South Australian Water Corporation, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,MAPS3PV1,Existing Plant,Mannum Adelaide Pumping Station No 3 - MAPL3 (Tungkillo),South Australian Water Corporation, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Mannum BESS,Mannum Stage 2 Battery SubCo Pty Ltd as Trustee for The Mannum Stage 2 Battery Unit Trust, Storage - Battery ,Other - Other
+ SA1 ,MANNSF2,Existing Plant,Mannum Solar Farm 2,Mannum Stage 2 SubCo Pty Ltd as trustee for the Mannum Stage 2 Unit Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Mansfield Solar Farm - Solar - KCI,Biscon Energy Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Mansfield Solar Farm - Storage - KCI,Biscon Energy Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Maranbah Solar Farm,EEW ECO ENERGY WORLD PTY LTD, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Markaranka Solar and Storage,Monash Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Markaranka Solar and Storage,Monash Energy Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Marmadua Wind Farm (KCI),Cubico Sustainable Investments Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Existing Plant,Maroona Wind Farm,Myamba Developments Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Marulan - OCGT/CCGT,EnergyAustralia Marulan Pty Ltd, Turbine - Other ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,Marulan - OCGT/CCGT,EnergyAustralia Marulan Pty Ltd, Turbine - Other ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,Marulan Solar Farm,Marulan Solar Farm Pty Ltd, Solar PV - Dual axis tracking ,Solar - Solar
+ QLD1 ,MARYRSF1,Existing Plant,Maryrorough Solar Farm,Maryrorough Solar Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Maryvale Solar and Energy Storage System,Maryvale Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Maryvale Solar and Energy Storage System,Maryvale Solar Farm Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Matthew Flinders College Senior,Matthew Flinders Anglican College, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Maules Creek BESS,FRV Services Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Maules Creek Solar Farm,FRV Services Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Maxwell Downs Bess - KCI,X-Elio Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Maxwell Downs Solar Farm - KCI,X-Elio Holbrook Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Maxwell Solar Farm,Malabar Coal, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,McMahons Reef Solar Farm,Enerparc Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Meadow Creek Solar Farm - KCI,Clean Technologies Partners, Solar PV - Fixed ,Solar - Solar
+ TAS1 ,MEADOWBK,Existing Plant,Meadowbank,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ VIC1 ,,Project,Meering BESS,Virya Energy Pty Ltd, Storage - Battery ,Wind - Wind
+ VIC1 ,,Project,Meering Wind Farm,Virya Energy Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Melbourne Grid Battery - KCI,Lumea, Storage - Battery ,Other - Other
+ VIC1 ,,Existing Plant,Melbourne Regional Landfill,Landfill Operations Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ VIC1 ,,Project,Melbourne Renewable Energy Complex,Elgin Energy Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Melbourne Renewable Energy Hub - Side A,MREH Pty Ltd as trustee for MREH Asset Trust, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Melbourne Renewable Energy Hub - Side B,MREH Pty Ltd as trustee for MREH Asset Trust, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Melbourne Solar Farm - KCI,Emergent Technologies, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Meredith Wind Farm - KCI,Acciona Energy Global Australia, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Merino Solar Farm,Merino Solar Farm Pty Ltd as trustee for Merino Solar Farm Trust, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Merino Solar Farm,Merino Solar Farm Pty Ltd as trustee for Merino Solar Farm Trust, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Merriwa BESS 1,Valent Energy, Storage - Battery ,Other - Other
+ NSW1 ,METZSF1,Existing Plant,Metz Solar Farm,Metz ProjectCo Pty Ltd as trustee for Metz ProjectCo Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Mica Creek Solar Farm,APA Group, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Middlebrook Solar Farm,Middlebrook Solar Farm Pty Ltd as trustee for MSF Project Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Middlebrook Solar Farm,Middlebrook Solar Farm Pty Ltd as trustee for MSF Project Trust, Storage - Battery ,Solar - Solar
+ QLD1 ,MIDDLSF1,Existing Plant,Middlemount Solar Farm,Capricorn SF No1 Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ TAS1 ,,Existing Plant,Midlands Hydro,TBA, Hydro - Dam ,Hydro - Water
+ VIC1 ,,Project,Mildura Power Station,Ceramet, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Miles BESS Project,TBSOL, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Miles Solar Project,Vena Energy, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Millmerran BESS - Storage,Millmerran Power Partners, Storage - Battery ,Other - Other
+ QLD1 ,MPP_1,Existing Plant,Millmerran Power Plant,Millmerran Power Partners, Turbine - Steam Super Critical ,Fossil - Black Coal
+ QLD1 ,MPP_2,Existing Plant,Millmerran Power Plant,Millmerran Power Partners, Turbine - Steam Super Critical ,Fossil - Black Coal
+ QLD1 ,,Project,Millmerran Wind Farm,Millmerran Power Partners, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,MINTARO,Existing Plant,Mintaro GT,Synergen Power Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ QLD1 ,,Project,Miriam Vale Solar Farm - A,Private Energy Partners, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Miriam Vale Solar Farm - A,Private Energy Partners, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Miriam Vale Solar Farm - B,Private Energy Partners, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Miriam Vale Solar Farm - B,Private Energy Partners, Storage - Battery ,Solar - Solar
+ NSW1 ,,Project,MNC000116 - Dubbo Firming Power Station,Squadron Energy Services Pty Ltd, Other - Other ,Fossil - Natural Gas
+ NSW1 ,,Project,Moah Creek Solar Farm (RES),Moah Creek Solar Development Co Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Moah Creek Wind Farm,Moah Creek Wind Farm Project Co Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Moama Solar Farm,Moama Propertyco Pty Ltd as trustee for the Moama Property Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Moama Solar Farm,Moama Propertyco Pty Ltd as trustee for the Moama Property Trust, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Mobilong BESS,Mobilong ProjectCo Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Mokoan Solar Farm,EE Solar 6 Pty Ltd as trustee for EE Solar 6 Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Molong BESS (KCI),StorEnergy 3 Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,MOLNGSF1,Existing Plant,Molong Solar Farm,Molong Operations co Pty Ltd ATF Molong Operations Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Monaro Solar Farm - KCI,Terrain Solar Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Monash Solar Farm - KCI,1265 Warnecke Rd Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Monduran BESS - KCI,Eku Energy Projects (Australia) Trust, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Moonah Solar Farm - KCI,Venn Energy Pty Ltd / Moonah Solar Project Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Moonlight Range Wind Farm,Brookfield, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Moonlight Range Wind Farm,Brookfield, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,MOORBESS,Project,Moorabool BESS,Neoen Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,MOORAWF1,Existing Plant,Moorabool Wind Farm,Moorabool Wind Farm Interface Company Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Moorambilla Solar Farm,Moorambilla Solar Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Moorebank Logistics Park Project,Energy Bay Fund Management, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Moorebank Logistics Park Project,Energy Bay Fund Management, Storage - Battery ,Other - Other
+ QLD1 ,,Existing Plant,Moranbah Generation Project,SUSTAINABLE ENERGY INFRASTRUCTURE, Reciprocating Engine - Compression ignition ,Fossil - Waste Coal Mine Gas
+ QLD1 ,MBAHNTH,Existing Plant,Moranbah North,EDL Projects Australia Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ NSW1 ,,Project,Moree BESS,AE BESS 2 PTY LTD AS TRUSTEE FOR AE BESS 2 UNIT TRUST, Storage - Battery ,Other - Other
+ NSW1 ,MOREESF1,Existing Plant,Moree Solar Farm,Moree Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Moreton Hill Wind Farm,Moreton Hill Wind Farm Nominees Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Morgan Battery,NEMMCO, Storage - Battery ,Other - Other
+ SA1 ,,Project,Morgan Long Duration Energy Storage - KCI,Origin Energy, Storage - Battery ,Other - Other
+ SA1 ,,Project,Morgan Solar,Green Gold, Solar PV - Fixed ,Solar - Solar
+ SA1 ,MWPS1PV1,Existing Plant,Morgan To Whyalla Pipeline No 1 PS And Water Filtration Plant,South Australian Water Corporation, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,MWPS2PV1,Existing Plant,Morgan To Whyalla Pipeline No 2 PS,South Australian Water Corporation, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,MWPS3PV1,Existing Plant,Morgan To Whyalla Pipeline No 3 PS,South Australian Water Corporation, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,MWPS4PV1,Existing Plant,Morgan To Whyalla Pipeline No 4 PS,South Australian Water Corporation, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Mornington BESS,Mornington BESS Project Pty Ltd as Trustee of Mornington BESS Project Trust, Storage - Battery ,Other - Other
+ VIC1 ,MORTLK11,Existing Plant,Mortlake,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,MORTLK12,Existing Plant,Mortlake,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,,Project,Mortlake,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas
+ VIC1 ,,Project,Mortlake Battery,BORAL, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Mortlake Energy Hub,brightnightpower_NR, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Mortlake Energy Hub,brightnightpower_NR, Storage - Battery ,Solar - Solar
+ VIC1 ,MRTLSWF1,Existing Plant,Mortlake South Wind Farm,Mortlake South Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,MLWF1,Existing Plant,Mortons Lane Wind Farm,Mortons Lane Windfarm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Morundah Battery Storage,Photon Energy Engineering Australia Pty Ltd., Storage - Battery ,Solar - Solar
+ NSW1 ,,Project,Morundah Solar Power Plant (Thermal),Photon Energy Engineering Australia Pty Ltd., Solar Thermal - Central collector ,Solar - Solar
+ VIC1 ,,Project,Morwell BESS,ACE Power Development 2 Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,MEWF1,Existing Plant,Mount Emerald,Ratch Australia, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Mount Fyans,Woolnorth Wind Farm Holding, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Mount Fyans Wind Farm 2.0,Woolnorth Wing Farm Holding Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Mount Hopeful Wind Farm,Mount Hopeful Wind Farm as trustee for Mount Hopeful Wind Farm Trust, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Mount Tom BESS,Samsung C&T Renewable Energy Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Mount Tom Solar Farm,Samsung C&T Renewable Energy Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Mount Walsh Wind Farm (Mainstream),Mainstream, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,MOUSF1,Existing Plant,Moura Solar Farm,Moura Solar Farm SPV Pty Ltd as the Trustee for Moura Solar Farm Unit Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Mt Challenger BESS,Tetris Energy, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Mt Challenger Solar Farm,Tetris Energy, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Mt Challenger Wind Farm,Tetris Energy, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Mt Cotton Biomass Cogeneration Power Station,Darwalla Milling Co Pty Ltd, Turbine - Steam Sub Critical ,Other - Other
+ VIC1 ,,Project,Mt Doran BESS,Iberdrola Australia Development Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Mt Fox BESS - ARENA,Mount Fox BESS Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Mt Fox Wind Farm,Mount Fox Energy Park Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,MTGELWF1,Existing Plant,Mt Gellibrand Wind Farm,ACCIONA Energy, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Mt Mercer BESS,Foresight Australia, Storage - Battery ,Other - Other
+ VIC1 ,MERCER01,Existing Plant,Mt Mercer Wind Farm,Mt Mercer Windfarm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,MTMILLAR,Existing Plant,Mt Millar Wind Farm,MT MILLAR WIND FARM PTY LTD, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,MP2,Existing Plant,Mt Piper,EnergyAustralia NSW Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,MP1,Existing Plant,Mt Piper,EnergyAustralia NSW Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,,Project,Mt Piper BESS,Energy Australia Development Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Mt Rawdon Pumped Hydro Energy Storage Project - KCI,Mount Rawdon trust, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,MSTUART1,Existing Plant,Mt Stuart,Origin Energy Mt Stuart, Turbine - OCGT ,Fossil - Diesel
+ QLD1 ,MSTUART2,Existing Plant,Mt Stuart,Origin Energy Mt Stuart, Turbine - OCGT ,Fossil - Diesel
+ QLD1 ,MSTUART3,Existing Plant,Mt Stuart,Origin Energy Mt Stuart, Turbine - OCGT ,Fossil - Diesel
+ NSW1 ,,Project,Mt View Wind Farm (KCI),Woodside Energy Technologies Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Mugga Lane BESS,LGI, Storage - Battery ,Other - Other
+ NSW1 ,MLLFRHF1,Project,Mugga Lane Renewable Hybrid,LGIGEN, Other - Other ,Renewable Biomass or Waste - Landfill Gas
+ NSW1 ,,Project,Mullion Creek Wind Farm,Mullion Creek Wind Farm P/L, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Mulwala Solar Farm,Mulwala Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Munna Creek Solar Farm,Munna Creek Solar Farm Investments Pty Ltd as trustee for the Munna Creek Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,MUWAWF1,Existing Plant,Murra Warra Wind Farm - stage 1,Murra Warra Project Co Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,MUWAWF2,Existing Plant,Murra Warra Wind Farm - stage 2,Murra Warra II Project Co Pty Ltd as Trustee for the Murra Warra II Project Trust, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,MURRAY,Existing Plant,Murray 1,Snowy Hydro Ltd, Hydro - Dam ,Hydro - Water
+ VIC1 ,MURRAY,Existing Plant,Murray 2,Snowy Hydro Ltd, Hydro - Dam ,Hydro - Water
+ SA1 ,MBPS2PV1,Existing Plant,Murray Bridge - Onkaparinga Pipeline Pump 2,South Australian Water Corporation, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Murrumburrah BESS - KCI,FIrm Power P/L, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Muskerry Solar Power Station - KCI,Edify Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ TAS1 ,MUSSELR1,Existing Plant,Musselroe Wind Farm,Musselroe Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Muswellbrook PRO BESS,Penso Power Australia P/L, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Muswellbrook Pumped Hydro,AGL Energy Limited, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Muswellbrook Solar Farm,Ox2, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Myrtle Creek BESS,ARK Energy Corporation Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Myrtle Creek Solar Farm,Terrain Solar Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Naroghid,Alinta Energy Retail Sales Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Narrabri Hybrid Project,Narrabri Genesis Hold Pty Ltd ATF Narrabri Genesis Hold Trust, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Narrabri Hybrid Project,Narrabri Genesis Hold Pty Ltd ATF Narrabri Genesis Hold Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Narrabri South Solar Farm,Canadian Solar, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Narrandera BESS,Potentia Energy Group P/L, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Narrandera Solar Farm,Potentia Energy Group P/L, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,NASF1,Existing Plant,Narromine Solar Farm,Dubbo Solar Hub Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Nebo BESS (Baywa),BayWA r.e Projects Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Nebo BESS (Iberdrola) - KCI,Iberdrola Australia Development Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,NEVERSF1,Existing Plant,Nevertire Solar Farm,Nevertire Solar Pty Ltd as Trustee for the Nevertire Solar Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,NEWENSF1,Existing Plant,New England Solar Farm,ACEN AUSTRALIA, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,NEWENSF2,Existing Plant,New England Solar Farm,ACEN AUSTRALIA, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,New England Solar Farm,ACEN AUSTRALIA, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,New England Solar Farm BESS,ACEN RENEWABLES, Storage - Battery ,Other - Other
+ NSW1 ,,Project,New England Solar Farm BESS,ACEN RENEWABLES, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Newcastle Offshore Wind,Newcastle Offshore Wind Energy Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ VIC1 ,NPS,Existing Plant,Newport,EnergyAustralia Ecogen Pty Ltd, Turbine - Steam Sub Critical ,Fossil - Natural Gas Pipeline
+ QLD1 ,,Project,Noblevale BESS (KCI),Zen Energy Future Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Nonowie Wind Farm,Tilt Renewables Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Normanville Energy Park - Wind (KCI),Westwind Development Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,North Burnett Renewable Hub - BESS,X-Elio Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,North Burnett Renewable Hub - Solar,X-Elio Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ TAS1 ,,Project,North East Wind - KCI,ACEN North East Tasmania Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,North Qld Bio-Energy Plant,North Queensland Bio-Energy Corporation Limited, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Biomass
+ QLD1 ,,Project,North Qld Bio-Energy Plant,North Queensland Bio-Energy Corporation Limited, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Biomass
+ VIC1 ,,Project,North Yarragon BESS - KCI,Zen Energy, Storage - Battery ,Other - Other
+ TAS1 ,,Project,Northern Midlands Solar Farm,TasRex P/L, Solar PV - Fixed ,Solar - Solar
+ TAS1 ,,Project,Northern Midlands Solar Farm - KCI,Connorville Estates Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Northern Tablelands Wind Farm,BORAL, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Nottingham Park Solar Farm - KCI,NPSF Renewables Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Novocastrian Offshore Wind Farm,OceanEx Energy, Wind Turbine - Offshore ,Wind - Wind
+ VIC1 ,,Project,Nowingi Solar Farm - Edify (KCI),Edify Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Nowingi Solar Storage - Solar,Lyon Solar, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Nowingi Solar Storage - Storage,Lyon Solar, Storage - Battery ,Other - Other
+ NSW1 ,,Project,NSW Energy Cluster,Alinta Energy Retail Sales Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,NSW Gas Peaker,AGL Energy Limited, Reciprocating Engine - Compression ignition ,Fossil - Natural Gas
+ VIC1 ,NUMURSF1,Existing Plant,Numurkah Solar Farm,Numurkah Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Nyaninyuk Wind Farm,Acciona Energy, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,NYNGAN1,Existing Plant,Nyngan Solar Plant,PARF Company 6 Pty Limited, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,OAKEY2SF,Existing Plant,Oakey 2 Solar Farm,RE Oakey Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,OAKEY1,Existing Plant,Oakey Power Station,Oakey Power Holdings Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ QLD1 ,OAKEY2,Existing Plant,Oakey Power Station,Oakey Power Holdings Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ QLD1 ,OAKEY1SF,Existing Plant,Oakey Solar Farm,Oakey1 Asset Co Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,OAKLAND1,Existing Plant,Oaklands Hill Wind Farm,Oaklands Hill Wind farm pty ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Oakville BESS,Samsung C&T Renewable Energy Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Oakville Solar Farm,Samsung C&T Renewable Energy Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,OAKYCREK,Existing Plant,Oaky Creek,EDL OCI Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ QLD1 ,OAKYCREK,Existing Plant,Oaky Creek,EDL OCI Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ QLD1 ,OAKY2,Existing Plant,Oaky Creek 2,EDL OCI PTY LTD, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ NSW1 ,ORANA,Project,Orana BESS,Wellington Battery ProjectCo Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Orange Grove Sun Farm,Overland Sun Farming Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Orsted Gippsland A&B Windfarm,orsted_nr, Wind Turbine - Offshore ,Wind - Wind
+ VIC1 ,,Project,Orsted Gippsland C Windfarm,orsted_nr, Wind Turbine - Offshore ,Wind - Wind
+ SA1 ,OSB-AG,Existing Plant,Osborne,Osborne Cogeneration Pty Ltd, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,OSB-AG,Existing Plant,Osborne,Osborne Cogeneration Pty Ltd, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,,Project,Osborne BESS,Osboourne Cogeneration P/L, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Oven Mountain Pumped Storage,Oven Mountain Pumped Storage, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,,Project,Oxley Solar Farm,Oxley Solar Development Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Pacific Green Energy Park - Limestone Coast North,Pacific Green, Storage - Battery ,Other - Other
+ SA1 ,,Project,Pacific Green Energy Park - Limestone Coast West,Pacific Green, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Pacific Green Energy Park – Portland,Pacific Green Energy Park Cascade Trust, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Paling Yards Wind Farm,Paling Yards Development Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Palmer Wind Farm,Tilt Renewables Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ TAS1 ,,Project,Palmerston BESS (Akaysha),Palmerston ProjectCo Pty Ltd, Storage - Battery ,Other - Other
+ TAS1 ,PALOONA,Existing Plant,Paloona,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Panorama BESS,PANORAMA BESS SUBCO PTY LTD as trustee for the PANORAMA BESS UNIT TRUST, Storage - Battery ,Other - Other
+ SA1 ,,Project,Para Hill BESS,X-Elio Australia Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Para Substation/Gould Creek BESS,Gould Creek BESS Project Pty Ltd as trustee of GouldCreek BESSProject Trust, Storage - Battery ,Other - Other
+ NSW1 ,PARSF1,Existing Plant,Parkes Solar Farm,Parkes Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Peel Valley BESS,Potentia Energy Group P/L, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Peel Valley Solar Farm,Potentia Energy Group P/L, Solar PV - Fixed ,Solar - Solar
+ SA1 ,PPCCGT,Existing Plant,Pelican Point,Pelican Point Power Limited, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,PPCCGT,Existing Plant,Pelican Point,Pelican Point Power Limited, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,,Project,Penfield BESS,BESS PENFIELD PTY LTD, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Peninsula Solar Farm,Edify Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Peninsula Solar Farm,Edify Energy Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,PIBESS1,Existing Plant,Philip Island BESS,Mondo Power, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Phoenix Pumped Hydro Project,ACEN Phoenix Pty Ltd, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,,Project,Photon Energy Leeton,Photon Energy Leeton, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Piambong Wind Farm - KCI,Piambong Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Pikedale Wind Farm (KCI),Squadron Energy Developments Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,PINDARI,Existing Plant,Pindari,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ VIC1 ,,Project,Pine Lodge 2 BESS - KCI,ACEnergy Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Pine Lodge BESS,ACEnergy, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Pinnacles BESS - Storage - KCI,Enervest Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Pint Pot BESS,FRV Services Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Pioneer BESS - KCI,Edify Energy Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Existing Plant,Pioneer Sugar Mill,Pioneer Sugar Mills P/L, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ QLD1 ,,Existing Plant,Pioneer Sugar Mill,Pioneer Sugar Mills P/L, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ SA1 ,,Project,Planet Ark Power and Schneider Electric - PV and Battery Microgrid,Planet Ark Power and Schneider Electric, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Playford Battery,CFG, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Pleasant Hills Solar Farm - KCI,TotalEnergies Renewables Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Pleystowe BESS,PLEYSTOWE BESS PTY LTD, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Pleystowe BESS (KCI),Pleystowe BESS P/L, Storage - Battery ,Other - Other
+ TAS1 ,POAT110,Existing Plant,Poatina,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,POAT220,Existing Plant,Poatina,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ SA1 ,PAREPS1,Existing Plant,Port Augusta Renewable Energy Park - Solar,PAREP 1 Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,PAREPW1,Existing Plant,Port Augusta Renewable Energy Park - Wind,PAREP 1 Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Port Augusta Solar Farm (KCI),Edify Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Port Kembla Power Station,Australian Industrial Power, Other - Other ,Other - Other
+ TAS1 ,,Project,Port Latta Wind Farm,Oz Green Energy I Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,POR01,Existing Plant,Port Lincoln GT,Synergen Power Pty Ltd, Turbine - OCGT ,Fossil - Diesel
+ SA1 ,POR03,Existing Plant,Port Lincoln GT,Synergen Power Pty Ltd, Turbine - OCGT ,Fossil - Diesel
+ SA1 ,,Project,Port Pirie Solar Farm - KCI,Trafigura Hydrogen Australia, Solar PV - Fixed ,Solar - Solar
+ SA1 ,PTSTAN1,Existing Plant,Port Stanvac 1,Snowy Hydro Ltd, Reciprocating Engine - Compression ignition ,Fossil - Diesel
+ VIC1 ,,Project,Portland BESS,Pacific Green Energy Park Portland Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Portland Renewables Project - KCI,HAMR Energy Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,PORTWF,Existing Plant,Portland Wind Farm,Pacific Hydro Portland Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Portland Wind Farm - KCI,Vic Offshore Windfarm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Pottinger Energy Park - Battery - KCI,Pottinger Renewables P/L, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Pottinger Energy Park - Solar - KCI,Pottinger Renewables P/L, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Pottinger Energy Park - Wind - KCI,Pottinger Renewables P/L, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Prairie Solar Farm,Pacific Hydro Australia Developments Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Prairie WF & Wongalee WF,Prairie Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Prairie WF & Wongalee WF,Prairie Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Project Monash - Solar - KCI,Monash Renewables Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Project Monash - Storage - KCI,Monash Renewables Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Proserpine Wind Farm - KCI,CI Proserpine Pty Ltd as trustee for the CI Proserpine Trust, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Punchs Creek (Milmerran) BESS - New,Skylab, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Punchs Creek (Milmerran) BESS - New,Skylab, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Punch's Creek Renewable Energy,skylabgroup_NR, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,QCG LNG Curtis Island Electrificaton - KCI,Shell QCG, Turbine - Other ,Geothermal - Geological heat
+ SA1 ,QPS1,Existing Plant,Quarantine,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,QPS2,Existing Plant,Quarantine,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,QPS3,Existing Plant,Quarantine,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,QPS4,Existing Plant,Quarantine,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,QPS5,Existing Plant,Quarantine,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,,Project,Quarantine,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,QBYNB1,Existing Plant,Queanbeyan BESS,Berrybank 2 Asset Pty Ltd as Trustee for Berrybank 2 Asset Trust, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Queensland Renewable Park,EEW Eco Energy World Pty Ltd, Other - Other ,Other - Other
+ NSW1 ,QPBESS,Project,Quorn Park Hybrid,Quorn Park Solar Farm Pty Ltd as the trustee for Quorn Park Solar Farm Trust, Storage - Battery ,Other - Other
+ NSW1 ,QPSF,Project,Quorn Park Hybrid,Quorn Park Solar Farm Pty Ltd as the trustee for Quorn Park Solar Farm Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Existing Plant,Racecourse Mill,Mackay Sugar Ltd, Turbine - Steam Sub Critical ,Other - Other
+ QLD1 ,,Existing Plant,Racecourse Mill,Mackay Sugar Ltd, Turbine - Steam Sub Critical ,Other - Other
+ QLD1 ,,Existing Plant,Racecourse Mill,Mackay Sugar Ltd, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ QLD1 ,,Project,Raglan BESS,acepower_NR, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Raglan Solar Farm,EEW Eco Energy World Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,RANGEB1,Existing Plant,Rangebank BESS,Cranbourne BESS Project Co Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Rangemore BESS,Tetris Energy, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Rangemore Solar Farm,Tetris Energy, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Rangemore Wind Farm,Tetris Energy, Wind Turbine - Onshore ,Other - Other
+ NSW1 ,,Project,Rangoon Wind Farm,Rangoon Energy Park Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Ravenswood BESS,FRV Services Australia, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Ravenswood Solar Farm - FRV,FRV Services Australia, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Red Cliffs Solar & BESS - KCI,Red Cliffs Power Pty td, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,REDBANK1,Project,Redbank,Verdant Earth Technologies Limited, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Wood Waste
+ TAS1 ,REECE1,Existing Plant,Reece,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,REECE2,Existing Plant,Reece,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ SA1 ,,Project,Reeves Plains OCGT - stage 1,Alinta Energy Reeves Plains Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,,Project,Reeves Plains OCGT - stage 2,Alinta Energy Reeves Plains Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,,Project,Reeves Plains Power Station BESS,Alinta Energy, Storage - Battery ,Other - Other
+ TAS1 ,REPULSE,Existing Plant,Repulse,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Richmond Valley BESS,ARK ENERGY CORPORATION PTY LTD, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Richmond Valley BESS (EIWA),EIWA Queensland Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Richmond Valley Solar Farm,ARK ENERGY CORPORATION PTY LTD, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Ridgey Creek BESS,Ridgey Creek BESS Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Rifle Butts Wind Farm ,NewEn, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,RESS1,Existing Plant,Riverina Energy Storage System 1,Shell New Energies Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,RIVNB2,Existing Plant,Riverina Energy Storage System 2,RESS 2 Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Riverina Solar Farm,Riverina Solar Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Riverland Solar Storage - Solar,Lyon Solar, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Riverland Solar Storage - Storage,Lyon Solar, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Riverside BESS - Storage - KCI,Enervest Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Riverstone Rise BESS (KCI),Pacific Partnerships Pty Ltd, Storage - Battery ,Other - Other
+ TAS1 ,,Project,Robbins Island Wind Farm,ACEN Robbins Island PTY LTD, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Robertstown Solar,Robertstown Project (Solar) Operations Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Robertstown Solar,Robertstown Project (Solar) Operations Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,RPCG,Existing Plant,Rocky Point Sugar Mill Cogeneration Plant,W.H.Heck and Sons Pty Ltd, Other - Other ,Renewable Biomass or Waste - Bagasse
+ NSW1 ,,Project,Rollsville Hybrid Facility - Battery,X-Elio Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Rollsville Hybrid Facility - Solar,X-Elio Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,ROMA_7,Existing Plant,Roma,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ QLD1 ,ROMA_8,Existing Plant,Roma,Origin Energy Power Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,Romani BESS,Samsung C&T Renewable Energy Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Romani Solar Farm,Samsung C&T Renewable Energy Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Romani Standalone BESS,Samsung C&T Renewable Energy Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,RRSF1,Existing Plant,Ross River Solar Farm,Ross River Operations Pty Ltd as the Trustee for the Ross River Operations Trust, Solar PV - Single axis tracking ,Solar - Solar
+ TAS1 ,ROWALLAN,Existing Plant,Rowallan,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,,Project,Rowallan Pumped Hydro Option,Hydro-Electric Corporation, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,ROYALLA1,Existing Plant,Royalla Solar Farm,Royalla Asset Pty Ltd ATF Royalla Asset Trust, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,RUBICON,Existing Plant,Rubicon Mountain Streams,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ NSW1 ,,Project,Ruby Hills North BESS,Walcha Energy Pty Ltd, Storage - Battery ,Wind - Wind
+ NSW1 ,,Project,Ruby Hills North Wind Farm,Origin energy, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Ruby Hills South BESS,Origin Energy Pty Ltd, Storage - Battery ,Wind - Wind
+ NSW1 ,,Project,Ruby Hills South Wind Farm,Origin Energy Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,RUGBYR1,Existing Plant,Rugby Run Solar Farm,Adani Rugby Run Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Rutherglen Battery - KCI,Red Hill Renewable Energy Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Rutherglen Solar Farm - KCI,Red Hill Renewable Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,RYANCWF1,Existing Plant,Ryan Corner Wind Farm,Ryan Corner Development Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,RYEPARK1,Existing Plant,Rye Park Wind Farm,Tilt Renewables Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Salisbury BESS,Origin Energy Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Salisbury Solar 450MW,Origin Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Salisbury Solar 450MW,Origin Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,SALTCRK1,Existing Plant,Salt Creek Wind Farm,Salt Creek Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Sandigo Solar Farm,ESCO Pacific, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Sandy Creek Solar Farm,Lightsource Development Services Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Sandy Point Hybrid - Solar,Samsung C&T Renewable Energy Australia Pty Ltd., Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Sandy Point Hybrid - Storage,Samsung C&T Renewable Energy Australia Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,SAPHWF1,Existing Plant,Sapphire Wind Farm,SWF1 Operations Holdings Pty Ltd as trustee for SWF1 Hold Trust, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Seadragon offshore wind project,Flotation Energy Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ VIC1 ,,Project,Seaspray Off Shore Wind Farm,BayWa r.e. Australia Offshore Wind Projects 3 Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ NSW1 ,SEBSF1,Existing Plant,Sebastopol Solar Farm,Sebastopol Asset Co Pty Ltd ATF Sebastopol Asset Trust, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Seymour Wind Farm,Seymour Wind Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Seymour Wind Farm - KCI,Fera Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,SHEP1,Existing Plant,Shepparton Wastewater Treatment Facility,Diamond Energy Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Biogas
+ NSW1 ,SHGEN,Existing Plant,Shoalhaven,Origin Energy Eraring Pty Ltd, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,SHGEN,Existing Plant,Shoalhaven,Origin Energy Eraring Pty Ltd, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,,Project,Shoalhaven Expansion,Origin Energy, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,,Project,Shoalhaven Starches Cogeneration Plant,Shoalhaven Starches Pty Ltd, Turbine - Other ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,Shoalhaven Starches Cogeneration Plant,Shoalhaven Starches Pty Ltd, Turbine - Other ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,Silver City Energy Storage,A-CAES NSW PTY LTD, Storage - Other ,Other - Other
+ NSW1 ,,Project,Silverleaf Solar Farm - KCI,International Power (Australia) Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,STWF1,Existing Plant,Silverton Wind Farm,PARF Company 8 Pty Ltd as trustee for the Silverton Project Trust, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Smithfield BESS,Smithfield BESS Pty Limited, Storage - Battery ,Other - Other
+ NSW1 ,SITHE01,Existing Plant,Smithfield Energy Facility,Smithfield Power Generation Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,SITHE01,Existing Plant,Smithfield Energy Facility,Smithfield Power Generation Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,SITHE01,Existing Plant,Smithfield Energy Facility,Smithfield Power Generation Pty Ltd, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ QLD1 ,,Project,Smoky Creek Energy Storage System - KCI,Edify Energy Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Smoky Creek Solar Farm,Edify Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,SNAPPER1,Existing Plant,Snapper Point Power Station,Port Adelaide Energy Pty Ltd, Turbine - OCGT ,Fossil - Diesel
+ SA1 ,,Project,Snowtown North Solar Farm,Tilt Renewables, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Snowtown North Solar Farm - BESS,Tilt Renewables, Storage - Battery ,Other - Other
+ SA1 ,SNOWNTH1,Existing Plant,Snowtown S2 Wind Farm,Snowtown Wind Farm Stage 2 Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,SNOWSTH1,Existing Plant,Snowtown S2 Wind Farm,Snowtown Wind Farm Stage 2 Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,SNOWTWN1,Existing Plant,Snowtown Wind Farm,Snowtown Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Snowy 2.0.,Snowy Hydro Ltd, Storage - Pumped hydro ,Hydro - Water
+ NSW1 ,,Project,Snowy 2.0.,Snowy Hydro Ltd, Storage - Pumped hydro ,Hydro - Water
+ SA1 ,SNUG1,Existing Plant,Snuggery,Synergen Power Pty Ltd, Turbine - OCGT ,Fossil - Diesel
+ SA1 ,SNUGNL1,Existing Plant,Snuggery,Synergen Power Pty Ltd, Turbine - OCGT ,Fossil - Diesel
+ SA1 ,,Project,Solar River Solar And BESS Project,Zen Energy Retail Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Solar River Solar And BESS Project,Zen Energy Retail Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,AGLSOM,Existing Plant,Somerton,AGL Hydro partnership, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,South Coree BESS,Samsung C&T Renewable Energy Australia Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,South East BESS - Storage - KCI,Equis Energy (Australia) Projects (Ngumi 8) Pty Ltd as trustee for the Equis Energy(Australia) Ngumi 8 Asset Trust, Storage - Battery ,Other - Other
+ SA1 ,,Project,South Hummocks BESS,RWE Renewables Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,South Johnstone Mill (expansion),MSF Sugar, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ NSW1 ,,Project,South Kempsey BESS,Macleay Ventures Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,SKSF1,Existing Plant,South Keswick Solar Farm,Dubbo Solar Hub Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,South Pacific Offshore Wind Project,South Pacific OWP Project Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ VIC1 ,,Project,Southern Winds Offshore Wind,Southern Winds OWP Project Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ QLD1 ,,Project,Specimen Hill BESS - Storage - KCI,ARK Energy Corporation Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Specimen Hill Wind Farm,ARK Energy Corporation Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Spicers Creek Wind Farm,Squadron Energy Services Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Spinifex Offshore Wind Farm,NEMMCOAlinta Energy Retail Sales Pty Ltd, Wind Turbine - Offshore ,Wind - Wind
+ NSW1 ,,Project,Springdale Solar Farm,Renew Estate, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Springdale Solar Farm - KCI,RES Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Springlands Wind Farm,Ratch Australia, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Springvale Energy Hub,progresspower_nr, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Springvale Energy Hub - BESS,Progress Power Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,SRI/Mirabou (Braemar) BESS - KCI,Miraabou Energy Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,SSE Whyalla Solar Farm,SSE Australia Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ TAS1 ,,Project,St Patricks Plains Wind Farm,ARK Energy Corporation Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,SHBESS01,Project,Stanhope BESS Project 01,Globird Energy Pty Ltd, Storage - Battery ,Solar - Solar
+ VIC1 ,,Project,Stanhope BESS Project 02,globirdenergy_NR, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,STAN-1,Existing Plant,Stanwell,Stanwell Corporation Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,STAN-2,Existing Plant,Stanwell,Stanwell Corporation Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,STAN-3,Existing Plant,Stanwell,Stanwell Corporation Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,STAN-4,Existing Plant,Stanwell,Stanwell Corporation Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,,Project,Stanwell BESS,Stanwell Corporation Limited, Storage - Battery ,Other - Other
+ QLD1 ,,Existing Plant,Stapylton Renewable Energy Facility,LMS Energy Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ QLD1 ,,Existing Plant,Stapylton Renewable Energy Facility,LMS Energy Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ QLD1 ,,Existing Plant,Stapylton Renewable Energy Facility,LMS Energy Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ VIC1 ,SOTS1,Project,Star of the South Wind Farm,Star of the South Wind Farm Pty Ltd as trustee for the Star of the South Trust, Wind Turbine - Offshore ,Wind - Wind
+ SA1 ,STARHLWF,Existing Plant,Starfish Hill,Ratch Australia, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,STOCKYD1,Existing Plant,Stockyard Hill Wind Farm,Stockyard Hill Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,STOCKYD1,Existing Plant,Stockyard Hill Wind Farm,Stockyard Hill Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,STOCKYD1,Existing Plant,Stockyard Hill Wind Farm,Stockyard Hill Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Stonehaven Gas Turbines - KCI,APA Power Holdings Pty Ltd, Turbine - OCGT ,Other - Other
+ NSW1 ,,Project,Stoney Creek BESS,Enervest Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Stony Creek Wind Farm,Greenleaf Renewable, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Stubbo BESS,Stubbo 1 Pty Ltd. ACN 658 322 457 as The Trustee for Stubbo 1 Solar Project Trust, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Stubbo Solar Farm,ACEN AUSTRALIA, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Stubbo Solar Farm,ACEN AUSTRALIA, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Sturt Solar,Sturt Solar PTY LTD, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Sturt Solar,Sturt Solar PTY LTD, Storage - Battery ,Other - Other
+ SA1 ,,Project,Summerfield BESS,CI Summerfield BESS Pty Ltd (ACN 656 223 773) as trustee for the CI Summerfield BESS Trust, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Summerhill Solar Farm,Newcastle Council, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Summerville Solar Farm,ESCO Solar Farm 5 Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,SMCSF1,Existing Plant,Sun Metals Corporation Solar Farm,Sun Metals Corporation Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Sundown SF(Canadian Solar),Canadian Solar, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Sundown Solar Farm,CWP Renewables Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,SUNRSF1,Existing Plant,Sunraysia Solar Farm,Sunraysia Solar Project Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Sunshine Energy Solar Farm,Sunshine Energy, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Sunshine State Solar Farm and BESS,ESCO Pacific, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Sunshine State Solar Farm and BESS (Rollingstone),Rollingstone Solar Farm Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,SUNTPSF1,Existing Plant,Suntop Solar Farm,Suntop SF Pty Ltd As Trustee For The Suntop Asset, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Supernode Project,Quinbrook Asset Management as Trustee for The Australian Clean Power Trust 2A, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Supernode Project,Quinbrook Asset Management as Trustee for The Australian Clean Power Trust 2A, Storage - Battery ,Solar - Solar
+ QLD1 ,,Project,Supernode Project,Quinbrook Asset Management as Trustee for The Australian Clean Power Trust 2A, Storage - Battery ,Solar - Solar
+ QLD1 ,SRSF1,Existing Plant,Susan River Solar Farm,Susan River Solar Pty Ltd as trustee for the Susan River Solar Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Swanbank BESS,CleanCo QLD Limited, Storage - Battery ,Other - Other
+ QLD1 ,SWAN_E,Existing Plant,Swanbank E GT,CleanCo Queensland Limited, Turbine - CCGT ,Fossil - Coal Seam Methane
+ QLD1 ,,Existing Plant,Tableland Mill,MSF Sugar, Turbine - Steam Sub Critical ,Other - Other
+ NSW1 ,,Project,Tabulam BESS,Elgin Energy Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Tabulam Solar Farm,Elgin Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,TAHMOOR,Existing Plant,Tahmoor,EDL TT Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ SA1 ,TBSF1,Existing Plant,Tailem Bend - Solar,Vena Energy, Solar PV - Fixed ,Solar - Solar
+ SA1 ,TB2B1,Existing Plant,Tailem Bend Battery Project,Vena Energy, Storage - Battery ,Other - Other
+ SA1 ,TB2SF1,Existing Plant,Tailem Bend Stage 2 Solar Project,Vena Energy, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,,Project,Tailem Bend Stage 3,TBSOL, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Talbingo BESS,Talbingo Battery P/L, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Tallawang BESS,Enel Green Power Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,TALWA1,Existing Plant,Tallawarra,EnergyAustralia Tallawarra Pty Ltd, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,TALWB1,Existing Plant,Tallawarra B,EnergyAustralia Tallawarra Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ TAS1 ,TVCC201,Existing Plant,Tamar Valley Combined Cycle,AETV Pty Ltd, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ TAS1 ,TVCC201,Existing Plant,Tamar Valley Combined Cycle,AETV Pty Ltd, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ TAS1 ,TVPP104,Existing Plant,Tamar Valley Peaking,AETV Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,Tamworth BESS - Valent,VALENT ENERGY DEVELOPMENTS PTY LTD, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Tamworth Energy Reserve - KCI,The Trustee for Equis Energy (Ausralia) Ngumi 4 Asset Trust, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Tangkam BESS - KCI,Atria Energy Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Tara Wind Farm - KCI,Tara Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,TARALGA1,Existing Plant,Taralga Wind Farm,Energy Pacific Vic Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,TARALGA1,Existing Plant,Taralga Wind Farm,Energy Pacific Vic Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,TARALGA1,Existing Plant,Taralga Wind Farm,Energy Pacific Vic Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,TARONG#1,Existing Plant,Tarong,Stanwell Corporation Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,TARONG#2,Existing Plant,Tarong,Stanwell Corporation Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,TARONG#3,Existing Plant,Tarong,Stanwell Corporation Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,TARONG#4,Existing Plant,Tarong,Stanwell Corporation Limited, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ QLD1 ,,Project,Tarong BESS - Stanwell,Stanwell Corporation Limited, Storage - Battery ,Other - Other
+ QLD1 ,TNPS1,Existing Plant,Tarong North,Stanwell Corporation Limited, Turbine - Steam Super Critical ,Fossil - Black Coal
+ QLD1 ,,Project,Tarong West Wind Farm (Ironleaf),RES Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ TAS1 ,TARRALEA,Existing Plant,Tarraleah,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,,Project,Tarraleah Redevelopment,HYDROTAS, Hydro - Dam ,Hydro - Water
+ VIC1 ,,Project,Tarrone BESS - Storage - KCI,Global Power Generation Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Tarrone GT,AGL Energy Limited, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,TATIARA1,Existing Plant,Tatiara Meats,Vibe Energy Pty Ltd, Reciprocating Engine - Compression ignition ,Fossil - Diesel
+ VIC1 ,TATURA01,Existing Plant,Tatura Biomass Generator,Diamond Energy Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Biogas
+ NSW1 ,,Project,Tchelery BESS,Neoen Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Tchelery Wind Farm,Neoen Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Teebar Creek Battery Storage - KCI,ATMOS DEVELOPMENTS PTY LTD, Storage - Battery ,Other - Other
+ SA1 ,,Project,Templers B BESS,BORAL, Storage - Battery ,Other - Other
+ SA1 ,,Project,Templers BESS,ZEN Energy Future Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Tenterfield Solar Farm,Enerparc Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,TRGBESS,Project,Terang BESS,frv_NR, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Territory Battery,Neoen Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,The Central BESS - KCI,ACEnergy Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,THEDROP1,Existing Plant,The Drop,Pacific Hydro Investments Pty Ltd, Hydro - Run of River ,Hydro - Water
+ SA1 ,,Project,The Solar River Project - Stage 1,The Solar River Project Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,The Solar River Project - Stage 2,The Solar River Project Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Theodore Solar Farm,juwi Renewable Energy Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Theodore Wind Farm,RWE Renewables Australia, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Thomastown BESS,Ausnet Transmission Group Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Thunderbolt Wind Farm,Neoen Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Existing Plant,Ti Tree Bioenergy,Ti Tree Bioenergy, Reciprocating Engine - Compression ignition ,Renewable Biomass or Waste - Landfill Gas
+ QLD1 ,TITREE,Existing Plant,Ti Tree Bioenergy,Ti Tree Bioenergy, Reciprocating Engine - Compression ignition ,Renewable Biomass or Waste - Landfill Gas
+ QLD1 ,,Project,Ticoba BESS,European Energy Australia P/L, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Ticoba Solar Farm,European Energy Australia P/L, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,TieriBESS1,Project,Tieri BESS,FRV Service Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Tilbuster Solar Farm,Enerparc Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,TIMWEST,Existing Plant,Timboon West Wind Farm,Timboon West Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Tomago BESS,AGL, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Tomago BESS (AGL),AGL Energy, Storage - Battery ,Other - Other
+ VIC1 ,TOORAWF,Existing Plant,Toora,Ratch Australia, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Toowoomba Pumped Storage Project,BE Power, Storage - Battery ,Other - Other
+ SA1 ,TORRB1,Existing Plant,Torrens Island B,AGL SA Generation Pty Limited, Turbine - Steam Sub Critical ,Fossil - Natural Gas Pipeline
+ SA1 ,TORRB2,Existing Plant,Torrens Island B,AGL SA Generation Pty Limited, Turbine - Steam Sub Critical ,Fossil - Natural Gas Pipeline
+ SA1 ,TORRB3,Existing Plant,Torrens Island B,AGL SA Generation Pty Limited, Turbine - Steam Sub Critical ,Fossil - Natural Gas Pipeline
+ SA1 ,TORRB4,Existing Plant,Torrens Island B,AGL SA Generation Pty Limited, Turbine - Steam Sub Critical ,Fossil - Natural Gas Pipeline
+ SA1 ,TIB1,Existing Plant,Torrens Island BESS,TIPSCO, Storage - Battery ,Other - Other
+ NSW1 ,TOWER,Existing Plant,Tower,EDL CSM NSW Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Waste Coal Mine Gas
+ QLD1 ,YABULU,Existing Plant,Townsville Power Station,RATCH-Australia, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ QLD1 ,YABULU2,Existing Plant,Townsville Power Station,RATCH-Australia, Turbine - CCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,,Project,Tramway BESS,BZ Renewables Holdings Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Tramway Road BESS,NEMMCO, Storage - Battery ,Other - Other
+ VIC1 ,TGNSS1,Existing Plant,Traralgon Network Support Station,NovaPower Pty Ltd, Reciprocating Engine - Spark ignition ,Fossil - Natural Gas
+ TAS1 ,TREVALLN,Existing Plant,Trevallyn,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,TREVALLN,Existing Plant,Trevallyn,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,,Project,Triabunna Wind Farm,Fera Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ TAS1 ,TRIBUTE,Existing Plant,Tribute,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ TAS1 ,,Project,Tribute Pumped Hydro Option,Hydro-Electric Corporation, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,TULLYSM1,Existing Plant,Tully Sugar Mill,Tully Sugar Limited, Turbine - Steam Super Critical ,Renewable Biomass or Waste - Bagasse
+ QLD1 ,,Project,Tummaville Hybrid Facility - BESS (KCI),Elements Green Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Tummaville Hybrid Facility - Solar (KCI),Elements Green Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Tumuruu BESS,Austraiian Solar, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Tumuruu Solar Farm,Austraiian Solar, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,TUMUT3,Existing Plant,Tumut 3,Snowy Hydro Ltd, Hydro - Dam ,Hydro - Water
+ TAS1 ,TUNGATIN,Existing Plant,Tungatinah,Hydro-Electric Corporation, Hydro - Dam ,Hydro - Water
+ SA1 ,,Project,Tungkillo BESS - KCI,RES Australia Pty Ltd, Storage - Battery ,Other - Other
+ SA1 ,,Project,Twin Creek Wind Farm,RES Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Tyrone BESS,European Energy Australia P/L, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Tyrone Solar,European Energy Australia P/L, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,ULBESS,Project,Ulinda Park BESS,Ulinda Park ProjectCo Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Ulladulla Offshore Wind Farm,OceanEx Energy, Wind Turbine - Offshore ,Wind - Wind
+ SA1 ,,Project,UniSA Solar project,University of South Australia, Solar PV - Fixed ,Solar - Solar
+ QLD1 ,,Project,Upper Calliope Solar Farm (side A),European Energy S/A, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Upper Hunter BESS,Maizewood Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,,Project,Upper Hunter Energy Park - Solar,Upper Hunter Energy Park Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Upper Hunter Energy Park - Wind,Upper Hunter Energy Park Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,UPPTUMUT,Existing Plant,Upper Tumut,Snowy Hydro Ltd, Hydro - Dam ,Hydro - Water
+ NSW1 ,UPPTUMUT,Existing Plant,Upper Tumut,Snowy Hydro Ltd, Hydro - Dam ,Hydro - Water
+ NSW1 ,URANQ11,Existing Plant,Uranquinty,Origin Energy Uranquinty Power Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,URANQ12,Existing Plant,Uranquinty,Origin Energy Uranquinty Power Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,URANQ13,Existing Plant,Uranquinty,Origin Energy Uranquinty Power Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,URANQ14,Existing Plant,Uranquinty,Origin Energy Uranquinty Power Pty Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ NSW1 ,,Project,Uungula BESS,Squadron Energy Services Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Uungula Wind Farm,Uungula Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,VALDORA1,Existing Plant,Valdora Solar Farm,Diamond Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,VP5,Existing Plant,Vales Point B,Delta Electricity, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,VP6,Existing Plant,Vales Point B,Delta Electricity, Turbine - Steam Sub Critical ,Fossil - Black Coal
+ NSW1 ,,Project,Vales Point Solar,Delta Electricity, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Valley of the Winds,ACEN Renewables, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Valley of the Winds,ACEN Renewables, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Valley of the Winds,ACEN Renewables, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,VPGS1,Existing Plant,Valley Power,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,VPGS2,Existing Plant,Valley Power,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,VPGS3,Existing Plant,Valley Power,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,VPGS4,Existing Plant,Valley Power,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,VPGS5,Existing Plant,Valley Power,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ VIC1 ,VPGS6,Existing Plant,Valley Power,Snowy Hydro Ltd, Turbine - OCGT ,Fossil - Natural Gas Pipeline
+ SA1 ,,Project,Vast Solar 1,Vast Solar 1 Pty Ltd, Solar Thermal - Other ,Solar - Solar
+ QLD1 ,,Existing Plant,Victoria Mill,Wilmar Sugar (Herbet) Pty Ltd, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ QLD1 ,,Existing Plant,Victoria Mill,Wilmar Sugar (Herbet) Pty Ltd, Turbine - Steam Sub Critical ,Renewable Biomass or Waste - Bagasse
+ VIC1 ,VBB1,Existing Plant,Victorian Big Battery,Victorian Big Battery Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Vineyard BESS,Global Power Generation Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Wagga North BESS - KCI,ZEN Energy Future Pty Ltd, Storage - Battery ,Solar - Solar
+ NSW1 ,,Project,Wagga North BESS (IB Vogt) - KCI,Ib vogt Development Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,WAGGNSF1,Existing Plant,Wagga North Solar Farm,Wagga Wagga Operationsco Pty Ltd as trustree for Wagga Wagga Operations Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,WAGGNSF1,Existing Plant,Wagga North Solar Farm,Wagga Wagga Operationsco Pty Ltd as trustree for Wagga Wagga Operations Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Wagga North Solar Farm BESS,Wagga Wagga Operationsco Pty Ltd as trustee for the Wagga Wagga Operations Trust, Storage - Battery ,Solar - Solar
+ NSW1 ,,Project,Wagga Wagga BESS (KCI),Eku Energy Projects (Australia) Trust, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Wagga Wagga Solar Farm,NEMMCO, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,WLWLSF1,Existing Plant,Walla Walla Solar Farm,FRV Australia (Walla Walla Asset Co Pty Ltd (ACN 634 728 868) as trustee for the Walla Walla Asset Trust), Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,WLWLSF2,Existing Plant,Walla Walla Solar Farm,FRV Australia (Walla Walla Asset Co Pty Ltd (ACN 634 728 868) as trustee for the Walla Walla Asset Trust), Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Wallabadah BESS,North Harbour Clean Energy P/L, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Wallaroo Solar Farm,New Energy development and Univergy Solar Joint venture (SPV) Wallaroo Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Wallerawang 9 BESS,Greenspot Wallerawang Pty Ltd as trustee for the Greenspot Wallerawang Unit Trust, Storage - Battery ,Other - Other
+ NSW1 ,WALGRV1,Existing Plant,Wallgrove Grid Battery project,TransGrid, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Wambo Wind Farm,Cubico Sustainable Investments Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Wambo Wind Farm,Cubico Sustainable Investments Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,WANDB1,Existing Plant,Wandoan South BESS,Vena Evergy, Storage - Battery ,Other - Other
+ QLD1 ,WANDSF1,Existing Plant,Wandoan South Solar Stage 1,Vena Evergy, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,,Project,Wandoan South Solar Stage 2,TBSOL, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,Wangaratta Solar Farm,Wangaratta Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,WTAHB1,Project,Waratah Super Battery,Munmorah Battery ProjectCo Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Warracknabeal Wind Farm,WestWind Energy Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,WARWSF1,Existing Plant,Warwick Solar Farm,The University of Queensland, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,WARWSF2,Existing Plant,Warwick Solar Farm,The University of Queensland, Solar PV - Single axis tracking ,Solar - Solar
+ SA1 ,WATERLWF,Existing Plant,Waterloo Wind Farm,Waterloo Windfarm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,WATERLWF,Existing Plant,Waterloo Wind Farm,Waterloo Windfarm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Watta Wella Power Station,RES Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Wattle Creek Energy Hub - Battery Storage,Wattle Creek Energy Hub P/L, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Wattle Creek Energy Hub - Solar / BESS,Wattle Creek Energy Hub P/L, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Wattle Creek Energy Hub - Solar / BESS,Wattle Creek Energy Hub P/L, Storage - Battery ,Solar - Solar
+ SA1 ,WPWF,Existing Plant,Wattle Point,Infrastructure Capital Group, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,WAUBRAWF,Existing Plant,Waubra,Pyrenees Wind Energy Developments, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,WAUBRAWF,Existing Plant,Waubra,Pyrenees Wind Energy Developments, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,WAUBRAWF,Existing Plant,Waubra,Pyrenees Wind Energy Developments, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Waubra BESS - KCI,Acciona Energy Australia Global, Storage - Battery ,Other - Other
+ TAS1 ,,Project,Weasel Solar Farm And BESS - KCI,Weasel Solar Farm P/L, Storage - Battery ,Solar - Solar
+ TAS1 ,,Project,Weasel Solar Farm And BESS - KCI,Weasel Solar Farm P/L, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,,Project,Wellington A-CAES,Hydrostor Australia Holdings P/L, Storage - Other ,Other - Other
+ NSW1 ,,Project,Wellington BESS,AMPYR Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Wellington BESS 2,AMPYR Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Wellington North BESS - KCI,Lightsource Development Services Australia Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Wellington North Solar Farm,AGL Hydro Partnership, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,WELNSF1,Existing Plant,Wellington North Solar Farm (Lightsource),Wellington North Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,WELLSF1,Existing Plant,Wellington Solar Farm,Lightsource Australia SPV 4 Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Wellington Town BESS - KCI,RWE Renewables Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,WEMENSF1,Existing Plant,Wemen Solar Farm,Wemen Asset Co Pty Ltd as Trustee to Wemen Solar Unit Trust, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,WESTILL1,Existing Plant,West Illawarra Leagues Club,Western Suburbs Leagues Club, Reciprocating Engine - Compression ignition ,Fossil - Diesel
+ VIC1 ,WKIEWA1,Existing Plant,West Kiewa,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ VIC1 ,WKIEWA2,Existing Plant,West Kiewa,AGL Hydro Partnership, Hydro - Dam ,Hydro - Water
+ VIC1 ,,Project,West Mokoan Solar Farm,West Mokoan Solar Farm, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Project,West Mokoan Solar Farm,West Mokoan Solar Farm, Storage - Battery ,Other - Other
+ NSW1 ,,Project,West Wellington Wind Farm,Mint Renewables, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,West Wyalong BESS,Lightsource BP, Storage - Battery ,Other - Other
+ NSW1 ,WSTWYSF1,Existing Plant,West Wyalong Solar Farm,West Wyalong Fund Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,WDBESS1,Existing Plant,Western Downs Battery,Western Downs BESS Pty Ltd as trustee for Western Downs BESS Trust, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Western Downs Battery- Stage 2,Neoen Australia Pty Ltd, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Western Downs Gas Peaking Plant - KCI,PowerGen P51 Pty Ltd, Turbine - CCGT ,Other - Other
+ QLD1 ,WDGPH1,Existing Plant,Western Downs Green Power Hub P/L,Western Downs Green Power Hub Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ TAS1 ,,Project,Western Plains Wind Farm,ARK Energy Corporation Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Western Sydney Energy & Resource Recovery Centre,Western Sydney Energy & Resource Recovery Centre, Other - Other ,Other - Other
+ NSW1 ,,Project,Western Sydney Pumped Hydro Project,Zen Energy Retail Pty Ltd, Storage - Pumped hydro ,Hydro - Water
+ TAS1 ,,Project,Whaleback Ridge Wind Farm - KCI,West Coast Renewables Energy Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,WRSF1,Existing Plant,White Rock Solar Farm,White Rock Wind Farm Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ NSW1 ,WRWF1,Existing Plant,White Rock Wind Farm - Stage 1,CECEP Wind Power Australia Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,White Rock Wind Farm - Stage 2,White Rock Wind Farm Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,WHITSF1,Existing Plant,Whitsunday Solar Farm,Whitsunday Solar Farm Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,WHIT1,Existing Plant,Whitwood Road,LMS Energy Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ SA1 ,,Project,Whyalla,Adani, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Whyalla BESS - KCI,BESS Kalkallo Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,,Existing Plant,Wilga Park Power Station A,Santos, Reciprocating Engine - Spark ignition ,Fossil - Coal Seam Methane
+ NSW1 ,,Existing Plant,Wilga Park Power Station A,Santos, Reciprocating Engine - Spark ignition ,Fossil - Coal Seam Methane
+ NSW1 ,,Existing Plant,Wilga Park Power Station B,Santos, Reciprocating Engine - Spark ignition ,Fossil - Coal Seam Methane
+ VIC1 ,,Project,Willatook,Wind Prospect WA Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ NSW1 ,,Project,Willavale BESS,X-Elio Willavale Park Trust, Storage - Battery ,Other - Other
+ NSW1 ,,Project,Willavale Solar Farm,X-Elio Australia Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,WILLHOV1,Existing Plant,William Hovel,Pacific Hydro Investments Pty Ltd, Hydro - Run of River ,Hydro - Water
+ NSW1 ,,Project,Williamsdale BESS,EKU Energy, Storage - Battery ,Other - Other
+ SA1 ,WGWF1,Existing Plant,Willogoleche Wind Farm,Willogoleche Power Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,WGWF1,Existing Plant,Willogoleche Wind Farm,Willogoleche Power Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Willowvale Solar Farm - KCI,Elgin Energy Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ VIC1 ,,Project,Wimmera Plains BESs,BayWA r.e Projects Australia Pty Ltd, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Wimmera Plains Wind Farm - KCI,Wimmera Plains Energy Facility Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Winchelsea Gas Turbines - KCI,APA Power Holdings Pty Ltd, Turbine - OCGT ,Other - Other
+ QLD1 ,WHILL1,Existing Plant,Windy Hill,Ratch Australia, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,WINGF1_1,Existing Plant,Wingfield 1,EDL LFG SA Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ SA1 ,WINGF2_1,Existing Plant,Wingfield 2,EDL LFG SA Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ NSW1 ,,Project,Winterbourne Wind Farm,WinterbourneWind Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,,Project,Winton BESS,AE BESS 10 as Trustee for AE BESS 10 Unit Trust, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Winton Energy Reserve 1,Lochard Energy, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Winton Energy Reserve 1,Lochard Energy, Reciprocating Engine - Spark ignition ,Fossil - Natural Gas
+ VIC1 ,WINTSF1,Existing Plant,Winton Solar Farm,Winton Asset Co. Pty Ltd as Trustee of the Winton Asset Trust, Solar PV - Single axis tracking ,Solar - Solar
+ QLD1 ,W/HOE#1,Existing Plant,Wivenhoe,CleanCo Queensland Limited, Storage - Pumped hydro ,Hydro - Water
+ QLD1 ,W/HOE#2,Existing Plant,Wivenhoe,CleanCo Queensland Limited, Storage - Pumped hydro ,Hydro - Water
+ VIC1 ,,Project,Wodonga BESS,IBERDROLA AUSTRALIA DEVELOPMENT PTY LIMITED, Storage - Battery ,Other - Other
+ VIC1 ,,Project,Wodonga Solar Farm,Wodonga Solar Power, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Wollar BESS,Wollar Solar Finance Pty Ltd., Storage - Battery ,Other - Other
+ NSW1 ,WOLARSF1,Project,Wollar Solar Farm,Wollar Solar Development Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ VIC1 ,,Existing Plant,Wollert,LMS Energy Pty Ltd, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Landfill Gas
+ VIC1 ,,Project,Wollert Gas Turbine - KCI,APA Power Holdings Pty Ltd, Turbine - OCGT ,Other - Other
+ VIC1 ,,Project,Wombelano Wind Farm,Wind Projects Australia Project 1 Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ VIC1 ,WONWP,Existing Plant,Wonthaggi Wind Farm,Vision Super Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Wooderson Solar Farm,Wooderson Solar Development Company Pty Ltd, Solar PV - Single axis tracking ,Solar - Solar
+ NSW1 ,,Project,Woodland BESS,Risen Energy (Australia) Pty Ltd, Storage - Battery ,Other - Other
+ NSW1 ,WDLNGN01,Existing Plant,Woodlawn Bioreactor Energy Generation,Veolia Environmental Services Aust P/L, Reciprocating Engine - Spark ignition ,Renewable Biomass or Waste - Biogas
+ NSW1 ,WOODLWN1,Existing Plant,Woodlawn Wind Farm,Woodlawn Wind Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
+ QLD1 ,,Project,Woodstock BESS,AGL Energy Limited, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Woodstock Renewable Energy Hub - BESS,Private Energy Partners, Storage - Battery ,Other - Other
+ QLD1 ,,Project,Woodstock Renewable Energy Hub - Solar,Private Energy Partners, Solar PV - Fixed ,Solar - Solar
+ TAS1 ,WOOLNTH1, Existing Plant ,Woolnorth Studland Bay / Bluff Point, Woolnorth Wind Farm Finance Pty Ltd , Wind Turbine - Onshore , Wind - Wind 
+ TAS1 ,WOOLNTH1, Existing Plant ,Woolnorth Studland Bay / Bluff Point, Woolnorth Wind Farm Finance Pty Ltd , Wind Turbine - Onshore , Wind - Wind 
+ TAS1 ,WOOLNTH1, Existing Plant ,Woolnorth Studland Bay / Bluff Point, Woolnorth Wind Farm Finance Pty Ltd , Wind Turbine - Onshore , Wind - Wind 
+ QLD1 ,, Project ,Woolooga BESS, Woolooga BESS Fund Pty Limited as trustee for the Woolooga BESS Trust , Storage - Battery , Other - Other 
+ QLD1 ,, Project ,Woolooga BESS - KCI, Elements Green Australia Pty Ltd , Storage - Battery , Other - Other 
+ QLD1 ,WOOLGSF1, Existing Plant ,Woolooga Solar Farm, Woolooga Fund Pty Ltd , Solar PV - Single axis tracking , Solar - Solar 
+ VIC1 ,, Project ,Woolsthorpe Wind Farm, Woolsthorpe Wind Farm Pty Ltd , Wind Turbine - Onshore , Wind - Wind 
+ VIC1 ,, Project ,Wooreen Energy Storage System, EnergyAustralia Holdings Limited , Storage - Battery , Other - Other 
+ QLD1 ,, Project ,Wooroora Station Wind Farm, ARK Energy Corporation Pty Ltd , Wind Turbine - Onshore , Wind - Wind 
+ VIC1 ,WUNUSF1, Project ,Wunghnu Solar Farm, Sun Spot 3 Pty Ltd , Solar PV - Single axis tracking , Solar - Solar 
+ QLD1 ,, Project ,Wurdong BESS, Wurdong ProjectCo Pty Ltd , Storage - Battery , Other - Other 
+ NSW1 ,WYASF1, Existing Plant ,Wyalong Solar Farm, Wyalong Solar Farm Pty Ltd as the trustee for the Wyalong Solar Farm Unit Trust , Solar PV - Single axis tracking , Solar - Solar 
+ NSW1 ,WYANGALA, Existing Plant ,Wyangala A, Hydro Power Pty Ltd , Hydro - Dam , Hydro - Water 
+ NSW1 ,WYANGALB, Existing Plant ,Wyangala B, AGL , Hydro - Dam , Hydro - Water 
+ QLD1 ,, Project ,X-Elio - Sixteen Mile SF BESS, The Trustee for X-ELIO SIXTEEN MILE TRUST , Solar PV - Single axis tracking , Solar - Solar 
+ QLD1 ,, Project ,Yabulu BESS, Yabulu BESS Pty Ltd , Storage - Battery , Other - Other 
+ QLD1 ,, Project ,Yabulu Solar Farm, Yabulu Solar Farm Pty Ltd , Solar PV - Single axis tracking , Solar - Solar 
+ SA1 ,, Project ,Yadnarie Solar Farm, Photon Energy Group , Solar PV - Fixed , Solar - Solar 
+ VIC1 ,YWPS1, Existing Plant ,Yallourn W, EnergyAustralia Yallourn Pty Ltd , Turbine - Steam Sub Critical , Fossil - Brown Coal 
+ VIC1 ,YWPS2, Existing Plant ,Yallourn W, EnergyAustralia Yallourn Pty Ltd , Turbine - Steam Sub Critical , Fossil - Brown Coal 
+ VIC1 ,YWPS3, Existing Plant ,Yallourn W, EnergyAustralia Yallourn Pty Ltd , Turbine - Steam Sub Critical , Fossil - Brown Coal 
+ VIC1 ,YWPS4, Existing Plant ,Yallourn W, EnergyAustralia Yallourn Pty Ltd , Turbine - Steam Sub Critical , Fossil - Brown Coal 
+ VIC1 ,, Existing Plant ,Yaloak South Wind Farm, Pacific Hydro Yaloak South Pty Ltd , Wind Turbine - Onshore , Wind - Wind 
+ VIC1 ,YAMBUKWF, Existing Plant ,Yambuk, Energy Pacific Vic Pty Ltd , Wind Turbine - Onshore , Wind - Wind 
+ NSW1 ,, Project ,Yanco BESS, Acenergy Pty Ltd , Storage - Battery , Other - Other 
+ NSW1 ,, Project ,Yanco Delta Wind Farm, Yanco Delta Wind Farm Pty Ltd , Wind Turbine - Onshore , Wind - Wind 
+ NSW1 ,, Project ,Yanco Delta Wind Farm Stage 1 - Battery, Yanco Delta Wind Farm Pty Ltd , Storage - Battery , Other - Other 
+ NSW1 ,, Project ,Yanco Solar Farm, Origin Energy , Solar PV - Single axis tracking , Solar - Solar 
+ NSW1 ,, Project ,Yarrabee Solar Power Project, Origin Energy , Solar PV - Single axis tracking , Solar - Solar 
+ QLD1 ,YARANSF1, Existing Plant ,Yarranlea Solar Farm, Yarranlea Solar Pty Ltd , Solar PV - Single axis tracking , Solar - Solar 
+ VIC1 ,, Existing Plant ,Yarrawonga, AGL Hydro Partnership , Hydro - Dam , Hydro - Water 
+ QLD1 ,YARWUN_1, Existing Plant ,Yarwun 1, RTA Yarwun Pty Ltd , Turbine - CCGT , Fossil - Natural Gas Pipeline 
+ NSW1 ,, Project ,Yass Solar Farm - KCI, Tetris Energy Pty Ltd , Solar PV - Fixed , Solar - Solar 
+ VIC1 ,YATSF1, Existing Plant ,Yatpool Solar Farm, Yatpool Sun Farm Pty Ltd , Solar PV - Single axis tracking , Solar - Solar 
+ VIC1 ,YATSF1, Existing Plant ,Yatpool Solar Farm, Yatpool Sun Farm Pty Ltd , Solar PV - Single axis tracking , Solar - Solar 
+ VIC1 ,YAWWF1, Existing Plant ,Yawong Wind Farm, Yawong Wind Farm Pty Ltd , Wind Turbine - Onshore , Wind - Wind 
+ QLD1 ,, Project ,Yelarbon SF and BESS - KCI, Elgin Energy , Solar PV - Fixed , Solar - Solar 
+ QLD1 ,, Project ,Yelarbon SF and BESS - KCI, Elgin Energy , Storage - Battery , Other - Other 
+ VIC1 ,YENDWF1,Existing Plant,Yendon Wind Farm,Northleaf /InfraRed/Macquarie Capital, Wind Turbine - Onshore ,Wind - Wind
+ SA1 ,,Project,Yoorndoo Ilga Solar - KCI,Yoorndoo Ilga Solar Pty Ltd, Solar PV - Fixed ,Solar - Solar
+ SA1 ,,Project,Yorke Peninsula Wind Farm,Yorke Peninsula Wind Farm Project Pty Ltd, Wind Turbine - Onshore ,Wind - Wind
