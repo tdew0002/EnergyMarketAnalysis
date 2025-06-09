@@ -1,0 +1,142 @@
+---
+title: "AemoETL: Shiny Dashboard Tour"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{AemoELT: Shiny Dashboard Tour}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>",
+  eval = FALSE
+)
+
+```
+
+## Quickstart with Pre-filtered Data
+
+If you’d rather *not* wait for the full ETL to run, you can grab a snapshot of our latest **data folder** from Google Drive:
+
+[👉 Download data folder (ZIP)](https://drive.google.com/drive/folders/18xc-82ECxCGiL95a0BfP1pnXpiqm67bb?usp=sharing)
+
+-   Download the **data** folder
+
+-   Put that **data folder** into the **package root**
+
+-   Now you should have additional **data** **folder** that includes **raw_data, parquete_tables and filtered_parquet_tables** your root that includes
+
+-   The app will pick it up instantly. Once you have those files, launch the dashboard:
+
+```{r}
+library(AemoETL)
+run_app()   # launches the app; stop it to continue reading
+```
+
+If you ever need to pull new or incremental data, just run the full ETL pipeline:
+
+```{r}
+AemoETL::main()       # download & convert
+AemoETL::run_filtering()  # apply your filters
+
+```
+
+# Dashboard Structure
+
+The app is organized into four main tabs. The left‐hand sidebar lets you switch among them; controls appear in the top‐left of each panel, plots on the right.
+
+## 1. Supply Curve
+
+-   **Controls** (left box):
+
+    -   **DUID(s)**: choose one or more generating units
+
+    -   **Month**: select any month, YYYY-MM format
+
+    -   **Start**: click to animate
+
+-   **Plot** (right): an **animated** step‐curve showing cumulative offer volume vs price over each 5-min interval in the month.
+
+-   Grey background lines are each day’s curve; default colors highlight the unit you selected.
+
+## 2. Heatmap
+
+-   **Controls**:
+
+    -   **DUID**: pick a single unit
+
+    -   **Start**: render the heatmap
+
+-   **Plot**: a **tile plot** with
+
+    -   **x = timestamp** (5-min steps)
+
+    -   **y = Bid BAND index**
+
+    -   **fill = available MW**
+
+-   Perfect for spotting when and at which bands each unit was active.
+
+## 3. Bidstack
+
+Two sub‐modes:
+
+1.  **Static snapshot**
+
+-   **Controls**:
+
+    -   **Region** (e.g. VIC1, NSW1…)
+
+    -   **Timestamp** (5-min slice)
+
+    -   **Start Static**
+
+-   **Plot**: a single cumulative supply curve at that exact 5-min point, colored by fuel type and dashed line marking total cleared.
+
+2.  **Day-long animation**
+
+-   **Controls**:
+
+    -   **Region**
+
+    -   **Date** (pick a day)
+
+    -   **Start Animated**
+
+-   **Plot**: for each 5-min time step of the day, shows the evolving bidstack and annotates marginal price & cleared volume.
+
+## 4. Seasonality
+
+-   **Controls**:
+
+    -   **Region**
+
+    -   **Date range** (start & end)
+
+    -   **Start**
+
+-   **Plots**: a tabbed box with six panels, each a “spaghetti + average” chart:
+
+1.  **Price** — daily average of all PRICEBAND value
+
+2.  **Availability** — sum of all BANDAVAIL per 30-min, gray = each day, red = average
+
+3.  **RRP** — regional wholesale spot price, gray = each day, green = average
+
+4.  **Residual Demand** — operational demand minus renewables, gray = each day, orange = average
+
+5.  **Operational Demand** — meter-level demand, gray = each day, purple = average
+
+6.  **Renewable (Solar + Wind)** — sum of cleared for solar & wind units, gray = daily curves, gold = average \`\`\`
+
+-   Hover your mouse over any line for an interactive tooltip (with exact MW, price, timestamp, etc).
+
+## Tips & Tricks
+
+-   **Region vs DUID**: most plots filter by **REGIONID**, only the supply‐curve uses DUID selectors.
+
+-   **Timezones**: all timestamps are in **Australia/Brisbane**; slider controls convert to UTC internally.
+
+-   **Performance**: the app pre‐opens each Parquet directory with `arrow::open_dataset()`

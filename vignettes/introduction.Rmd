@@ -1,0 +1,150 @@
+---
+title: "AemoETL: Introduction & Quickstart"
+author: "TYCIA DEWI"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
+vignette: >
+  %\VignetteIndexEntry{AemoETL: Introduction & Quickstart}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>",
+  eval = FALSE
+)
+```
+
+
+# What is AemoETL?
+
+**AemoETL** is an R package that provides:
+
+-   A **download–extract–transform** (ETL) pipeline for Australian Energy Market Operator (AEMO) data
+
+-   A set of **filtering rules** to reduce large AEMO tables to just the columns and rows you care about
+
+-   Convenient output to **Parquet**
+
+-   A lightweight **Shiny dashboard** (and helper `run_app()`) for exploring:
+
+```         
+-    Supply-curve animations
+
+-    Band-availability heatmaps
+
+-    Bidstack snapshots & animations
+
+-    Seasonality plots
+```
+
+## Installation
+
+```{r}
+# from CRAN
+install.packages("AemoETL")
+
+# or latest development version from GitHub:
+remotes::install_github("tdew0002/EnergyMarketAnalysis")
+
+```
+
+## 1. Download & Parquet Conversion
+
+1.  **`main()`** (in **etl/script/DownloadAemo.R**)
+
+```{r}
+library(AemoETL)
+main()
+
+```
+
+-   **Interactive menu**: choose AEMO Archive vs Current; drill down into subfolders until ZIP files appear.
+
+-   **Download location**:
+
+    `data/raw_data/<dataset_name>/<YYYYMMDD>/...`
+
+-   **Extraction**:
+
+    -   Every ZIP is unpacked into `data/raw_data/.../<YYYYMMDD>/`
+
+    -   Inner ZIPs are recursively extracted
+
+    -   All CSVs are then parsed by `extract_id_tables()` into named chunks (e.g. “BIDPEROFFER_D”, “DREGION”)
+
+-   **Parquet output**:
+
+    `data/parquet_tables/<TABLE_NAME>/<YYYYMMDD>.parquet`
+
+-   **Cleanup**: original CSVs are deleted to save space.
+
+-   **Mapping file**: `mapping/dataset_table_mapping.rds`
+
+## 2. Filter & Enrich
+
+Once you have raw Parquet under `data/parquet_tables/`, apply your filtering rules:
+
+```{r}
+library(AemoETL)
+run_filtering()
+
+```
+
+**`run_filtering()`** (in **R/data_processing.R**)
+
+-   Reads each raw parquet from
+
+    `data/parquet_tables/<TABLE_NAME>/`
+
+<!-- -->
+
+-    Applies your per-table `$filter`, `$select`, and `$timestamp` rule (see **R/filtering_rules.R**)
+
+<!-- -->
+
+-    Writes **filtered** Parquet under
+
+    `data/filtered_parquet_tables/<TABLE_NAME>/`
+
+<!-- -->
+
+-    Maintains a `.processed_files.txt` in each folder so that already-filtered files are skipped automatically.
+
+## 3. Inspecting the Data
+
+You can read your filtered tables directly with **arrow**:
+
+```{r}
+library(arrow)
+ds <- open_dataset("data/filtered_parquet_tables/BIDPEROFFER_D")
+ds %>%
+  filter(REGIONID == "VIC1") %>%
+  collect() %>%
+  head()
+
+```
+
+## 4. Launch Shiny Dashboard
+
+AemoETL ships with a Shiny app under **inst/app/**. To launch it:
+
+```{r}
+run_app()
+
+```
+
+This will spin up a dashboard where you can:
+
+-   Animate supply curves
+
+-   View band-availability heatmaps
+
+-   See bidstack snapshots & day-long animations
+
+-   Explore daily seasonality of price, availability, RRP, demand, renewables
