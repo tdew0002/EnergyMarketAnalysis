@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>AemoETL: Shiny Dashboard Tour</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">:root {--sec-orange: #ff7a19; --sec-orange-d: #d86511; --sec-blue: #003052; --sec-gray: #48505c; --sec-bg: #fcfcfc; --sec-gray-l: #e6e9ee; --sec-code-bg: #f7f8fa; }html, body {margin: 0;padding: 0;background: var(--sec-bg);font-family: "Inter", "Source Sans Pro", Arial, sans-serif;color: var(--sec-gray);line-height: 1.65;font-size: 17px;}body {margin-left: 270px;max-width: 1040px;padding: 0 2.4rem 3rem;}h1, h2, h3, h4, h5 {color: var(--sec-blue);font-weight: 600;line-height: 1.3;margin: 2.2em 0 0.6em;}h1 { font-size: 1.9rem; margin-top: 0; }h2 { font-size: 1.55rem; }h3 { font-size: 1.25rem; }h4 { font-size: 1.05rem; }a { color: var(--sec-orange); text-decoration: none; }a:hover { color: var(--sec-orange-d); text-decoration: underline; }#TOC {position: fixed;top: 0;left: 0;width: 250px;height: 100vh;overflow-y: auto;padding: 1.2rem 1rem 2.5rem;border-right: 1px solid var(--sec-gray-l);background: #ffffff;font-size: 0.9rem;}#TOC > ul { margin: 0; padding-left: 0; }#TOC li { list-style: none; margin: 4px 0; }#TOC a { color: var(--sec-gray); }#TOC a:hover { color: var(--sec-orange-d); }.toc-active {background: rgba(255,122,25,0.15);border-left: 3px solid var(--sec-orange);border-radius: 2px;}.toc-active > a { color: var(--sec-blue); font-weight: 600; }#TOC ul ul { margin-left: 0.8rem; }pre {background: var(--sec-code-bg);border: 1px solid var(--sec-gray-l);border-left: 4px solid var(--sec-orange);border-radius: 6px;padding: 0.85rem 1.1rem;overflow-x: auto;font-family: "Fira Code", "Source Code Pro", monospace;font-size: 0.88rem;line-height: 1.5;}pre > code {background: none;border: none;padding: 0;}code {background: var(--sec-code-bg);padding: 0 0.25em;border-radius: 3px;font-size: 0.88em;font-family: "Fira Code", "Source Code Pro", monospace;}.figure, .table { margin: 2rem 0; }caption { caption-side: bottom; font-size: 0.85rem; color: var(--sec-gray); }img { max-width: 100%; height: auto; border-radius: 4px; }blockquote {border-left: 4px solid var(--sec-orange);margin: 1.8rem 0;padding: 0.6rem 1rem;background: #fff8f3;color: var(--sec-gray);}section:target {box-shadow: inset 0 0 0 3px rgba(255,122,25,0.4);border-radius: 4px;}table {border-collapse: collapse;width: 100%;margin: 1.5rem 0;}th, td {border: 1px solid var(--sec-gray-l);padding: 0.55rem 0.7rem;}th { background: #f2f4f7; }tbody tr:nth-child(odd) { background: #fafbfc; }@media (max-width: 900px) {body { margin-left: 0; max-width: 90%; }#TOC { display: none; } }</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">AemoETL: Shiny Dashboard Tour</h1>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#quickstart-with-pre-filtered-data" id="toc-quickstart-with-pre-filtered-data"><span class="toc-section-number">0.1</span> Quickstart with Pre-filtered
+Data</a></li>
+<li><a href="#dashboard-structure" id="toc-dashboard-structure"><span class="toc-section-number">1</span> Dashboard Structure</a>
+<ul>
+<li><a href="#supply-curve" id="toc-supply-curve"><span class="toc-section-number">1.1</span> 1. Supply Curve</a></li>
+<li><a href="#heatmap" id="toc-heatmap"><span class="toc-section-number">1.2</span> 2. Heatmap</a></li>
+<li><a href="#bidstack" id="toc-bidstack"><span class="toc-section-number">1.3</span> 3. Bidstack</a></li>
+<li><a href="#seasonality" id="toc-seasonality"><span class="toc-section-number">1.4</span> 4. Seasonality</a></li>
+<li><a href="#tips-tricks" id="toc-tips-tricks"><span class="toc-section-number">1.5</span> Tips &amp; Tricks</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="quickstart-with-pre-filtered-data" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> Quickstart with
+Pre-filtered Data</h2>
+<p>If you’d rather <em>not</em> wait for the full ETL to run, you can
+grab a snapshot of our latest <strong>data folder</strong> from Google
+Drive:</p>
+<p><a href="https://drive.google.com/drive/folders/18xc-82ECxCGiL95a0BfP1pnXpiqm67bb?usp=sharing">👉
+Download data folder (ZIP)</a></p>
+<ul>
+<li><p>Download the <strong>data</strong> folder</p></li>
+<li><p>Put that <strong>data folder</strong> into the <strong>package
+root</strong></p></li>
+<li><p>Now you should have additional <strong>data</strong>
+<strong>folder</strong> that includes <strong>raw_data, parquete_tables
+and filtered_parquet_tables</strong> your root that includes</p></li>
+<li><p>The app will pick it up instantly. Once you have those files,
+launch the dashboard:</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(AemoETL)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">run_app</span>()   <span class="co"># launches the app; stop it to continue reading</span></span></code></pre></div>
+<p>If you ever need to pull new or incremental data, just run the full
+ETL pipeline:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>AemoETL<span class="sc">::</span><span class="fu">main</span>()       <span class="co"># download &amp; convert</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>AemoETL<span class="sc">::</span><span class="fu">run_filtering</span>()  <span class="co"># apply your filters</span></span></code></pre></div>
+</div>
+<div id="dashboard-structure" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Dashboard
+Structure</h1>
+<p>The app is organized into four main tabs. The left‐hand sidebar lets
+you switch among them; controls appear in the top‐left of each panel,
+plots on the right.</p>
+<div id="supply-curve" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> 1. Supply Curve</h2>
+<ul>
+<li><p><strong>Controls</strong> (left box):</p>
+<ul>
+<li><p><strong>DUID(s)</strong>: choose one or more generating
+units</p></li>
+<li><p><strong>Month</strong>: select any month, YYYY-MM format</p></li>
+<li><p><strong>Start</strong>: click to animate</p></li>
+</ul></li>
+<li><p><strong>Plot</strong> (right): an <strong>animated</strong>
+step‐curve showing cumulative offer volume vs price over each 5-min
+interval in the month.</p></li>
+<li><p>Grey background lines are each day’s curve; default colors
+highlight the unit you selected.</p></li>
+</ul>
+</div>
+<div id="heatmap" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> 2. Heatmap</h2>
+<ul>
+<li><p><strong>Controls</strong>:</p>
+<ul>
+<li><p><strong>DUID</strong>: pick a single unit</p></li>
+<li><p><strong>Start</strong>: render the heatmap</p></li>
+</ul></li>
+<li><p><strong>Plot</strong>: a <strong>tile plot</strong> with</p>
+<ul>
+<li><p><strong>x = timestamp</strong> (5-min steps)</p></li>
+<li><p><strong>y = Bid BAND index</strong></p></li>
+<li><p><strong>fill = available MW</strong></p></li>
+</ul></li>
+<li><p>Perfect for spotting when and at which bands each unit was
+active.</p></li>
+</ul>
+</div>
+<div id="bidstack" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> 3. Bidstack</h2>
+<p>Two sub‐modes:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Static snapshot</strong></li>
+</ol>
+<ul>
+<li><p><strong>Controls</strong>:</p>
+<ul>
+<li><p><strong>Region</strong> (e.g. VIC1, NSW1…)</p></li>
+<li><p><strong>Timestamp</strong> (5-min slice)</p></li>
+<li><p><strong>Start Static</strong></p></li>
+</ul></li>
+<li><p><strong>Plot</strong>: a single cumulative supply curve at that
+exact 5-min point, colored by fuel type and dashed line marking total
+cleared.</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Day-long animation</strong></li>
+</ol>
+<ul>
+<li><p><strong>Controls</strong>:</p>
+<ul>
+<li><p><strong>Region</strong></p></li>
+<li><p><strong>Date</strong> (pick a day)</p></li>
+<li><p><strong>Start Animated</strong></p></li>
+</ul></li>
+<li><p><strong>Plot</strong>: for each 5-min time step of the day, shows
+the evolving bidstack and annotates marginal price &amp; cleared
+volume.</p></li>
+</ul>
+</div>
+<div id="seasonality" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> 4. Seasonality</h2>
+<ul>
+<li><p><strong>Controls</strong>:</p>
+<ul>
+<li><p><strong>Region</strong></p></li>
+<li><p><strong>Date range</strong> (start &amp; end)</p></li>
+<li><p><strong>Start</strong></p></li>
+</ul></li>
+<li><p><strong>Plots</strong>: a tabbed box with six panels, each a
+“spaghetti + average” chart:</p></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p><strong>Price</strong> — daily average of all PRICEBAND
+value</p></li>
+<li><p><strong>Availability</strong> — sum of all BANDAVAIL per 30-min,
+gray = each day, red = average</p></li>
+<li><p><strong>RRP</strong> — regional wholesale spot price, gray = each
+day, green = average</p></li>
+<li><p><strong>Residual Demand</strong> — operational demand minus
+renewables, gray = each day, orange = average</p></li>
+<li><p><strong>Operational Demand</strong> — meter-level demand, gray =
+each day, purple = average</p></li>
+<li><p><strong>Renewable (Solar + Wind)</strong> — sum of cleared for
+solar &amp; wind units, gray = daily curves, gold = average ```</p></li>
+</ol>
+<ul>
+<li>Hover your mouse over any line for an interactive tooltip (with
+exact MW, price, timestamp, etc).</li>
+</ul>
+</div>
+<div id="tips-tricks" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Tips &amp;
+Tricks</h2>
+<ul>
+<li><p><strong>Region vs DUID</strong>: most plots filter by
+<strong>REGIONID</strong>, only the supply‐curve uses DUID
+selectors.</p></li>
+<li><p><strong>Timezones</strong>: all timestamps are in
+<strong>Australia/Brisbane</strong>; slider controls convert to UTC
+internally.</p></li>
+<li><p><strong>Performance</strong>: the app pre‐opens each Parquet
+directory with <code>arrow::open_dataset()</code></p></li>
+</ul>
+</div>
+</div>
+
+// highlight the current section in the sidebar TOC
+document.addEventListener(&quot;scroll&quot;, () =&gt; {
+  const headings = document.querySelectorAll(&quot;h1, h2, h3&quot;);
+  let idx = headings.length;
+  while (idx-- &amp;&amp; window.scrollY + 85 &lt; headings[idx].offsetTop) {}
+  document.querySelectorAll(&quot;#TOC li&quot;).forEach(li =&gt; li.classList.remove(&quot;toc-active&quot;));
+  if (idx &gt;= 0) {
+    const id = headings[idx].id;
+    const active = document.querySelector(`#TOC a[href=&quot;#${id}&quot;]`)?.parentElement;
+    if (active) active.classList.add(&quot;toc-active&quot;);
+  }
+});
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

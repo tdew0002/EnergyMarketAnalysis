@@ -1,0 +1,32 @@
+---
+title: "Final Presentation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Final Presentation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+<style>
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;  /* 16:9 aspect */
+  height: 0;
+  overflow: hidden;
+}
+.iframe-container iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+</style>
+
+<div class="iframe-container">
+  <iframe
+    src="https://docs.google.com/presentation/d/e/2PACX-1vTt6VaQ_9t_mSpc-8JdleA2_b85nXBTXFtxB6Tlr_8ncAEGkeSV6RawQcHbFAfHjJXd6Lvg_NQ8g3t9/embed?start=true&loop=true&delayms=5000"
+    allowfullscreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true">
+  </iframe>
+</div>

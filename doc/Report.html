@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="TYCIA DEWI" />
+
+<meta name="date" content="2025-06-09" />
+
+<title>NEM Bidding Analysis Report</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">:root {--sec-orange: #ff7a19; --sec-orange-d: #d86511; --sec-blue: #003052; --sec-gray: #48505c; --sec-bg: #fcfcfc; --sec-gray-l: #e6e9ee; --sec-code-bg: #f7f8fa; }html, body {margin: 0;padding: 0;background: var(--sec-bg);font-family: "Inter", "Source Sans Pro", Arial, sans-serif;color: var(--sec-gray);line-height: 1.65;font-size: 17px;}body {margin-left: 270px;max-width: 1040px;padding: 0 2.4rem 3rem;}h1, h2, h3, h4, h5 {color: var(--sec-blue);font-weight: 600;line-height: 1.3;margin: 2.2em 0 0.6em;}h1 { font-size: 1.9rem; margin-top: 0; }h2 { font-size: 1.55rem; }h3 { font-size: 1.25rem; }h4 { font-size: 1.05rem; }a { color: var(--sec-orange); text-decoration: none; }a:hover { color: var(--sec-orange-d); text-decoration: underline; }#TOC {position: fixed;top: 0;left: 0;width: 250px;height: 100vh;overflow-y: auto;padding: 1.2rem 1rem 2.5rem;border-right: 1px solid var(--sec-gray-l);background: #ffffff;font-size: 0.9rem;}#TOC > ul { margin: 0; padding-left: 0; }#TOC li { list-style: none; margin: 4px 0; }#TOC a { color: var(--sec-gray); }#TOC a:hover { color: var(--sec-orange-d); }.toc-active {background: rgba(255,122,25,0.15);border-left: 3px solid var(--sec-orange);border-radius: 2px;}.toc-active > a { color: var(--sec-blue); font-weight: 600; }#TOC ul ul { margin-left: 0.8rem; }pre {background: var(--sec-code-bg);border: 1px solid var(--sec-gray-l);border-left: 4px solid var(--sec-orange);border-radius: 6px;padding: 0.85rem 1.1rem;overflow-x: auto;font-family: "Fira Code", "Source Code Pro", monospace;font-size: 0.88rem;line-height: 1.5;}pre > code {background: none;border: none;padding: 0;}code {background: var(--sec-code-bg);padding: 0 0.25em;border-radius: 3px;font-size: 0.88em;font-family: "Fira Code", "Source Code Pro", monospace;}.figure, .table { margin: 2rem 0; }caption { caption-side: bottom; font-size: 0.85rem; color: var(--sec-gray); }img { max-width: 100%; height: auto; border-radius: 4px; }blockquote {border-left: 4px solid var(--sec-orange);margin: 1.8rem 0;padding: 0.6rem 1rem;background: #fff8f3;color: var(--sec-gray);}section:target {box-shadow: inset 0 0 0 3px rgba(255,122,25,0.4);border-radius: 4px;}table {border-collapse: collapse;width: 100%;margin: 1.5rem 0;}th, td {border: 1px solid var(--sec-gray-l);padding: 0.55rem 0.7rem;}th { background: #f2f4f7; }tbody tr:nth-child(odd) { background: #fafbfc; }@media (max-width: 900px) {body { margin-left: 0; max-width: 90%; }#TOC { display: none; } }</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">NEM Bidding Analysis Report</h1>
+<h4 class="author">TYCIA DEWI</h4>
+<h4 class="date">2025-06-09</h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#national-energy-market-nem" id="toc-national-energy-market-nem"><span class="toc-section-number">1</span> National Energy Market (NEM)</a>
+<ul>
+<li><a href="#introduction" id="toc-introduction"><span class="toc-section-number">1.1</span> Introduction</a></li>
+<li><a href="#how-is-nem-regulated" id="toc-how-is-nem-regulated"><span class="toc-section-number">1.2</span> How is NEM Regulated?</a></li>
+</ul></li>
+<li><a href="#methods" id="toc-methods"><span class="toc-section-number">2</span> Methods</a>
+<ul>
+<li><a href="#nem-bidding-variables" id="toc-nem-bidding-variables"><span class="toc-section-number">2.1</span> NEM Bidding Variables</a>
+<ul>
+<li><a href="#price-bands-priceband_110" id="toc-price-bands-priceband_110"><span class="toc-section-number">2.1.1</span> Price Bands
+(PRICEBAND_1…10)</a></li>
+<li><a href="#availability-bands-bandavail_110-and-maxavail" id="toc-availability-bands-bandavail_110-and-maxavail"><span class="toc-section-number">2.1.2</span> Availability Bands
+(BANDAVAIL_1…10 and MAXAVAIL)</a></li>
+<li><a href="#regional-reference-price-rrp-and-total-demand" id="toc-regional-reference-price-rrp-and-total-demand"><span class="toc-section-number">2.1.3</span> Regional Reference Price (RRP)
+and Total Demand</a></li>
+<li><a href="#fuel-type-and-technology-classification" id="toc-fuel-type-and-technology-classification"><span class="toc-section-number">2.1.4</span> Fuel Type and Technology
+Classification</a></li>
+<li><a href="#dispatchable-unit-identifier-region-id" id="toc-dispatchable-unit-identifier-region-id"><span class="toc-section-number">2.1.5</span> Dispatchable Unit Identifier
+&amp; Region ID</a></li>
+<li><a href="#residual-demand" id="toc-residual-demand"><span class="toc-section-number">2.1.6</span> Residual Demand</a></li>
+</ul></li>
+<li><a href="#etl-processing" id="toc-etl-processing"><span class="toc-section-number">2.2</span> ETL Processing</a></li>
+<li><a href="#shiny-app" id="toc-shiny-app"><span class="toc-section-number">2.3</span> Shiny App</a>
+<ul>
+<li><a href="#supply-curve" id="toc-supply-curve"><span class="toc-section-number">2.3.1</span> Supply Curve</a></li>
+<li><a href="#heatmap" id="toc-heatmap"><span class="toc-section-number">2.3.2</span> Heatmap</a></li>
+<li><a href="#bidstack" id="toc-bidstack"><span class="toc-section-number">2.3.3</span> Bidstack</a></li>
+<li><a href="#seasonality-plot" id="toc-seasonality-plot"><span class="toc-section-number">2.3.4</span> Seasonality Plot</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#results" id="toc-results"><span class="toc-section-number">3</span> Results</a>
+<ul>
+<li><a href="#supply-curve-1" id="toc-supply-curve-1"><span class="toc-section-number">3.0.1</span> Supply Curve</a></li>
+<li><a href="#availability-heatmap" id="toc-availability-heatmap"><span class="toc-section-number">3.0.2</span> Availability Heatmap</a></li>
+<li><a href="#bidstack-visuals" id="toc-bidstack-visuals"><span class="toc-section-number">3.0.3</span> Bidstack Visuals</a></li>
+<li><a href="#seasonality-plot-1" id="toc-seasonality-plot-1"><span class="toc-section-number">3.0.4</span> Seasonality Plot</a></li>
+<li><a href="#limitation-improvements" id="toc-limitation-improvements"><span class="toc-section-number">3.1</span> Limitation &amp;
+Improvements</a></li>
+</ul></li>
+<li><a href="#references" id="toc-references"><span class="toc-section-number">4</span> References</a></li>
+</ul>
+</div>
+
+<div id="national-energy-market-nem" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> National Energy Market
+(NEM)</h1>
+<div id="introduction" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction</h2>
+<p>State Electricity Commission (SEC) of Victoria is a “government-owned
+renewable energy company,” producing electricity from wind and solar
+power, to then be supplied to Victorian households and businesses (SEC
+Victoria, 2025). The organisation was re-founded in 2024 by the
+Victorian government with an aim to provide affordable electricity of up
+to 4.5 gigawatts of power while also growing the renewable energy
+workforce by creating over 59,000 jobs (State Government of Victoria,
+2025; State Government of Victoria, 2024).</p>
+<p>SEC Victoria operates within the Australian National Electricity
+Market (NEM), a “wholesale electricity market and the physical power
+system” which facilitates the selling and transporting of electricity in
+the area in which it operates (AEMO, 2025; DCCEEW, 2024). NEM operates
+in five interconnected national jurisdictions in the east and southern
+coast of Australia, which are Victoria, New South Wales, Queensland, the
+Australian Capital Territory and Tasmania (AEMO, 2025).</p>
+<p>The NEM is made up of 5 key categories of players: (1) Generation
+&amp; Storage, (2) Transmission, (3) Distribution, (4) Retailing and (5)
+Market Operator (SEC, 2025). First, the Generation &amp; Storage is
+responsible for generating and storing electricity, this includes solar
+and wind farms, and coal and gas power stations. Second, Transmission is
+responsible for transporting high voltage electricity from generators to
+demand centres. Third, Distribution is responsible for transporting
+medium to low voltage electricity from transmission networks to
+customers. Fourth, Retailing is responsible for the purchasing of
+electricity on behalf of customers and liaise with customers in regards
+to customer service and billing for energy provision. In this ecosystem,
+SEC is both a Generator and Retailer, or also referred to as Gentailer.
+Lastly, the Market Operator, in this case the Australian Energy Market
+Operator (AEMO) is responsible to manage the NEM, in regards to
+overseeing and facilitating supply and demand, collecting payments,
+organising the delegation of energy produced and payment for generators
+(SEC, 2025).</p>
+</div>
+<div id="how-is-nem-regulated" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> How is NEM
+Regulated?</h2>
+<p>The NEM is operated as a gross pooled market, where the sum of all
+electricity generated is pooled into a single supply (SEC, 2025). To
+determine which electricity will be chosen to meet the demand in the
+market, each generator in NEM is required to provide their bidding
+availability and bidding price at which they are willing to dispatch
+their power; bidding availability is submitted every five minutes and
+bidding price is submitted every 24 hours (SEC, 2025). The bidding price
+is submitted as a range, from Band 1 to 10, that is incremental in price
+– a bidding availability/volume (in MW) will be associated with each of
+the price bands (in $ / MWh). While the bidding prices cannot be changed
+within the 24 hour period, the quantity of available energy within each
+price band can be made every 5 minutes according to market conditions
+(Dungey et al., 2017). AEMO will then aggregate all generator bids and
+stack them from lowest to highest price, to then first fulfill the
+market demand for energy starting with the lowest price energy offered.
+Generators will only be compensated for the energy that are supplied to
+the central pool of electricity (Dungey et al., 2017). Thus, in the NEM
+bidding system there is no guarantee that all energy produced will be
+bought and utilised, as it is a competitive market (Dungey et al.,
+2017).</p>
+<p>Therefore, to maximise efficiency and profit, an energy company must
+have a bidding strategy to gain competitive advantage to maximise the
+amount of energy dispatched to fulfill the market demand.</p>
+<p>As an Energy Market Analyst Intern in SEC, my role came in as part of
+SEC’s attempt to improve their bidding strategy in the NEM. To do so, my
+project focuses on helping visualise the historic energy bidding
+behaviour of the whole NEM area. By doing so, patterns and anomalies in
+the market could be spotted more easily to be analysed further.</p>
+<p>To do so, I have constructed a dashboard which showcases four
+different visualisations; (1) Supply curve, (2) Heatmap, (3) Bidstack
+and (4) Seasonal plot. The four different visualisations gives insight
+into the different generator’s bidding behaviours. This dashboard will
+then be used by the analysts in SEC Victoria to explore further patterns
+in the NEM to further determine their future bidding strategy.</p>
+</div>
+</div>
+<div id="methods" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Methods</h1>
+<div id="nem-bidding-variables" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> NEM Bidding
+Variables</h2>
+<p>There are five categories of NEM Bidding Variables, that will be
+utilised.</p>
+<div id="price-bands-priceband_110" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Price Bands
+(PRICEBAND_1…10)</h3>
+<p>Each generator is required to divide their offered capacity into up
+to 10 price bands, with each band specifying an incremental volume (MW)
+and associated price ($/MWh). Band 1 is the lowest price offered and
+Band 10 is the highest price offered. This price band is offered once
+every 24 hours.</p>
+<p>In determining the offered price and volume for each band, the
+generators will take into consideration factors including expected fuel
+costs, heat rates, startup costs, expected demand, and risk of
+non-dispatch, into their strategy (cite).</p>
+<p>An evident pattern in price bands variable is that baseload bands
+from 1 to 3 are usually low in variance as fuel costs are relatively
+stable. As for mid to higher price bands from 4 to 10, there is a higher
+variance as availability in these bands may be adjusted more frequently
+each day based on short-term market conditions, such as when spot price
+– how much electricity is required to maintain balance in the power
+system – increases (AEMC, 2025). During unforeseen circumstances, such
+as scarcity, generators may also place exorbitant bids of up to
+$16,600/MWh in Band 10 to avoid the provision of energy unless it is an
+emergency (SEC,2025).</p>
+</div>
+<div id="availability-bands-bandavail_110-and-maxavail" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Availability Bands
+(BANDAVAIL_1…10 and MAXAVAIL)</h3>
+<p>At every 5-minute dispatch interval, each generator is required to
+provide the MW availability for each price band. The MW sum of
+BANDAVAIL_1 to BANDAVAIL_10 should be equal to the variable MAXAVAIL,
+which is the maximum physical capability of the generator.</p>
+<p>However, there are forecasting constraints especially for wind and
+solar units, which may lead to the number of MAXAVAIL exceeding the
+forecasted output, FORECAST_POE50. In this case, the utilised effective
+availability chosen will always be the forecasted output, which is
+FORECAST_POE50, because it prevents generators from underdelivering,
+which maintains system reliability (AEMO, 2023). For example, if the
+MAXAVAIL is 100 MW but the forecasted output, FORECAST_POE50 is 70 MW,
+BANDAVAIL might list a sum of 100 MW across the 10 bands, however, 30 MW
+must be trimmed out of the highest band to ensure that the effective
+availability is equal to the forecasted output.</p>
+</div>
+<div id="regional-reference-price-rrp-and-total-demand" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Regional Reference
+Price (RRP) and Total Demand</h3>
+<p>Energy is dispatched every 5-minute interval, with the lowest priced
+bids often dispatched first until the market demand is fulfilled. The
+highest priced bid that was last dispatched to satisfy the actual demand
+is RRP; the intersection between aggregate supply stack and the demand
+extraction (DIT).</p>
+<p>For total demand, DREGION dataset provides TOTALDEMAND variable,
+however it was not chosen as there can be minor variations due to
+embedded generation, losses and constraint imbalances. Thus, the sum of
+TOTALCLEARED dispatched across all DUIDs from the dataset UNIT_SOLUTION
+was utilised instead, to ensure more accurate reflection to the market
+supplier output.</p>
+<p>It is important to note that the offered price could also be
+negatively priced, as low as -$1,000 per MWh. This has been done
+historically as a bidding strategy, as generators are compensated with
+the market price rather than their offered price (AER, 2023). Thus,
+setting a negative price increases the likelihood of the generator’s
+capacity to be chosen and dispatched by AEMO, compared to higher-priced
+competitors (AER, 2023). Negative pricing has been more common with the
+rise of renewable energy, as wind and solar plants have negligible
+marginal costs and nearly zero startup or shutdown expenses. Thus, they
+can bid negatively to secure dispatch when weather conditions are
+favorable (AER, 2023).</p>
+</div>
+<div id="fuel-type-and-technology-classification" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Fuel Type and
+Technology Classification</h3>
+<p>The following are categories of fuel types:</p>
+<p>Coal–Black Coal: as a baseload generator, coal production has a high
+cost to start and cool down, thus, production cannot be stopped and
+there is a constant baseload or minimum amount of energy that the
+generator needs to dispatch (Hurn et al., 2016). For this reason, it is
+a relatively low-cost energy source.</p>
+<p>Gas–OCGT (Open Cycle Gas Turbine): as a peaking, dynamic,
+quick-to-start generator type that could start and stop quickly, however
+it has a high cost and is less efficient than baseload plants (Breeze,
+2021).</p>
+<p>Gas–CCGT (Combined Cycle Gas Turbine): a mid-merit generator type
+that is active during daytime with high demand and shuts off during low
+demand. This fuel type combines both gas and steam turbine to produce
+electricity more efficiently, and is of a moderate cost (IPIECA,
+2022).</p>
+<p>Hydro: this fuel type is flexible as it is easily dispatchable –
+being able to start and stop quickly – and may be able to set high
+prices during demand peaks.</p>
+<p>Wind: an intermittent energy source as power produced depends on
+natural weather factors – when wind speeds are within turbine limits –
+near zero marginal as it is almost free to run after installation.</p>
+<p>Solar: an intermittent energy source as power produced depends on
+sunlight availability, zero marginal cost during daylight.</p>
+<p>Battery Storage: fuel type which stores electricity from renewables
+or grid, and releases it when needed, such as Lithium-ion or flow
+batteries. It is highly dispatchable and often bidding at high prices to
+earn arbitrage, due to the low purchase price point.</p>
+</div>
+<div id="dispatchable-unit-identifier-region-id" class="section level3" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Dispatchable Unit
+Identifier &amp; Region ID</h3>
+<p>Each generator is given a Dispatchable Unit Identifier (DUID) by AEMO
+for identification purposes. This is important as the bidding
+availability and price is done per unit (Wattclarity, 2025).</p>
+<p>Each region in which the NEM operates, QLD, NSW, VIC, SA and TAS, are
+assigned a Region ID (Wattclarity, 2025).</p>
+</div>
+<div id="residual-demand" class="section level3" number="2.1.6">
+<h3><span class="header-section-number">2.1.6</span> Residual
+Demand</h3>
+<p>Residual demand is the remaining electricity load that is remaining
+after accounting for renewable energy supply, and thus must be fulfilled
+by conventional generators, electricity imports or storage systems (Do
+et al., 2021).</p>
+</div>
+</div>
+<div id="etl-processing" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> ETL Processing</h2>
+<p>As the Market Operator, AEMO is responsible for gathering data and
+presenting it to the public as open data, freely available on their
+website (AEMO, 2025b). The raw data for this project originates from
+AEMO’s secure FTP (or HTTP) archives, provided in fixed-width text or
+CSV files. Each zip folder downloaded contains multiple CSV files, in
+the form of a (e.g., BIDDAYOFFER_D_YYYYMMDD.csv,
+BIDPEROFFER_D_YYYYMMDD.csv, etc.). These data will then undergo the ETL
+process as follows:</p>
+<ol style="list-style-type: decimal">
+<li>First, AEMO’s archive index will be scraped by using rvest (R), to
+show all available dataset folders such as, BIDDAYOFFER_D,
+BIDPEROFFER_D, etc.<br />
+</li>
+<li>Second, the dataset folders are opened and the date range is chosen
+for download. The script will then locate the corresponding zip file to
+the date, (e.g., BIDDAYOFFER_D_20240315.zip), which will then be
+downloaded and unzipped into a local folder (e.g.,
+<code>data/raw_data/BIDDAYOFFER_D/20240315/</code>).<br />
+</li>
+<li>Third, multi-table parsing is conducted, as many CSVs contain “I”,
+-prefixed headers within a single file. By utilizing the helper function
+<code>extract_id_tables()</code>, the function reads all of the lines
+and locate header rows with lines beginning with “I,” and splits the
+content into chunks per table header, to then auto detect a sanitised
+table name (e.g., BIDDAYOFFER_D, BIDPEROFFER_D). The function
+<code>fread()</code> is then used to parse each data chunk into a
+data.table. Thus, resulting in one data.table per logical table, which
+is then appended (row‐bind) across all CSVs for that date.<br />
+</li>
+<li>Fourth, once each table’s data is collected for a date (e.g., all
+BIDDAYOFFER_D chunks for 20240315), it is saved as a Parquet file under
+<code>data/parquet_tables/BIDDAYOFFER_D/20240315.parquet</code> using
+Arrow’s <code>write_parquet()</code>. This is done as converting to
+Parquet provides high‐performance columnar storage, especially
+beneficial for large‐scale AEMO files, making it more structured and
+efficient for processing, and reduces memory footprint and I/O time
+(Vohra, 2016). This format is chosen as SEC Victoria stores their
+datasets in the Parquet format, which could be utilised for both R and
+Phyton.<br />
+</li>
+<li>Fifth, mapping and version control is implemented, the first time a
+dataset table is encountered, its “table name” will then be added to
+<code>mapping/dataset_table_mapping.rds</code>. This mapping ensures
+that subsequent downloads recognize existing tables and avoid
+reprocessing Parquet files that have been stored.<br />
+</li>
+<li>Sixth, once Parquet files are successfully written, the original
+CSVs are removed to save disk space.</li>
+</ol>
+<p>This ETL pipeline is run for each new date and new datasets, to
+ensure that they are ready for analysis. In this project, it was run
+until all required table datasets BIDDAYOFFER_D, BIDPEROFFER_D,
+INTERMITTENT_DS_PRED, UNIT_SOLUTION, and DREGION, has been processed and
+ready to analyse.</p>
+</div>
+<div id="shiny-app" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Shiny App</h2>
+<div id="supply-curve" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Supply Curve</h3>
+<p>The Supply Curve shows, for a single generator, how its available
+volume is distributed across the 10 price bands at every 5-minute
+dispatch interval. The user is able to choose the generator to be shown
+based on its DUID.</p>
+<p>First, filtering the two input tables for the selected DUID:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>bidday <span class="ot">&lt;-</span> bidday_df   <span class="sc">%&gt;%</span> <span class="fu">filter</span>(DUID <span class="sc">==</span> duid_filter)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>bidper <span class="ot">&lt;-</span> bidper_df   <span class="sc">%&gt;%</span> <span class="fu">filter</span>(DUID <span class="sc">==</span> duid_filter)</span></code></pre></div>
+<p><code>bidday_df</code> (BIDDAYOFFER_D) holds the PRICEBAND_1…10
+columns (the 24-hour bid prices).<br />
+</p>
+<p><code>bidper_df</code> (BIDPEROFFER_D) holds the BANDAVAIL_1…10
+columns (the actual 5-minute availabilities).</p>
+<p>Second, the ten band columns need to be reshaped from wide to
+long:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>daily_price <span class="ot">&lt;-</span> bidday <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="fu">select</span>(timestamp, PRICEBAND_1<span class="sc">:</span>PRICEBAND_10) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>timestamp, <span class="at">names_to=</span><span class="st">&quot;Band&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;Price&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Band =</span> <span class="fu">as.integer</span>(<span class="fu">str_extract</span>(Band, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>)))</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>avail_data <span class="ot">&lt;-</span> bidper <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="fu">select</span>(timestamp, BANDAVAIL_1<span class="sc">:</span>BANDAVAIL_10) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>timestamp, <span class="at">names_to=</span><span class="st">&quot;Band&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;MW&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Band =</span> <span class="fu">as.integer</span>(<span class="fu">str_extract</span>(Band, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>)))</span></code></pre></div>
+<p>Converting each of the ten band columns into rows (timestamp, Band,
+Price) and (timestamp, Band, MW) makes it easy to join on both the time
+and band number.</p>
+<p>Third, join and compute the cumulative supply:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>joined <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(daily_price, avail_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;timestamp&quot;</span>,<span class="st">&quot;Band&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">group_by</span>(timestamp) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">arrange</span>(Price) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CumMW =</span> <span class="fu">cumsum</span>(MW)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<p>The price and quantity for each band are merged, at each dispatch
+interval. Moreover, the data is ordered by ascending Price then taking a
+running total over MW yields the classical “bid-stack” cumulative
+volume.</p>
+<p>Fourth, plot and animate:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">ggplot</span>(joined, <span class="fu">aes</span>(<span class="at">x =</span> CumMW, <span class="at">y =</span> Price, <span class="at">group =</span> timestamp)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="at">color =</span> <span class="st">&quot;#0077b6&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Supply Curve for&quot;</span>, duid_filter, <span class="st">&quot;— {frame_time}&quot;</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Cumulative MW&quot;</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Price ($/MWh)&quot;</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="fu">transition_time</span>(timestamp) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">&#39;linear&#39;</span>) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><code>geom_step()</code> draws the step-function: each horizontal
+segment shows the volume at a given price band.<br />
+</p>
+<p>Log‐scale on the y-axis (<code>scale_y_log10()</code>) makes wide
+price swings (including negative or very high bids) readable alongside
+baseload bands.<br />
+</p>
+<p><code>transition_time(timestamp)</code> animates through every
+5-minute snapshot, so you see the curve shift as availability
+changes.</p>
+</div>
+<div id="heatmap" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Heatmap</h3>
+<p>The availability heatmap visualises how a single unit’s available
+volume is distributed across its ten price bands over time. The process
+was done as follows:</p>
+<p>First, data extraction &amp; filtering:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>bid_filtered <span class="ot">&lt;-</span> bidper_df <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">filter</span>(DUID <span class="sc">==</span> duid_filter)</span></code></pre></div>
+<p>Starting from the BIDPEROFFER_D table (<code>bidper_df</code>), which
+contains the 5-minute “real-time” availability for each price band
+(<code>BANDAVAIL_1…BANDAVAIL_10</code>). Filtering to
+<code>DUID == duid_filter</code> isolates the one generator you’ve
+selected in the dashboard.</p>
+<p>Second, reshaping to long format:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>avail_cols <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;BANDAVAIL&quot;</span>, <span class="fu">names</span>(bid_filtered), <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>bid_long <span class="ot">&lt;-</span> bid_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">select</span>(timestamp, <span class="fu">all_of</span>(avail_cols)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>timestamp, <span class="at">names_to =</span> <span class="st">&quot;Band&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;MW&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Band =</span> <span class="fu">as.integer</span>(<span class="fu">str_extract</span>(Band, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>)))</span></code></pre></div>
+<p>pivot_longer() stacks the ten BANDAVAIL_i columns into rows of
+(timestamp, Band, MW) so that Band can be treated as a categorical
+y-axis. The numeric band index is then extracted with str_extract(…)
+which ensures correct ordering.</p>
+<p>Third, plotting with geom_tile():</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">ggplot</span>(bid_long, <span class="fu">aes</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    <span class="at">x    =</span> timestamp,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    <span class="at">y    =</span> <span class="fu">factor</span>(Band),</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    <span class="at">fill =</span> MW</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Availability Heatmap for&quot;</span>, duid_filter),</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">&quot;Time&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">&quot;Price Band&quot;</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">&quot;MW Available&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p>geom_tile() draws one colored rectangle per (timestamp, Band), that
+shaded by the available MW. The shading utilises a viridis color scale
+to indicate the amount of available MW, which gives perceptually uniform
+contrast and is friendly for color‐vision deficiencies. Lastly, the Band
+is converted to a factor which preserves the natural order 1→10 on the
+y-axis.</p>
+</div>
+<div id="bidstack" class="section level3" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Bidstack</h3>
+<p>The Bidstack visualisation shows how the combined supply curve of
+every generator in a region evolves through each 5-minute dispatch
+interval, and where demand clears the stack. The point where demand is
+fulfilled is where the dotted line meets the graphs.</p>
+<p>First, define time window &amp; region of the stack:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>day0  <span class="ot">&lt;-</span> <span class="fu">ymd</span>(date)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as_datetime</span>(day0)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>end   <span class="ot">&lt;-</span> start <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>regs  <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">tolower</span>(region)<span class="sc">==</span><span class="st">&quot;all&quot;</span>) <span class="cn">NULL</span> <span class="cf">else</span> <span class="fu">strsplit</span>(region, <span class="st">&quot;,</span><span class="sc">\\</span><span class="st">s*&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
+<p>By first building the 24-hour window from start to end, for the
+chosen date and convert the region string into a vector.</p>
+<p>Second, to average daily price bands:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>daily_price <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(bids_dir) <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="fu">filter</span>(timestamp <span class="sc">&gt;=</span> start, timestamp <span class="sc">&lt;</span> end) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">filter</span>(REGIONID <span class="sc">%in%</span> regs) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="fu">select</span>(REGIONID, DUID, <span class="fu">starts_with</span>(<span class="st">&quot;PRICEBAND&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  <span class="fu">group_by</span>(REGIONID, DUID) <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">&quot;PRICEBAND&quot;</span>), mean, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">starts_with</span>(<span class="st">&quot;PRICEBAND&quot;</span>), <span class="at">names_to=</span><span class="st">&quot;Band&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;Price&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Band =</span> <span class="fu">as.integer</span>(<span class="fu">str_extract</span>(Band, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>)))</span></code></pre></div>
+<p>The mean price of each generator’s 24-hour bid prices is calculated.
+It will then be pivoted into a long (Band, Price) table for later
+joins.</p>
+<p>Third, selecting the best intermittent forecast:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>interm_tbl <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(interm_dir) <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="fu">filter</span>(timestamp <span class="sc">&gt;=</span> start, timestamp <span class="sc">&lt;</span> end) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="fu">group_by</span>(DUID, timestamp) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    FORECAST_PRIORITY <span class="sc">==</span> <span class="fu">max</span>(FORECAST_PRIORITY),</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    OFFERDATETIME    <span class="sc">==</span> <span class="fu">max</span>(OFFERDATETIME)</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>  <span class="fu">select</span>(DUID, FORECAST_POE50, timestamp)</span></code></pre></div>
+<p>From INTERMITTENT_DS_PRED, only the highest‐priority and most recent
+FORECAST_POE50 per generator and interval is kept in the dataset.</p>
+<p>Fourth, trim 5-minute availabilities by forecast:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>avail_all <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(per_dir) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="fu">filter</span>(timestamp <span class="sc">&gt;=</span> start, timestamp <span class="sc">&lt;</span> end) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="fu">filter</span>(REGIONID <span class="sc">%in%</span> regs) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="fu">select</span>(REGIONID, DUID, timestamp, <span class="fu">starts_with</span>(<span class="st">&quot;BANDAVAIL&quot;</span>), MAXAVAIL) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">starts_with</span>(<span class="st">&quot;BANDAVAIL&quot;</span>), <span class="at">names_to=</span><span class="st">&quot;Band&quot;</span>, <span class="at">values_to=</span><span class="st">&quot;MW&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Band =</span> <span class="fu">as.integer</span>(<span class="fu">str_extract</span>(Band, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>  <span class="fu">left_join</span>(interm_tbl, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;DUID&quot;</span>,<span class="st">&quot;timestamp&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>    <span class="at">effective_maxavail =</span> <span class="fu">if_else</span>(<span class="sc">!</span><span class="fu">is.na</span>(FORECAST_POE50),</span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>                                 <span class="fu">pmin</span>(FORECAST_POE50, MAXAVAIL),</span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>                                 MAXAVAIL)</span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>  <span class="fu">group_by</span>(REGIONID, DUID, timestamp) <span class="sc">%&gt;%</span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>    <span class="at">totalMW   =</span> <span class="fu">sum</span>(MW, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>    <span class="at">over      =</span> totalMW <span class="sc">-</span> effective_maxavail,</span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>    <span class="at">maxBandNZ =</span> <span class="fu">max</span>(Band[MW<span class="sc">&gt;</span><span class="dv">0</span>], <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a>    <span class="at">MW        =</span> <span class="fu">if_else</span>(over<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> Band<span class="sc">==</span>maxBandNZ,</span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>                        <span class="fu">pmax</span>(MW <span class="sc">-</span> over, <span class="dv">0</span>),</span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a>                        MW)</span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<p>Each band’s 5-minute availability is then joined with its forecast.
+If the sum of all bands exceeds the forecasted output (FORECAST_POE50),
+trim the excess from the highest‐price band to ensure total availability
+never surpasses the forecast.</p>
+<p>Fifth, map fuel types:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>fuel_df <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(units_dir) <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="fu">select</span>(DUID, FuelType) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="fu">collect</span>()</span></code></pre></div>
+<p>Pull each generator’s technology classification for color‐coding.</p>
+<p>Sixth, building cumulative supply curve per timestamp:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>df_all <span class="ot">&lt;-</span> daily_price <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="fu">inner_join</span>(avail_all, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;REGIONID&quot;</span>,<span class="st">&quot;DUID&quot;</span>,<span class="st">&quot;Band&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="fu">left_join</span>(fuel_df,  <span class="at">by=</span><span class="st">&quot;DUID&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Price), <span class="sc">!</span><span class="fu">is.na</span>(MW)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  <span class="fu">group_by</span>(timestamp, FuelType, Price, Band) <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MW =</span> <span class="fu">mean</span>(MW, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>  <span class="fu">arrange</span>(timestamp, Price) <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  <span class="fu">group_by</span>(timestamp) <span class="sc">%&gt;%</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CumVol =</span> <span class="fu">cumsum</span>(MW)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<p>Merge price and (trimmed) availability, then compute the running
+total of MW at each price level for every interval.</p>
+<p>Seventh, fetch cleared demand:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>demand_ts <span class="ot">&lt;-</span> <span class="fu">open_dataset</span>(units_dir) <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="fu">filter</span>(timestamp <span class="sc">&gt;=</span> start, timestamp <span class="sc">&lt;</span> end) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">filter</span>(REGIONID <span class="sc">%in%</span> regs) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">select</span>(timestamp, TOTALCLEARED) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="fu">collect</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="fu">group_by</span>(timestamp) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">demand =</span> <span class="fu">sum</span>(TOTALCLEARED), <span class="at">.groups=</span><span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
+<p>Summing TOTALCLEARED yields the actual volume dispatched; its
+maximum‐price band sets the Regional Reference Price (RRP).</p>
+<p>Eighth, plot &amp; animate the bidstack:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">ggplot</span>(df_anim, <span class="fu">aes</span>(<span class="at">fill=</span>FuelType)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="fu">aes</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>    <span class="at">xmin =</span> CumVol <span class="sc">-</span> MW, <span class="at">xmax =</span> CumVol,</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="dv">0</span>,         <span class="at">ymax =</span> Price</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span>demand),</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>             <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color=</span><span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>label_df,</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x=</span>demand, <span class="at">y=</span>price_cap, <span class="at">label=</span>label_both),</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>            <span class="at">hjust=</span><span class="fl">1.1</span>, <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,price_cap)) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">&quot;Cumulative MW&quot;</span>, <span class="at">labels=</span><span class="fu">number_format</span>(<span class="at">scale=</span><span class="fl">1e-3</span>,<span class="at">suffix=</span><span class="st">&quot;K&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Price ($/MWh)&quot;</span>, <span class="at">labels=</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>    <span class="at">title    =</span> <span class="fu">paste0</span>(<span class="st">&quot;Bidstack on &quot;</span>, date, <span class="st">&quot; (&quot;</span>, region, <span class="st">&quot;)&quot;</span>),</span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Time: {frame_time}&quot;</span>, <span class="at">fill=</span><span class="st">&quot;Fuel Type&quot;</span></span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size=</span><span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>  <span class="fu">transition_time</span>(timestamp) <span class="sc">+</span></span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">&quot;linear&quot;</span>)</span></code></pre></div>
+<p><code>geom_rect()</code> stacks colored blocks by fuel type, which
+shows how each technology contributes to total capacity at each price. A
+dashed vertical line marks actual demand; a text label shows the
+clearing price/volume.<br />
+<code>transition_time(timestamp)</code> animates through each 5-minute
+interval, revealing intraday shifts in both capacity and clearing
+price.</p>
+</div>
+<div id="seasonality-plot" class="section level3" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Seasonality
+Plot</h3>
+<p>The seasonality plot decomposes and visualises the time-of-day
+seasonality for key bid and market metrics over a user-specified date
+range. It does this by overlaying each day’s 30-minute trajectory
+(“spaghetti”) with a bold average line, making it easy to see both daily
+variability and the underlying repeating cycle. By aligning time of day
+and overlaying multiple days, diurnal cycle is visualised to show the
+pattern of variation in quantity over the course of a 24-hour period.
+Internally, the function proceeds as follows:</p>
+<p>First, define the analysis window:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>dt0 <span class="ot">&lt;-</span> <span class="fu">ymd</span>(start_date, <span class="at">tz=</span><span class="st">&quot;Australia/Brisbane&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>dt1 <span class="ot">&lt;-</span> <span class="fu">ymd</span>(end_date,   <span class="at">tz=</span><span class="st">&quot;Australia/Brisbane&quot;</span>) <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">seconds</span>(<span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>floor30 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">floor_date</span>(x, <span class="st">&quot;30 minutes&quot;</span>)</span></code></pre></div>
+<p>Builds a POSIX window from start_date to end of end_date and defines
+a helper to round every timestamp down to its enclosing 30-minute
+bin.</p>
+<p>Second, compute daily average offer price:</p>
+<p>Read BIDDAYOFFER_D, filter by region &amp; window.<br />
+Pivot the ten PRICEBAND_ columns long, then floor each timestamp to
+30-minute bins.<br />
+Group by calendar date and compute the mean price per bin.<br />
+Result: one line per day in price_df, later plotted with grey lines +
+bold steel-blue average.</p>
+<p>Third, aggregate total availability per 30-minute:</p>
+<p>Read BIDPEROFFER_D, filter by region &amp; window.<br />
+Sum across all BANDAVAIL_ columns to get total MW available in each
+interval.<br />
+Group by date and bin to produce a spaghetti of daily availability
+curves (avail_df), plus a red mean line.</p>
+<p>Fourth, fetch RRP, residual demand, renewables &amp; operational
+demand:</p>
+<ul>
+<li><p>RRP: pull every 5-minute RRP from DREGION, assign date and
+bin.</p></li>
+<li><p>Operational demand: same binning for OPERATIONAL_DEMAND.</p></li>
+<li><p>Renewables: from UNIT_SOLUTION, filter FuelType “Solar”/“Wind”,
+sum TOTALCLEARED per bin.</p></li>
+<li><p>Residual demand: merge demand &amp; renewables per bin, subtract
+to get Residual = Demand – Renewable_MW.</p></li>
+</ul>
+<p>Fifth, plot each metric:</p>
+<p>For each of the six outputs—price, availability, RRP, residual,
+renewable generation, operational demand—the code uses:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="at">x     =</span> <span class="fu">as_hms</span>(ts <span class="sc">-</span> <span class="fu">floor_date</span>(ts, <span class="st">&quot;day&quot;</span>)),</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="at">y     =</span> value,</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="at">group =</span> date</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">&quot;grey80&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>),</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>               <span class="at">fun       =</span> mean,</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>               <span class="at">geom      =</span> <span class="st">&quot;line&quot;</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>               <span class="at">linewidth =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>  <span class="fu">scale_x_time</span>(..., <span class="at">labels=</span><span class="fu">label_time</span>(<span class="st">&quot;%H:%M&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(...) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>    <span class="at">title    =</span> <span class="fu">sprintf</span>(<span class="st">&quot;Daily %s — %s (%s to %s)&quot;</span>, metric_name, region, start_date, end_date),</span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Grey = each day; &lt;color&gt; = average&quot;</span></span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p>Grey spaghetti: shows each calendar day’s 30-minute profile.<br />
+Bold colored line: the mean across days, highlighting the recurring
+pattern.</p>
+</div>
+</div>
+</div>
+<div id="results" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Results</h1>
+<p>The dashboard is able to provide insight into generator bidding
+behaviour via the four visualisations.</p>
+<div id="supply-curve-1" class="section level3" number="3.0.1">
+<h3><span class="header-section-number">3.0.1</span> Supply Curve</h3>
+<p>The supply curve can show how price and volume interact, by animating
+or plotting a generator’s supply curve—cumulative offered volume (MW) on
+the x-axis versus offer price ($/MWh) on the y-axis—the dashboard makes
+visible how each tranche of capacity is “stacked” by price.</p>
+<p>This visualisation helps indicate where the bulk of capacity lies,
+such as where a coal plant’s large low price block versus a Gas-OCGT
+peaker’s small high-price slice. Moreover, it also showcases intraday
+strategy shifts and how each generator adjusts its availability offering
+per band each day. Thus, helping analysts understand each unit’s cost
+structure and how strategic bidding behaviour evolves through the
+day.</p>
+</div>
+<div id="availability-heatmap" class="section level3" number="3.0.2">
+<h3><span class="header-section-number">3.0.2</span> Availability
+Heatmap</h3>
+<p>The availability heatmap aids in spotting unusual or strategic
+bidding availability, as the user is able to choose a generator by DUID
+and a date range, to showcase the MW offered in each band over time. The
+date range is shown on the x-axis and the different bands on the y-axis,
+colour-scaled by MW.</p>
+<p>This visualisation showcases routine patterns in each generator’s
+bidding strategy, as to where they may have consistent gaps of
+availability or unavailability at the same hour each day. Moreover, it
+makes it easier to spot anomalies in bidding strategies as well, such as
+when there is an unplanned outage which leads to a generator withdrawing
+large capacity from a band.</p>
+</div>
+<div id="bidstack-visuals" class="section level3" number="3.0.3">
+<h3><span class="header-section-number">3.0.3</span> Bidstack
+Visuals</h3>
+<p>The bidstack visuals aggregates all generators’ trimmed, banded
+offers into a single step-plot for a region at a given interval,
+coloured by fuel type. Thus, allowing users to compare bidding stacks
+across time, for example 8 am vs. 6 pm, and regions such as Queensland
+vs. Victoria. By doing so, regional differences in fuel consumption can
+be highlighted, where one region may consume higher levels of renewable
+energy compared to another. Therefore, allowing analysts to assess
+inter-regional constraints, and the progress of renewable energy
+penetrating the NEM.</p>
+</div>
+<div id="seasonality-plot-1" class="section level3" number="3.0.4">
+<h3><span class="header-section-number">3.0.4</span> Seasonality
+Plot</h3>
+<p>The seasonality plot overlay multiple days’ worth of a metric (e.g.,
+residual demand or average price) by hour of day, often with a
+highlighted multi-day average. Showcasing diurnal cycles throughout the
+day, differences between weekday and weekend bidding behaviour or
+demand, as well as impact on external events.</p>
+<p>By “flattening” time onto a 24-hour cycle, these plots help
+stakeholders pinpoint operational patterns and evaluate whether bidding
+strategies align with expected seasonal trends.</p>
+</div>
+<div id="limitation-improvements" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Limitation &amp;
+Improvements</h2>
+<p>Several measures could be taken for future improvements, including
+making the dashboard easily extendable and integrating the auto-download
+and processing script directly into the dashboard.</p>
+<p>First, to make the dashboard easily extendable, a modular
+architecture could be adopted, with each visualization encapsulated in
+its own module or Shiny module. Moreover, clear interfaces could be
+defined further for adding new plots or data sources, and template
+modules and documentation could be provided to ensure that future team
+members or collaborators can add in new analyses (e.g., forecast
+accuracy plots, cost-benefit analyses) without having to rewrite the
+core code.</p>
+<p>Second, to integrating the auto-download and processing script into
+the dashboard, the ETL pipeline could be embedded as a background R
+process or scheduled task within the Shiny server (using future/promises
+or a cron-style scheduler). Furthermore, exposing a “Refresh Data”
+button in the UI to trigger incremental downloads, Parquet conversion,
+and mapping updates on demand will help increase efficiency. Lastly,
+implementing progress indicators and logging in to inform users when new
+data are fetched, processed, and ready for visualization– will deliver
+an end-to-end, one-click solution.</p>
+<p>These enhancements will transform the dashboard from a static set of
+analyses into a dynamic, maintainable platform—one that can grow
+organically as new data, metrics, or market insights emerge.</p>
+</div>
+</div>
+<div id="references" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> References</h1>
+<ul>
+<li>Dungey et al. 2017 CESifo Working Paper no. 6819 Strategic Bidding
+of Electric Power Generating Companies: Evidence from the Australian
+National Energy Market</li>
+<li>SEC Victoria, 2025 <a href="https://www.secvictoria.com.au/?utm_source=google&amp;utm_medium=sem&amp;utm_campaign=poweringvictoria24&amp;utm_content=generic&amp;gad_source=1&amp;gad_campaignid=22404807562&amp;gclid=CjwKCAjw3f_BBhAPEiwAaA3K5MKDN_qn5U7Yt_T31C3W6WzOnJiD1XXXNxrRGmWqIXmfgs6Q5mth6RoCdCAQAvD_BwE" class="uri">https://www.secvictoria.com.au/?utm_source=google&amp;utm_medium=sem&amp;utm_campaign=poweringvictoria24&amp;utm_content=generic&amp;gad_source=1&amp;gad_campaignid=22404807562&amp;gclid=CjwKCAjw3f_BBhAPEiwAaA3K5MKDN_qn5U7Yt_T31C3W6WzOnJiD1XXXNxrRGmWqIXmfgs6Q5mth6RoCdCAQAvD_BwE</a></li>
+<li>State Government of Victoria, 2025 Government-owned renewable energy
+is leading the way | vic.gov.au</li>
+<li>State Government of Victoria, 2024 The SEC Is Back For Good |
+Premier</li>
+<li>AEMO, 2025 AEMO | National Electricity Market (NEM)</li>
+<li>DCCEEW, 2024 National Electricity Market - DCCEEW</li>
+<li>AEMO 2023 <a href="https://aemo.com.au/-/media/files/electricity/nem/planning_and_forecasting/solar-and-wind/enablement-of-bid-max-avail-for-semi-scheduled-generators/australian-wind-energy-forecasting-system-awefs-and-australian-solar-energy-forecasting-system-asefs.pdf" class="uri">https://aemo.com.au/-/media/files/electricity/nem/planning_and_forecasting/solar-and-wind/enablement-of-bid-max-avail-for-semi-scheduled-generators/australian-wind-energy-forecasting-system-awefs-and-australian-solar-energy-forecasting-system-asefs.pdf</a></li>
+<li>AER 2023 State of the energy market 2023</li>
+<li>AEMC 2025 <a href="https://www.aemc.gov.au/energy-system/electricity/electricity-market/spot-and-contract-markets#:~:text=The%20spot%20price%20tells%20generators,kWh%20and%209.8c/kWh" class="uri">https://www.aemc.gov.au/energy-system/electricity/electricity-market/spot-and-contract-markets#:~:text=The%20spot%20price%20tells%20generators,kWh%20and%209.8c/kWh</a>.</li>
+<li>A. Stan Hurn, Annastiina Silvennoinen, Timo Teräsvirta <a href="https://doi.org/10.1002/jae.2452" class="uri">https://doi.org/10.1002/jae.2452</a> CESifo Working Paper
+no. 6819 found in here</li>
+<li>Breeze, P (2021) <a href="https://www.sciencedirect.com/topics/engineering/open-cycle-gas-turbine" class="uri">https://www.sciencedirect.com/topics/engineering/open-cycle-gas-turbine</a></li>
+<li>IPIECA, 2022 <a href="https://www.ipieca.org/resources/energy-efficiency-compendium/combined-cycle-gas-turbines-2022" class="uri">https://www.ipieca.org/resources/energy-efficiency-compendium/combined-cycle-gas-turbines-2022</a></li>
+<li>Wattclarity, 2025 <a href="https://wattclarity.com.au/other-resources/glossary/#:~:text=Dispatchable%20Unit%20ID%20(DUID);,(and%20some%20registered%20loads)">https://wattclarity.com.au/other-resources/glossary/#:~:text=Dispatchable%20Unit%20ID%20(DUID);,(and%20some%20registered%20loads)</a>.</li>
+<li>Do et al., 2021 <a href="https://www.sciencedirect.com/science/article/pii/S0306261920316846" class="uri">https://www.sciencedirect.com/science/article/pii/S0306261920316846</a></li>
+<li>AEMO, 2025b AEMO | Nemweb data</li>
+<li>Vohra, 2016 Apache Parquet | SpringerLink</li>
+</ul>
+</div>
+
+// highlight the current section in the sidebar TOC
+document.addEventListener(&quot;scroll&quot;, () =&gt; {
+  const headings = document.querySelectorAll(&quot;h1, h2, h3&quot;);
+  let idx = headings.length;
+  while (idx-- &amp;&amp; window.scrollY + 85 &lt; headings[idx].offsetTop) {}
+  document.querySelectorAll(&quot;#TOC li&quot;).forEach(li =&gt; li.classList.remove(&quot;toc-active&quot;));
+  if (idx &gt;= 0) {
+    const id = headings[idx].id;
+    const active = document.querySelector(`#TOC a[href=&quot;#${id}&quot;]`)?.parentElement;
+    if (active) active.classList.add(&quot;toc-active&quot;);
+  }
+});
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
