@@ -1,0 +1,38 @@
+# _pkgdown.yml
+
+# 1) Site URL (so pkgdown can validate links)
+url: https://<your-github-username>.github.io/AemoETL
+
+# 2) Use Bootstrap 5
+template:
+  bootstrap: 5
+
+# 3) Home page
+home:
+  title: AemoETL
+  logo: man/figures/logo.png   # if you have a logo
+  contents:
+    - README.md
+
+# 4) Navbar
+navbar:
+  structure:
+    left:
+      - home
+      - reference
+      - articles
+
+# 5) Reference section
+reference:
+  - title: "Function reference"     # this must be a map, not a string
+    contents:
+      - ".*"                        # or explicit: reference/*.html
+
+# 6) Articles (vignettes)
+articles:
+  - title: "Introduction & Quickstart"
+    contents:
+      - vignettes/introduction.Rmd
+  - title: "Shiny Dashboard Tour"
+    contents:
+      - vignettes/shiny_overview.Rmd
