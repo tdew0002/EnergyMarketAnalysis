@@ -1,20 +1,10 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
-<!-- README.md ------------------------------------------------------------- -->
-
 # AemoETL
 
 **AemoETL** is a lightweight R package that lets you
 
--   **Download → Extract → Transform** raw data from the Australian
-    Energy Market Operator (AEMO)
+-   **Download → Extract → Transform** raw data from the Australian Energy Market Operator (AEMO)
 -   Store clean tables in fast **Parquet** format
--   Explore historic bidding behaviour with an included **Shiny
-    dashboard** (`run_app()`)
+-   Explore historic bidding behaviour with an included **Shiny dashboard** (`run_app()`)
 -   Re-use a set of tidy **helper functions** in your own analyses\
     (bid-stack snapshots, heat-maps, seasonality plots, & more)
 
@@ -68,8 +58,7 @@ library(AemoETL)
 run_app()
 ```
 
-The app ships inside the package (inst/app/) and opens in your default
-browser. It contains four panels:
+The app ships inside the package (inst/app/) and opens in your default browser. It contains four panels:
 
 -   Supply curve animation (select DUID & month)
 
@@ -83,14 +72,11 @@ A quick “how-to” is in the Shiny Dashboard Tour vignette above.
 
 ## Shortcut — download filtered data - RECOMEMDED
 
-If you’d prefer to skip the raw ETL and jump straight into analysis, a
-pre-filtered Parquet snapshot is available on Google Drive:
+If you’d prefer to skip the raw ETL and jump straight into analysis, a pre-filtered Parquet snapshot is available on Google Drive:
 
-<https://drive.google.com/uc?id=><file-id>&export=download
+<https://drive.google.com/drive/folders/1Tq-80CO7zat5DknaJHz9c_n8XFWUsfGj?usp=drive_link>
 
-Unzip it into the project root so you have
-data/filtered_parquet_tables/…, then launch the dashboard or your own
-queries immediately.
+Unzip it into the project root so you have data/...., then launch the dashboard or your own queries immediately.
 
 ## Licence
 
