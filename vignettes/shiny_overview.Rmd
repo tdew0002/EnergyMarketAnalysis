@@ -1,8 +1,14 @@
 ---
 title: "AemoETL: Shiny Dashboard Tour"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
+    css: vignette.css 
+    includes:
+      after_body: scrollspy.js
 vignette: >
-  %\VignetteIndexEntry{AemoELT: Shiny Dashboard Tour}
+  %\VignetteIndexEntry{NEM Bidding Analysis Report}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

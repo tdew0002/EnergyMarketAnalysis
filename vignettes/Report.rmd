@@ -1,238 +1,521 @@
 ---
-title: "NEM Dashboard Report"
-author: "Tycia Dewi - 29445027"
-format: html
-editor: visual
+title: "NEM Bidding Analysis Report"
+author: "TYCIA DEWI"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
+    css: vignette.css 
+    includes:
+      after_body: scrollspy.js
+vignette: >
+  %\VignetteIndexEntry{NEM Bidding Analysis Report}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
-------------------------------------------------------------------------
-
-# National Electricity Market (NEM) Dashboard – Technical & Scientific Methodology Report
-
-*Prepared by PP — Master of Business Analytics, Monash University (June 2025)*
-
-## Abstract
-
-The goal of this capstone project is to develop a fully reproducible data‐engineering and visual‐analytics pipeline that sheds light on bidding behaviour in Australia’s National Electricity Market (NEM). By leveraging twelve publicly available AEMO tables spanning the years 2018 through 2025, we derive a set of rigorously defined variables—such as residual demand and forecast‐adjusted availability—that can then be embedded into a Shiny dashboard. This dashboard, updated in near–real time, presents supply curves, animated bid stacks and seasonality diagnostics. Underneath the visualizations lies a foundation of formal time‐series methods, econometric modeling and functional‐data analysis. All data ingestion steps, variable transformations and visualization functions are version‐controlled, with code and data lineage clearly documented in the Git repository linked in the “Software Architecture & Reproducibility” section below.
-
-## 1 Introduction & Research Questions
-
-The National Electricity Market (NEM) operates as a security‐constrained, five‐minute settled gross pool across five regions in eastern and southern Australia. Each generator submits energy offers in up to ten price bands for every Dispatchable Unit Identifier (DUID). During each dispatch interval, these offers are stacked from lowest to highest price and compared against the regional demand; once the cumulative offered volume meets or exceeds the total demand, the last accepted price becomes the Regional Reference Price (RRP). Although this clearing mechanism is deterministic, generators routinely adjust their bid structures in response to strategic considerations—fuel costs, contract obligations, anticipated network constraints and the presence of non‐dispatchable renewables. As a result, the observed pattern of bids over time is state‐dependent and often reflects subtle competitive dynamics rather than purely cost‐based decisions.
-
--   **How do generators reshape their price/volume bands when residual demand, renewable output and network constraints shift?**\
-    In other words, when system conditions change—whether due to rising demand, surges in wind or solar generation, or anticipated network constraints—do generators uniformly raise or lower their offers? Or do certain units systematically tighten or relax capacity at specific price points? By analyzing bid stacks over time, we can detect patterns of withholding and strategic price‐setting.
-
--   **Can functional summaries of the bid stack (for example, the local slope of the supply curve) serve as effective, low‐dimensional proxies for generators’ marginal cost and market power?**\
-    Rather than examining each bid band's price and volume in isolation, we treat the bid stack as a step‐function over cumulative capacity. By computing a slope metric at each point (essentially the discrete inverse elasticity), we capture how responsive prices are to incremental changes in demand. Our hypothesis is that a steeper slope indicates tighter supply conditions—or higher mark‐up—whereas a flatter slope suggests abundant capacity and limited market power. We test whether these slope metrics correlate with known cost proxies (fuel costs) and with observable bidding behavior across different fuel types and market conditions.
-
--   **Which statistical and visualization techniques most effectively communicate these dynamics to stakeholders—ranging from policymakers to academic researchers and industry analysts?**\
-    Simply presenting raw bid curves is often overwhelming. Instead, we evaluate a suite of visual analytics: animated step‐plots of supply curves, heatmaps of band availability over time, and functional‐data summaries (such as daily seasonality plots of key bid metrics). We assess each visualization’s clarity, capacity to highlight strategic shifts, and ease of interpretation by non‐specialists.
-
-## 2 Data Engineering & Quality Assurance
-
-In order to support near–real-time updates and ensure full reproducibility, a robust data‐engineering framework is essential. We structure our data pipeline around these three pillars: (1) automated ingestion and conversion of AEMO data, (2) schema enforcement and timestamp normalization, and (3) augmentation of generator metadata (fuel type and region). Each step is coded in R, parameterized, and version‐controlled.
-
-### 2.1 Automated Ingestion
-
--   An R script (`download_aemo.R`, 430 LOC) recursively scrapes AEMO’s NEM Web directory, asks the user to select dataset × date combinations, downloads ZIP archives with retry logic (`httr::RETRY`, timeout = 600 s), and converts embedded CSV tables to column-compressed Parquet via Apache Arrow.
-
-    A parallel futures backend (`future.apply`) uses `availableCores() − 1` workers, reducing a month of `BIDDAYOFFER` data (≈ 18 GB raw) to 1.4 GB Parquet in 7 min on an 8-core laptop.
-
-### 2.2 Schema Enforcement & Timestamps
-
--   A schema manifest (YAML) asserts column names, types and units.
-
-    All timestamps are normalised to Australia/Brisbane (UTC+10) and then bucketed to exactly 5-minute (⟂5 min) or 30-minute (⟂30 min) boundaries using:
-
-    ```         
-    mutate(time_5m = floor_date(timestamp, "5 minutes")) 
-    ```
-
-    Data with millisecond discrepancies (≈ 0.02 %) are right-shifted to avoid duplicate indices.
-
-    Missing numeric values are imputed with last observation carried forward within each DUID; categorical NAs propagate as explicit `"Unknown"` levels to keep joins lossless.
-
-### 2.3 Fuel-Type & Region Augmentation
-
-```         
-A validated lookup (`duid_region_map.csv`) maps 5 224 active DUIDs to `REGIONID` and `FuelType` following AEMO’s 2025 Generator Classification List.
-
-A keyed update join (`data.table:::=`) injects these attributes into any table containing `DUID`; referential integrity checks confirm 100 % coverage.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
 ```
 
-## 3 Variable Construction & Theoretical Rationale
 
-|  |  |  |  |
-|----|----|----|----|
-| Symbol | Definition | Units | Economic Rationale |
-| \$p\_{u,b}\$ | Bid price for unit \$u\$ in band \$b\$ (PRICEBAND) | \$/MWh | Proxy for marginal cost + mark-up |
-| \$q\_{u,b,t}\$ | Offered MW in band \$b\$ at time \$t\$ (BANDAVAIL) | MW | Technically feasible output |
-| \$Q\_{u,t}\^{\\max}\$ | MAXAVAIL (thermal) or \$\\min(\\text{MAXAVAIL},,\\text{POE50})\$ (renewables) | MW | Upper feasibility bound |
-| \$\\text{CumVol}\_{t,b}\$ | \$\\sum\_{i \\le b} q\_{i,t}\$ | MW | Supply-curve abscissa |
-| \$\\text{RRP}\_{t}\$ | Regional Reference Price | \$/MWh | Market-clearing price |
-| \$D\_{t}\$ | TOTALDEMAND | MW | System demand |
-| \$R\_{t}\$ | Solar + wind cleared MW | MW | Non-dispatchable supply |
-| \$\\text{Residual}\_{t}\$ | \$D\_{t} - R\_{t}\$ | MW | Net load facing thermal/storage units |
+# National Energy Market (NEM)
 
-**Functional cost curve.** For each time stamp, the bid-stack is the function
+## Introduction
 
-$$
-f_t(x) \;=\;
-\begin{cases}
-p_{(1)}, & x \in [0,\, q_{(1),t}) \\[6pt]
-p_{(2)}, & x \in [\,q_{(1),t},\, q_{(1),t} + q_{(2),t}) \\[6pt]
-\vdots & \vdots \\[6pt]
-p_{(b)}, & x \in \Bigl[\sum_{i=1}^{\,b-1} q_{(i),t},\, \sum_{i=1}^{\,b} q_{(i),t}\Bigr)
-\end{cases}
-$$
+State Electricity Commission (SEC) of Victoria is a “government-owned renewable energy company,” producing electricity from wind and solar power, to then be supplied to Victorian households and businesses (SEC Victoria, 2025). The organisation was re-founded in 2024 by the Victorian government with an aim to provide affordable electricity of up to 4.5 gigawatts of power while also growing the renewable energy workforce by creating over 59,000 jobs (State Government of Victoria, 2025; State Government of Victoria, 2024).
 
-where \$p\_{(i)}\$ denotes the \$i\$-th order statistic of bid prices and \$q\_{(i),t}\$ the corresponding offered volume at time \$t\$.
+SEC Victoria operates within the Australian National Electricity Market (NEM), a “wholesale electricity market and the physical power system” which facilitates the selling and transporting of electricity in the area in which it operates (AEMO, 2025; DCCEEW, 2024). NEM operates in five interconnected national jurisdictions in the east and southern coast of Australia, which are Victoria, New South Wales, Queensland, the Australian Capital Territory and Tasmania (AEMO, 2025).
 
-**Slope metric.** We define the local inverse elasticity
+The NEM is made up of 5 key categories of players: (1) Generation & Storage, (2) Transmission, (3) Distribution, (4) Retailing and (5) Market Operator (SEC, 2025). First, the Generation & Storage is responsible for generating and storing electricity, this includes solar and wind farms, and coal and gas power stations. Second, Transmission is responsible for transporting high voltage electricity from generators to demand centres. Third, Distribution is responsible for transporting medium to low voltage electricity from transmission networks to customers. Fourth, Retailing is responsible for the purchasing of electricity on behalf of customers and liaise with customers in regards to customer service and billing for energy provision. In this ecosystem, SEC is both a Generator and Retailer, or also referred to as Gentailer. Lastly, the Market Operator, in this case the Australian Energy Market Operator (AEMO) is responsible to manage the NEM, in regards to overseeing and facilitating supply and demand, collecting payments, organising the delegation of energy produced and payment for generators (SEC, 2025).
 
-$$ σt,b  =  p(b)−p(b−1)q(b),t−q(b−1),t\\sigma\_{t,b} \\;=\\; \\frac{p\_{(b)} - p\_{(b-1)}}{q\_{(b),t} - q\_{(b-1),t}} $$
+## How is NEM Regulated?
 
-approximated by first differences of adjacent steps. Higher \$\\sigma_t\$ indicates steeper supply and greater price sensitivity to demand shocks.
+The NEM is operated as a gross pooled market, where the sum of all electricity generated is pooled into a single supply (SEC, 2025). To determine which electricity will be chosen to meet the demand in the market, each generator in NEM is required to provide their bidding availability and bidding price at which they are willing to dispatch their power; bidding availability is submitted every five minutes and bidding price is submitted every 24 hours (SEC, 2025). The bidding price is submitted as a range, from Band 1 to 10, that is incremental in price – a bidding availability/volume (in MW) will be associated with each of the price bands (in \$ / MWh). While the bidding prices cannot be changed within the 24 hour period, the quantity of available energy within each price band can be made every 5 minutes according to market conditions (Dungey et al., 2017). AEMO will then aggregate all generator bids and stack them from lowest to highest price, to then first fulfill the market demand for energy starting with the lowest price energy offered. Generators will only be compensated for the energy that are supplied to the central pool of electricity (Dungey et al., 2017). Thus, in the NEM bidding system there is no guarantee that all energy produced will be bought and utilised, as it is a competitive market (Dungey et al., 2017).
 
-### 3.1 Statistical Diagnostics
+Therefore, to maximise efficiency and profit, an energy company must have a bidding strategy to gain competitive advantage to maximise the amount of energy dispatched to fulfill the market demand.
 
--   **Stationarity.** Augmented Dickey–Fuller tests on \$\\log(\\text{RRP})\$ reject \$H_0\$ of unit roots (\$p\<0.01\$), while level RRP does not (\$p=0.47\$). Hence log scales are preferred.
+As an Energy Market Analyst Intern in SEC, my role came in as part of SEC’s attempt to improve their bidding strategy in the NEM. To do so, my project focuses on helping visualise the historic energy bidding behaviour of the whole NEM area. By doing so, patterns and anomalies in the market could be spotted more easily to be analysed further.
 
--   **Heteroskedasticity.** White tests on \$\\log(\\text{Price})\$ vs. \$\\log(\\text{CumVol})\$ detect significant variance heterogeneity (\$\\chi\^2\_{(14)} = 58.4\$, \$p\<0.001\$); we therefore use robust standard errors in any regression output.
+To do so, I have constructed a dashboard which showcases four different visualisations; (1) Supply curve, (2) Heatmap, (3) Bidstack and (4) Seasonal plot. The four different visualisations gives insight into the different generator’s bidding behaviours. This dashboard will then be used by the analysts in SEC Victoria to explore further patterns in the NEM to further determine their future bidding strategy.
 
--   **Outliers.** A Hampel filter (window = 48, \$k=5\\sigma\$) removes \< 0.1 % of extreme RRP spikes (\> 5 000 \$/MWh), flagged separately for sensitivity checks.
+# Methods
 
-## 4 Visual-Analytics Modules & Statistical Foundations
+## NEM Bidding Variables
 
-### 4.1 Supply-Curve Animation (`plot_supply_curve_animation()`)
+There are five categories of NEM Bidding Variables, that will be utilised.
 
-**Algorithm:**
+### Price Bands (PRICEBAND_1…10)
 
-1.  Merge daily mean `PRICEBAND` (\$p\_{u,b}\$) with contemporaneous `BANDAVAIL` (\$q\_{u,b,t}\$) for chosen DUID.
+Each generator is required to divide their offered capacity into up to 10 price bands, with each band specifying an incremental volume (MW) and associated price (\$/MWh). Band 1 is the lowest price offered and Band 10 is the highest price offered. This price band is offered once every 24 hours.
 
-2.  Sort by \$p\$; compute cumulative volume.
+In determining the offered price and volume for each band, the generators will take into consideration factors including expected fuel costs, heat rates, startup costs, expected demand, and risk of non-dispatch, into their strategy (cite).
 
-3.  Animate step plot over \$t\$.
+An evident pattern in price bands variable is that baseload bands from 1 to 3 are usually low in variance as fuel costs are relatively stable. As for mid to higher price bands from 4 to 10, there is a higher variance as availability in these bands may be adjusted more frequently each day based on short-term market conditions, such as when spot price – how much electricity is required to maintain balance in the power system – increases (AEMC, 2025). During unforeseen circumstances, such as scarcity, generators may also place exorbitant bids of up to \$16,600/MWh in Band 10 to avoid the provision of energy unless it is an emergency (SEC,2025).
 
-4.  Frame rate = 5 fps, ensuring Nyquist coverage of the shortest strategic rebid cycle (≈ 1 min; AER 2024).
+### Availability Bands (BANDAVAIL_1…10 and MAXAVAIL)
 
-**Interpretation.**
+At every 5-minute dispatch interval, each generator is required to provide the MW availability for each price band. The MW sum of BANDAVAIL_1 to BANDAVAIL_10 should be equal to the variable MAXAVAIL, which is the maximum physical capability of the generator.
 
--   Horizontal shifts reflect withholding/unblocking.
+However, there are forecasting constraints especially for wind and solar units, which may lead to the number of MAXAVAIL exceeding the forecasted output, FORECAST_POE50. In this case, the utilised effective availability chosen will always be the forecasted output, which is FORECAST_POE50, because it prevents generators from underdelivering, which maintains system reliability (AEMO, 2023). For example, if the MAXAVAIL is 100 MW but the forecasted output, FORECAST_POE50 is 70 MW, BANDAVAIL might list a sum of 100 MW across the 10 bands, however, 30 MW must be trimmed out of the highest band to ensure that the effective availability is equal to the forecasted output.
 
--   Vertical jumps show marginal‐cost shocks (e.g., gas price spikes).
+### Regional Reference Price (RRP) and Total Demand
 
--   Slope distributions are exported for Kolmogorov–Smirnov tests across months.
+Energy is dispatched every 5-minute interval, with the lowest priced bids often dispatched first until the market demand is fulfilled. The highest priced bid that was last dispatched to satisfy the actual demand is RRP; the intersection between aggregate supply stack and the demand extraction (DIT).
 
-### 4.2 Band-Availability Heatmap (`plot_band_avail_heatmap()`)
+For total demand, DREGION dataset provides TOTALDEMAND variable, however it was not chosen as there can be minor variations due to embedded generation, losses and constraint imbalances. Thus, the sum of TOTALCLEARED dispatched across all DUIDs from the dataset UNIT_SOLUTION was utilised instead, to ensure more accurate reflection to the market supplier output.
 
--   A tile grid of \$q\_{u,b,t}\$ vs. \$b\$ reveals laddering (systematic shuffling among adjacent bands).
+It is important to note that the offered price could also be negatively priced, as low as -\$1,000 per MWh. This has been done historically as a bidding strategy, as generators are compensated with the market price rather than their offered price (AER, 2023). Thus, setting a negative price increases the likelihood of the generator’s capacity to be chosen and dispatched by AEMO, compared to higher-priced competitors (AER, 2023). Negative pricing has been more common with the rise of renewable energy, as wind and solar plants have negligible marginal costs and nearly zero startup or shutdown expenses. Thus, they can bid negatively to secure dispatch when weather conditions are favorable (AER, 2023).
 
--   Autocorrelation of heatmap residuals is quantified with the Durbin–Watson statistic: \$d=1.71\$ (no strong serial correlation).
+### Fuel Type and Technology Classification
 
-### 4.3 Bid-Stack Snapshot (`create_bidstack_5min_snapshot()`)
+The following are categories of fuel types:
 
-**Capping algorithm.**\
-For renewables, if \$\\sum\_{b} q\_{u,b,t} \> Q\_{u,t}\^{\\max}\$, subtract overflow from the highest non-zero band (Algorithm 1 proof in Appendix A shows feasibility and minimal distortion to price ordering).
+Coal–Black Coal: as a baseload generator, coal production has a high cost to start and cool down, thus, production cannot be stopped and there is a constant baseload or minimum amount of energy that the generator needs to dispatch (Hurn et al., 2016). For this reason, it is a relatively low-cost energy source.
 
-**Supply integration.**
+Gas–OCGT (Open Cycle Gas Turbine): as a peaking, dynamic, quick-to-start generator type that could start and stop quickly, however it has a high cost and is less efficient than baseload plants (Breeze, 2021).
 
--   Average across DUIDs by `FuelType`; compute \$\\text{CumVol}\$ and plot coloured rectangles.
+Gas–CCGT (Combined Cycle Gas Turbine): a mid-merit generator type that is active during daytime with high demand and shuts off during low demand. This fuel type combines both gas and steam turbine to produce electricity more efficiently, and is of a moderate cost (IPIECA, 2022).
 
--   Dashed vertical line at \$\\sum\_{u} \\text{TOTALCLEARED}\_{u,t}\$; marginal price = first \$p\$ where \$\\text{CumVol} \\ge\$ demand.
+Hydro: this fuel type is flexible as it is easily dispatchable -- being able to start and stop quickly – and may be able to set high prices during demand peaks.
 
-### 4.4 Bid-Stack Day Animation (`create_bidstack_day_animation()`)
+Wind: an intermittent energy source as power produced depends on natural weather factors – when wind speeds are within turbine limits -- near zero marginal as it is almost free to run after installation.
 
--   Generates 288 frames/day.
+Solar: an intermittent energy source as power produced depends on sunlight availability, zero marginal cost during daylight.
 
--   Label table stores marginal price/demand pairs and actual RRP for posterior validation (RMSE ≈ 3.4 \$/MWh).
+Battery Storage: fuel type which stores electricity from renewables or grid, and releases it when needed, such as Lithium-ion or flow batteries. It is highly dispatchable and often bidding at high prices to earn arbitrage, due to the low purchase price point.
 
-### 4.5 Seasonality Dashboard (`plot_daily_bid_metrics()`)
+### Dispatchable Unit Identifier & Region ID
 
-For variable \$Y\_{t}\$ we define the functional observation \$Y\_{d}(h)\$, \$h \\in \[0,24)\$, and estimate the mean function via pointwise sample mean. Grey lines depict \$Y\_{d}(h)\$; coloured lines graph \$\\mu(h)\$. Confidence ribbons (±1 SE) are optional via the functional central limit theorem.
+Each generator is given a Dispatchable Unit Identifier (DUID) by AEMO for identification purposes. This is important as the bidding availability and price is done per unit (Wattclarity, 2025).
 
-## 5 Econometric Modelling (Supplementary)
+Each region in which the NEM operates, QLD, NSW, VIC, SA and TAS, are assigned a Region ID (Wattclarity, 2025).
 
-Although not required for the dashboard front-end, we estimate a panel fixed-effects regression to quantify strategic mark-ups:
+### Residual Demand
 
-Priceu,t  =  αu  +  β1 Residt  +  β2 FuelCostu,t  +  β3 FuelCostu,t×Residt  +  εu,t.\\text{Price}\_{u,t} \\;=\\; \\alpha_u \\;+\\; \\beta_1\\,\\text{Resid}\_{t} \\;+\\; \\beta_2\\,\\text{FuelCost}\_{u,t} \\;+\\; \\beta_3\\,\\text{FuelCost}\_{u,t} \\times \\text{Resid}\_{t} \\;+\\; \\varepsilon\_{u,t}.
+Residual demand is the remaining electricity load that is remaining after accounting for renewable energy supply, and thus must be fulfilled by conventional generators, electricity imports or storage systems (Do et al., 2021).
 
--   
+## ETL Processing
 
--   Within-unit \$R\^2 = 0.43\$.
+As the Market Operator, AEMO is responsible for gathering data and presenting it to the public as open data, freely available on their website (AEMO, 2025b). The raw data for this project originates from AEMO’s secure FTP (or HTTP) archives, provided in fixed-width text or CSV files. Each zip folder downloaded contains multiple CSV files, in the form of a (e.g., BIDDAYOFFER_D_YYYYMMDD.csv, BIDPEROFFER_D_YYYYMMDD.csv, etc.). These data will then undergo the ETL process as follows:
 
--   
+1.  First, AEMO’s archive index will be scraped by using rvest (R), to show all available dataset folders such as, BIDDAYOFFER_D, BIDPEROFFER_D, etc.\
+2.  Second, the dataset folders are opened and the date range is chosen for download. The script will then locate the corresponding zip file to the date, (e.g., BIDDAYOFFER_D_20240315.zip), which will then be downloaded and unzipped into a local folder (e.g., `data/raw_data/BIDDAYOFFER_D/20240315/`).\
+3.  Third, multi-table parsing is conducted, as many CSVs contain “I”, -prefixed headers within a single file. By utilizing the helper function `extract_id_tables()`, the function reads all of the lines and locate header rows with lines beginning with “I,” and splits the content into chunks per table header, to then auto detect a sanitised table name (e.g., BIDDAYOFFER_D, BIDPEROFFER_D). The function `fread()` is then used to parse each data chunk into a data.table. Thus, resulting in one data.table per logical table, which is then appended (row‐bind) across all CSVs for that date.\
+4.  Fourth, once each table’s data is collected for a date (e.g., all BIDDAYOFFER_D chunks for 20240315), it is saved as a Parquet file under `data/parquet_tables/BIDDAYOFFER_D/20240315.parquet` using Arrow’s `write_parquet()`. This is done as converting to Parquet provides high‐performance columnar storage, especially beneficial for large‐scale AEMO files, making it more structured and efficient for processing, and reduces memory footprint and I/O time (Vohra, 2016). This format is chosen as SEC Victoria stores their datasets in the Parquet format, which could be utilised for both R and Phyton.\
+5.  Fifth, mapping and version control is implemented, the first time a dataset table is encountered, its “table name” will then be added to `mapping/dataset_table_mapping.rds`. This mapping ensures that subsequent downloads recognize existing tables and avoid reprocessing Parquet files that have been stored.\
+6.  Sixth, once Parquet files are successfully written, the original CSVs are removed to save disk space.
 
--   Hausman test favours fixed over random effects (\$\\chi\^2\_{(3)} = 62.1\$, \$p\<0.001\$).
+This ETL pipeline is run for each new date and new datasets, to ensure that they are ready for analysis. In this project, it was run until all required table datasets BIDDAYOFFER_D, BIDPEROFFER_D, INTERMITTENT_DS_PRED, UNIT_SOLUTION, and DREGION, has been processed and ready to analyse.
 
--   
+## Shiny App
 
--   Fuel-cost elasticity \$\\beta_3 \\approx 0.74\$ (SE = 0.05) aligns with short-run pass-through literature (Woo et al. 2020).
+### Supply Curve
 
--   
+The Supply Curve shows, for a single generator, how its available volume is distributed across the 10 price bands at every 5-minute dispatch interval. The user is able to choose the generator to be shown based on its DUID.
 
-## 6 Software Architecture & Reproducibility
+First, filtering the two input tables for the selected DUID:
 
--   
+```{r}
+bidday <- bidday_df   %>% filter(DUID == duid_filter)
+bidper <- bidper_df   %>% filter(DUID == duid_filter)
+```
 
--   **Language & environment.** R 4.4.0; packages pinned via `renv.lock`. Dockerfile provided (`rocker/verse` base) achieves deterministic builds on Windows/Linux.
+`bidday_df` (BIDDAYOFFER_D) holds the PRICEBAND_1…10 columns (the 24-hour bid prices).\
 
--   
+`bidper_df` (BIDPEROFFER_D) holds the BANDAVAIL_1…10 columns (the actual 5-minute availabilities).
 
--   **Code style.** Tidyverse; styler-enforced; unit tests (88 % coverage) written in `testthat`.
+Second, the ten band columns need to be reshaped from wide to long:
 
--   
+```{r}
+daily_price <- bidday %>%
+  select(timestamp, PRICEBAND_1:PRICEBAND_10) %>%
+  pivot_longer(-timestamp, names_to="Band", values_to="Price") %>%
+  mutate(Band = as.integer(str_extract(Band, "\\d+")))
 
--   **Continuous Integration.** GitHub Actions run ETL smoke tests and Shiny proxy launches on every commit.
+avail_data <- bidper %>%
+  select(timestamp, BANDAVAIL_1:BANDAVAIL_10) %>%
+  pivot_longer(-timestamp, names_to="Band", values_to="MW") %>%
+  mutate(Band = as.integer(str_extract(Band, "\\d+")))
 
--   
+```
 
--   **Licensing.** GPL-3 for code; CC-BY-4.0 for generated artefacts.
+Converting each of the ten band columns into rows (timestamp, Band, Price) and (timestamp, Band, MW) makes it easy to join on both the time and band number.
 
--   
+Third, join and compute the cumulative supply:
 
-## 7 Results & Insights (Illustrative)
+```{r}
+joined <- inner_join(daily_price, avail_data, by = c("timestamp","Band")) %>%
+  group_by(timestamp) %>%
+  arrange(Price) %>%
+  mutate(CumMW = cumsum(MW)) %>%
+  ungroup()
 
--   
+```
 
--   **Steeper supply in peak intervals.** Median supply-curve slope at 18:00 AEST is 2.3× higher than at 03:00 (Wilcoxon \$p\<10\^{-6}\$).
+The price and quantity for each band are merged, at each dispatch interval. Moreover, the data is ordered by ascending Price then taking a running total over MW yields the classical “bid-stack” cumulative volume.
 
--   **Renewables depress marginal prices.** A 1 GW increase in wind reduces median RRP by 9.2 \$/MWh (95 % CI 7.8 – 10.6) holding demand constant.
+Fourth, plot and animate:
 
--   **Strategic withholding detectable.** For five large gas units, withheld volume (band \> \$300/MWh while demand \> 8 GW) averages 14 % of capacity.
+```{r}
+ggplot(joined, aes(x = CumMW, y = Price, group = timestamp)) +
+  geom_step(color = "#0077b6") +
+  scale_y_log10() +
+  labs(
+    title = paste("Supply Curve for", duid_filter, "— {frame_time}"),
+    x = "Cumulative MW",
+    y = "Price ($/MWh)"
+  ) +
+  transition_time(timestamp) +
+  ease_aes('linear') +
+  theme_minimal()
 
--   
+```
 
-## 8 Limitations & Future Work
+`geom_step()` draws the step-function: each horizontal segment shows the volume at a given price band.\
 
--   
+Log‐scale on the y-axis (`scale_y_log10()`) makes wide price swings (including negative or very high bids) readable alongside baseload bands.\
 
--   **Constraint granularity.** Regional aggregation ignores intra-regional congestion; plan to integrate constraint violation degree (LHS/RHS) data.
+`transition_time(timestamp)` animates through every 5-minute snapshot, so you see the curve shift as availability changes.
 
--   
+### Heatmap
 
--   **Real fuel costs.** Spot gas/LNG prices are lagged proxies; contract exposures are unavailable.
+The availability heatmap visualises how a single unit’s available volume is distributed across its ten price bands over time. The process was done as follows:
 
--   
+First, data extraction & filtering:
 
--   **Algorithmic bidding.** Does not model real-time auto-rebidding strategies; could incorporate high-frequency bid logs.
+```{r}
+bid_filtered <- bidper_df %>%
+  filter(DUID == duid_filter)
 
--   
+```
 
-## 9 References
+Starting from the BIDPEROFFER_D table (`bidper_df`), which contains the 5-minute “real-time” availability for each price band (`BANDAVAIL_1…BANDAVAIL_10`). Filtering to `DUID == duid_filter` isolates the one generator you’ve selected in the dashboard.
 
--   AEMO (2024). *EMMS Technical Specification – Data Model* v5.3.
+Second, reshaping to long format:
 
--   AER (2024). *State of the Energy Market 2024*.
+```{r}
+avail_cols <- grep("BANDAVAIL", names(bid_filtered), value = TRUE)
 
--   Weron, R. (2014). "Electricity price forecasting…" *International Journal of Forecasting*, 30(4), 1030 – 1081.
+bid_long <- bid_filtered %>%
+  select(timestamp, all_of(avail_cols)) %>%
+  pivot_longer(-timestamp, names_to = "Band", values_to = "MW") %>%
+  mutate(Band = as.integer(str_extract(Band, "\\d+")))
 
--   Woo, C. K., et al. (2020). "Short-run fuel cost pass-through…" *Energy Economics*, 86, 104657.
+```
 
--   Flow Power (2021). "The NEM, bid stacks and five-minute settlement."
+pivot_longer() stacks the ten BANDAVAIL_i columns into rows of (timestamp, Band, MW) so that Band can be treated as a categorical y-axis. The numeric band index is then extracted with str_extract(...) which ensures correct ordering.
 
--   OpenElectricity (2024). "Understanding Electricity Market Pricing and Trading Data."
+Third, plotting with geom_tile():
 
-### Appendix A – Proof of Capping Algorithm Optimality
+```{r}
+ggplot(bid_long, aes(
+    x    = timestamp,
+    y    = factor(Band),
+    fill = MW
+  )) +
+  geom_tile() +
+  labs(
+    title = paste("Availability Heatmap for", duid_filter),
+    x     = "Time",
+    y     = "Price Band"
+  ) +
+  scale_fill_viridis_c(name = "MW Available") +
+  theme_minimal()
 
-*Formal proof omitted for brevity; see Git repo `docs/appendix_A.pdf`.*
+```
+
+geom_tile() draws one colored rectangle per (timestamp, Band), that shaded by the available MW. The shading utilises a viridis color scale to indicate the amount of available MW, which gives perceptually uniform contrast and is friendly for color‐vision deficiencies. Lastly, the Band is converted to a factor which preserves the natural order 1→10 on the y-axis.
+
+### Bidstack
+
+The Bidstack visualisation shows how the combined supply curve of every generator in a region evolves through each 5-minute dispatch interval, and where demand clears the stack. The point where demand is fulfilled is where the dotted line meets the graphs.
+
+First, define time window & region of the stack:
+
+```{r}
+day0  <- ymd(date)
+start <- as_datetime(day0)
+end   <- start + days(1)
+regs  <- if (tolower(region)=="all") NULL else strsplit(region, ",\\s*")[[1]]
+
+```
+
+By first building the 24-hour window from start to end, for the chosen date and convert the region string into a vector.
+
+Second, to average daily price bands:
+
+```{r}
+daily_price <- open_dataset(bids_dir) %>%
+  filter(timestamp >= start, timestamp < end) %>%
+  filter(REGIONID %in% regs) %>%
+  select(REGIONID, DUID, starts_with("PRICEBAND")) %>%
+  collect() %>%
+  group_by(REGIONID, DUID) %>%
+  summarise(across(starts_with("PRICEBAND"), mean, na.rm=TRUE)) %>%
+  pivot_longer(starts_with("PRICEBAND"), names_to="Band", values_to="Price") %>%
+  mutate(Band = as.integer(str_extract(Band, "\\d+")))
+
+```
+
+The mean price of each generator’s 24-hour bid prices is calculated. It will then be pivoted into a long (Band, Price) table for later joins.
+
+Third, selecting the best intermittent forecast:
+
+```{r}
+interm_tbl <- open_dataset(interm_dir) %>%
+  filter(timestamp >= start, timestamp < end) %>%
+  collect() %>%
+  group_by(DUID, timestamp) %>%
+  filter(
+    FORECAST_PRIORITY == max(FORECAST_PRIORITY),
+    OFFERDATETIME    == max(OFFERDATETIME)
+  ) %>%
+  slice_head(n=1) %>%
+  select(DUID, FORECAST_POE50, timestamp)
+
+```
+
+From INTERMITTENT_DS_PRED, only the highest‐priority and most recent FORECAST_POE50 per generator and interval is kept in the dataset.
+
+Fourth, trim 5-minute availabilities by forecast:
+
+```{r}
+avail_all <- open_dataset(per_dir) %>%
+  filter(timestamp >= start, timestamp < end) %>%
+  filter(REGIONID %in% regs) %>%
+  select(REGIONID, DUID, timestamp, starts_with("BANDAVAIL"), MAXAVAIL) %>%
+  collect() %>%
+  pivot_longer(starts_with("BANDAVAIL"), names_to="Band", values_to="MW") %>%
+  mutate(Band = as.integer(str_extract(Band, "\\d+"))) %>%
+  left_join(interm_tbl, by=c("DUID","timestamp")) %>%
+  mutate(
+    effective_maxavail = if_else(!is.na(FORECAST_POE50),
+                                 pmin(FORECAST_POE50, MAXAVAIL),
+                                 MAXAVAIL)
+  ) %>%
+  group_by(REGIONID, DUID, timestamp) %>%
+  mutate(
+    totalMW   = sum(MW, na.rm=TRUE),
+    over      = totalMW - effective_maxavail,
+    maxBandNZ = max(Band[MW>0], na.rm=TRUE),
+    MW        = if_else(over>0 & Band==maxBandNZ,
+                        pmax(MW - over, 0),
+                        MW)
+  ) %>%
+  ungroup()
+
+```
+
+Each band’s 5-minute availability is then joined with its forecast. If the sum of all bands exceeds the forecasted output (FORECAST_POE50), trim the excess from the highest‐price band to ensure total availability never surpasses the forecast.
+
+Fifth, map fuel types:
+
+```{r}
+fuel_df <- open_dataset(units_dir) %>%
+  select(DUID, FuelType) %>%
+  distinct() %>%
+  collect()
+
+```
+
+Pull each generator’s technology classification for color‐coding.
+
+Sixth, building cumulative supply curve per timestamp:
+
+```{r}
+df_all <- daily_price %>%
+  inner_join(avail_all, by=c("REGIONID","DUID","Band")) %>%
+  left_join(fuel_df,  by="DUID") %>%
+  filter(!is.na(Price), !is.na(MW)) %>%
+  group_by(timestamp, FuelType, Price, Band) %>%
+  summarise(MW = mean(MW, na.rm=TRUE)) %>%
+  arrange(timestamp, Price) %>%
+  group_by(timestamp) %>%
+  mutate(CumVol = cumsum(MW)) %>%
+  ungroup()
+
+```
+
+Merge price and (trimmed) availability, then compute the running total of MW at each price level for every interval.
+
+Seventh, fetch cleared demand:
+
+```{r}
+demand_ts <- open_dataset(units_dir) %>%
+  filter(timestamp >= start, timestamp < end) %>%
+  filter(REGIONID %in% regs) %>%
+  select(timestamp, TOTALCLEARED) %>%
+  collect() %>%
+  group_by(timestamp) %>%
+  summarise(demand = sum(TOTALCLEARED), .groups="drop")
+
+```
+
+Summing TOTALCLEARED yields the actual volume dispatched; its maximum‐price band sets the Regional Reference Price (RRP).
+
+Eighth, plot & animate the bidstack:
+
+```{r}
+ggplot(df_anim, aes(fill=FuelType)) +
+  geom_rect(aes(
+    xmin = CumVol - MW, xmax = CumVol,
+    ymin = 0,         ymax = Price
+  )) +
+  geom_vline(aes(xintercept=demand),
+             linetype="dashed", color="steelblue") +
+  geom_text(data=label_df,
+            aes(x=demand, y=price_cap, label=label_both),
+            hjust=1.1, vjust=-0.5, size=3) +
+  coord_cartesian(ylim=c(0,price_cap)) +
+  scale_x_continuous("Cumulative MW", labels=number_format(scale=1e-3,suffix="K")) +
+  scale_y_continuous("Price ($/MWh)", labels=dollar_format()) +
+  labs(
+    title    = paste0("Bidstack on ", date, " (", region, ")"),
+    subtitle = "Time: {frame_time}", fill="Fuel Type"
+  ) +
+  theme_minimal(base_size=14) +
+  transition_time(timestamp) +
+  ease_aes("linear")
+
+```
+
+`geom_rect()` stacks colored blocks by fuel type, which shows how each technology contributes to total capacity at each price. A dashed vertical line marks actual demand; a text label shows the clearing price/volume.\
+`transition_time(timestamp)` animates through each 5-minute interval, revealing intraday shifts in both capacity and clearing price.
+
+### Seasonality Plot
+
+The seasonality plot decomposes and visualises the time-of-day seasonality for key bid and market metrics over a user-specified date range. It does this by overlaying each day’s 30-minute trajectory (“spaghetti”) with a bold average line, making it easy to see both daily variability and the underlying repeating cycle. By aligning time of day and overlaying multiple days, diurnal cycle is visualised to show the pattern of variation in quantity over the course of a 24-hour period. Internally, the function proceeds as follows:
+
+First, define the analysis window:
+
+```{r}
+dt0 <- ymd(start_date, tz="Australia/Brisbane")
+dt1 <- ymd(end_date,   tz="Australia/Brisbane") + days(1) - seconds(1)
+floor30 <- function(x) floor_date(x, "30 minutes")
+
+```
+
+Builds a POSIX window from start_date to end of end_date and defines a helper to round every timestamp down to its enclosing 30-minute bin.
+
+Second, compute daily average offer price:
+
+Read BIDDAYOFFER_D, filter by region & window.\
+Pivot the ten PRICEBAND\_ columns long, then floor each timestamp to 30-minute bins.\
+Group by calendar date and compute the mean price per bin.\
+Result: one line per day in price_df, later plotted with grey lines + bold steel-blue average.
+
+Third, aggregate total availability per 30-minute:
+
+Read BIDPEROFFER_D, filter by region & window.\
+Sum across all BANDAVAIL\_ columns to get total MW available in each interval.\
+Group by date and bin to produce a spaghetti of daily availability curves (avail_df), plus a red mean line.
+
+Fourth, fetch RRP, residual demand, renewables & operational demand:
+
+-   RRP: pull every 5-minute RRP from DREGION, assign date and bin.
+
+-   Operational demand: same binning for OPERATIONAL_DEMAND.
+
+-   Renewables: from UNIT_SOLUTION, filter FuelType “Solar”/“Wind”, sum TOTALCLEARED per bin.
+
+-   Residual demand: merge demand & renewables per bin, subtract to get Residual = Demand – Renewable_MW.
+
+Fifth, plot each metric:
+
+For each of the six outputs—price, availability, RRP, residual, renewable generation, operational demand—the code uses:
+
+```{r}
+ggplot(df, aes(
+  x     = as_hms(ts - floor_date(ts, "day")),
+  y     = value,
+  group = date
+)) +
+  geom_line(color="grey80", linewidth=0.4) +
+  stat_summary(aes(group=1),
+               fun       = mean,
+               geom      = "line",
+               linewidth = 1.1) +
+  scale_x_time(..., labels=label_time("%H:%M")) +
+  scale_y_continuous(...) +
+  labs(
+    title    = sprintf("Daily %s — %s (%s to %s)", metric_name, region, start_date, end_date),
+    subtitle = "Grey = each day; <color> = average"
+  ) +
+  theme_minimal()
+
+```
+
+Grey spaghetti: shows each calendar day’s 30-minute profile.\
+Bold colored line: the mean across days, highlighting the recurring pattern.
+
+# Results
+
+The dashboard is able to provide insight into generator bidding behaviour via the four visualisations.
+
+### Supply Curve
+
+```{r}
+
+```
+
+The supply curve can show how price and volume interact, by animating or plotting a generator’s supply curve—cumulative offered volume (MW) on the x-axis versus offer price (\$/MWh) on the y-axis—the dashboard makes visible how each tranche of capacity is “stacked” by price.
+
+This visualisation helps indicate where the bulk of capacity lies, such as where a coal plant’s large low price block versus a Gas-OCGT peaker’s small high-price slice. Moreover, it also showcases intraday strategy shifts and how each generator adjusts its availability offering per band each day. Thus, helping analysts understand each unit’s cost structure and how strategic bidding behaviour evolves through the day.
+
+### Availability Heatmap
+
+```{r}
+
+```
+
+The availability heatmap aids in spotting unusual or strategic bidding availability, as the user is able to choose a generator by DUID and a date range, to showcase the MW offered in each band over time. The date range is shown on the x-axis and the different bands on the y-axis, colour-scaled by MW.
+
+This visualisation showcases routine patterns in each generator’s bidding strategy, as to where they may have consistent gaps of availability or unavailability at the same hour each day. Moreover, it makes it easier to spot anomalies in bidding strategies as well, such as when there is an unplanned outage which leads to a generator withdrawing large capacity from a band.
+
+### Bidstack Visuals
+
+```{r}
+
+```
+
+The bidstack visuals aggregates all generators’ trimmed, banded offers into a single step-plot for a region at a given interval, coloured by fuel type. Thus, allowing users to compare bidding stacks across time, for example 8 am vs. 6 pm, and regions such as Queensland vs. Victoria. By doing so, regional differences in fuel consumption can be highlighted, where one region may consume higher levels of renewable energy compared to another. Therefore, allowing analysts to assess inter-regional constraints, and the progress of renewable energy penetrating the NEM.
+
+### Seasonality Plot
+
+```{r}
+
+```
+
+The seasonality plot overlay multiple days’ worth of a metric (e.g., residual demand or average price) by hour of day, often with a highlighted multi-day average. Showcasing diurnal cycles throughout the day, differences between weekday and weekend bidding behaviour or demand, as well as impact on external events.
+
+By “flattening” time onto a 24-hour cycle, these plots help stakeholders pinpoint operational patterns and evaluate whether bidding strategies align with expected seasonal trends.
+
+## Limitation & Improvements
+
+Several measures could be taken for future improvements, including making the dashboard easily extendable and integrating the auto-download and processing script directly into the dashboard.
+
+First, to make the dashboard easily extendable, a modular architecture could be adopted, with each visualization encapsulated in its own module or Shiny module. Moreover, clear interfaces could be defined further for adding new plots or data sources, and template modules and documentation could be provided to ensure that future team members or collaborators can add in new analyses (e.g., forecast accuracy plots, cost-benefit analyses) without having to rewrite the core code.
+
+Second, to integrating the auto-download and processing script into the dashboard, the ETL pipeline could be embedded as a background R process or scheduled task within the Shiny server (using future/promises or a cron-style scheduler). Furthermore, exposing a “Refresh Data” button in the UI to trigger incremental downloads, Parquet conversion, and mapping updates on demand will help increase efficiency. Lastly, implementing progress indicators and logging in to inform users when new data are fetched, processed, and ready for visualization– will deliver an end-to-end, one-click solution.
+
+These enhancements will transform the dashboard from a static set of analyses into a dynamic, maintainable platform—one that can grow organically as new data, metrics, or market insights emerge.
+
+# References
+
+-   Dungey et al. 2017 CESifo Working Paper no. 6819 Strategic Bidding of Electric Power Generating Companies: Evidence from the Australian National Energy Market
+-   SEC Victoria, 2025 <https://www.secvictoria.com.au/?utm_source=google&utm_medium=sem&utm_campaign=poweringvictoria24&utm_content=generic&gad_source=1&gad_campaignid=22404807562&gclid=CjwKCAjw3f_BBhAPEiwAaA3K5MKDN_qn5U7Yt_T31C3W6WzOnJiD1XXXNxrRGmWqIXmfgs6Q5mth6RoCdCAQAvD_BwE>
+-   State Government of Victoria, 2025 Government-owned renewable energy is leading the way \| vic.gov.au
+-   State Government of Victoria, 2024 The SEC Is Back For Good \| Premier
+-   AEMO, 2025 AEMO \| National Electricity Market (NEM)
+-   DCCEEW, 2024 National Electricity Market - DCCEEW
+-   AEMO 2023 <https://aemo.com.au/-/media/files/electricity/nem/planning_and_forecasting/solar-and-wind/enablement-of-bid-max-avail-for-semi-scheduled-generators/australian-wind-energy-forecasting-system-awefs-and-australian-solar-energy-forecasting-system-asefs.pdf>
+-   AER 2023 State of the energy market 2023
+-   AEMC 2025 <https://www.aemc.gov.au/energy-system/electricity/electricity-market/spot-and-contract-markets#:~:text=The%20spot%20price%20tells%20generators,kWh%20and%209.8c/kWh>.
+-   A. Stan Hurn, Annastiina Silvennoinen, Timo Teräsvirta <https://doi.org/10.1002/jae.2452> CESifo Working Paper no. 6819 found in here
+-   Breeze, P (2021) <https://www.sciencedirect.com/topics/engineering/open-cycle-gas-turbine>
+-   IPIECA, 2022 <https://www.ipieca.org/resources/energy-efficiency-compendium/combined-cycle-gas-turbines-2022>
+-   Wattclarity, 2025 [https://wattclarity.com.au/other-resources/glossary/#:\~:text=Dispatchable%20Unit%20ID%20(DUID);,(and%20some%20registered%20loads)](https://wattclarity.com.au/other-resources/glossary/#:~:text=Dispatchable%20Unit%20ID%20(DUID);,(and%20some%20registered%20loads)).
+-   Do et al., 2021 <https://www.sciencedirect.com/science/article/pii/S0306261920316846>
+-   AEMO, 2025b AEMO \| Nemweb data
+-   Vohra, 2016 Apache Parquet \| SpringerLink

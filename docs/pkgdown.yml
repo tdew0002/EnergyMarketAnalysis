@@ -1,9 +1,0 @@
-pandoc: '3.4'
-pkgdown: 2.1.3
-pkgdown_sha: ~
-articles:
-  introduction: introduction.html
-  Report: Report.html
-  shiny_overview: shiny_overview.html
-  slides: slides.html
-last_built: 2025-06-09T04:35Z

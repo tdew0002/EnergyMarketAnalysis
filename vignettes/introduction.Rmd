@@ -1,11 +1,13 @@
 ---
 title: "AemoETL: Introduction & Quickstart"
 author: "TYCIA DEWI"
-date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
     number_sections: true
+    css: vignette.css 
+    includes:
+      after_body: scrollspy.js
 vignette: >
   %\VignetteIndexEntry{AemoETL: Introduction & Quickstart}
   %\VignetteEngine{knitr::rmarkdown}
@@ -20,7 +22,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 # What is AemoETL?
 
 **AemoETL** is an R package that provides:
@@ -31,17 +32,15 @@ knitr::opts_chunk$set(
 
 -   Convenient output to **Parquet**
 
--   A lightweight **Shiny dashboard** (and helper `run_app()`) for exploring:
+-   A lightweight **Shiny dashboard** (and helper run_app()) for exploring:
 
-```         
--    Supply-curve animations
+    -   Supply-curve animations
 
--    Band-availability heatmaps
+    -   Band-availability heatmaps
 
--    Bidstack snapshots & animations
+    -   Bidstack snapshots & animations
 
--    Seasonality plots
-```
+    -   Seasonality plots
 
 ## Installation
 
@@ -50,13 +49,13 @@ knitr::opts_chunk$set(
 install.packages("AemoETL")
 
 # or latest development version from GitHub:
-remotes::install_github("tdew0002/EnergyMarketAnalysis")
+#remotes::install_github("tdew0002/EnergyMarketAnalysis")
 
 ```
 
 ## 1. Download & Parquet Conversion
 
-1.  **`main()`** (in **etl/script/DownloadAemo.R**)
+1.  **`main()`** (in `etl/script/DownloadAemo.R`)
 
 ```{r}
 library(AemoETL)
@@ -66,29 +65,23 @@ main()
 
 -   **Interactive menu**: choose AEMO Archive vs Current; drill down into subfolders until ZIP files appear.
 
--   **Download location**:
-
-    `data/raw_data/<dataset_name>/<YYYYMMDD>/...`
+-   **Download location**: is in raw_data in data folder
 
 -   **Extraction**:
 
-    -   Every ZIP is unpacked into `data/raw_data/.../<YYYYMMDD>/`
-
+    -   Every ZIP is unpacked into raw_data in data folder
     -   Inner ZIPs are recursively extracted
-
     -   All CSVs are then parsed by `extract_id_tables()` into named chunks (e.g. “BIDPEROFFER_D”, “DREGION”)
 
--   **Parquet output**:
-
-    `data/parquet_tables/<TABLE_NAME>/<YYYYMMDD>.parquet`
+-   **Parquet output**: will be in parquet_tables in data
 
 -   **Cleanup**: original CSVs are deleted to save space.
 
--   **Mapping file**: `mapping/dataset_table_mapping.rds`
+-   **Mapping file**: dataset_table_mapping.rds in mapping files
 
 ## 2. Filter & Enrich
 
-Once you have raw Parquet under `data/parquet_tables/`, apply your filtering rules:
+Once you have raw Parquet under parquet_tables folder under data folder, apply your filtering rules:
 
 ```{r}
 library(AemoETL)
@@ -98,23 +91,13 @@ run_filtering()
 
 **`run_filtering()`** (in **R/data_processing.R**)
 
--   Reads each raw parquet from
+-   Reads each raw parquet from data ==\> parquet_tables ==\> <TABLE_NAME>
 
-    `data/parquet_tables/<TABLE_NAME>/`
+-   Applies your per-table `$filter`, `$select`, and `$timestamp` rule (see **R/filtering_rules.R**)
 
-<!-- -->
+-   Writes **filtered** Parquet under data ==\> filtered_parquet_tables ==\> <TABLE_NAME>
 
--    Applies your per-table `$filter`, `$select`, and `$timestamp` rule (see **R/filtering_rules.R**)
-
-<!-- -->
-
--    Writes **filtered** Parquet under
-
-    `data/filtered_parquet_tables/<TABLE_NAME>/`
-
-<!-- -->
-
--    Maintains a `.processed_files.txt` in each folder so that already-filtered files are skipped automatically.
+Maintains a `.processed_files.txt` in each folder so that already-filtered files are skipped automatically.
 
 ## 3. Inspecting the Data
 
@@ -132,7 +115,7 @@ ds %>%
 
 ## 4. Launch Shiny Dashboard
 
-AemoETL ships with a Shiny app under **inst/app/**. To launch it:
+AemoETL ships with a Shiny app . To launch it:
 
 ```{r}
 run_app()

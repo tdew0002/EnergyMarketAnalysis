@@ -6,7 +6,6 @@
 .DS_Store
 .RDataTmp
 .vscode/
-/doc/
 /Meta/
 data/
 data-raw/

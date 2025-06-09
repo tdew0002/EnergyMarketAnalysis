@@ -17,8 +17,8 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
-URL: https://github.com/yourname/AemoETL
-BugReports: https://github.com/yourname/AemoETL/issues
+URL: https://tdew0002.github.io/EnergyMarketAnalysis
+BugReports: https://github.com/tdew0002/EnergyMarketAnalysis/issues
 Imports:
   arrow,
   data.table,
