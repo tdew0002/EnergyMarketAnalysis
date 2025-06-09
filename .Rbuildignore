@@ -1,0 +1,5 @@
+^doc$
+^Meta$
+^data
+^.*\.Rproj$
+^\.Rproj\.user$
