@@ -68,6 +68,12 @@ The app ships inside the package (inst/app/) and opens in your default browser. 
 
 -   Seasonality spaghetti plots (price, availability, RRP, demand …)
 
+Recomended DUID input : NPS or LOYBB1
+
+Recomended REGIONID input : VIC1
+
+Recomended Date input : choose date that is later than March 2024 and earlier than January 2025 for the full data availability.
+
 A quick “how-to” is in the Shiny Dashboard Tour vignette above.
 
 ## Shortcut — download filtered data - RECOMEMDED

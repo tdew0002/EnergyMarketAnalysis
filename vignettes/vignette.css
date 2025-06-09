@@ -1,0 +1,170 @@
+/* ───────────────────────────────────────────────
+   Brand colours (SEC style)
+   ───────────────────────────────────────────── */
+:root {
+  --sec-orange:   #ff7a19;  /* primary accent */
+  --sec-orange-d: #d86511;  /* darker hover  */
+  --sec-blue:     #003052;  /* deep navy for headings */
+  --sec-gray:     #48505c;  /* body text            */
+  --sec-bg:       #fcfcfc;  /* page background      */
+  --sec-gray-l:   #e6e9ee;  /* light gray borders   */
+  --sec-code-bg:  #f7f8fa;  /* code block background*/
+}
+
+/* ───────────────────────────────────────────────
+   Base layout
+   ───────────────────────────────────────────── */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--sec-bg);
+  font-family: "Inter", "Source Sans Pro", Arial, sans-serif;
+  color: var(--sec-gray);
+  line-height: 1.65;
+  font-size: 17px;
+}
+
+/* reserve space for sidebar TOC */
+body {
+  margin-left: 270px;
+  max-width: 1040px;
+  padding: 0 2.4rem 3rem;
+}
+
+/* ───────────────────────────────────────────────
+   Headings
+   ───────────────────────────────────────────── */
+h1, h2, h3, h4, h5 {
+  color: var(--sec-blue);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 2.2em 0 0.6em;
+}
+
+h1 { font-size: 1.9rem; margin-top: 0; }
+h2 { font-size: 1.55rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.05rem; }
+
+/* ───────────────────────────────────────────────
+   Links
+   ───────────────────────────────────────────── */
+a       { color: var(--sec-orange); text-decoration: none; }
+a:hover { color: var(--sec-orange-d); text-decoration: underline; }
+
+/* ───────────────────────────────────────────────
+   Sidebar table-of-contents
+   ───────────────────────────────────────────── */
+#TOC {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1.2rem 1rem 2.5rem;
+  border-right: 1px solid var(--sec-gray-l);
+  background: #ffffff;
+  font-size: 0.9rem;
+}
+
+#TOC > ul { margin: 0; padding-left: 0; }
+#TOC li   { list-style: none; margin: 4px 0; }
+
+#TOC a            { color: var(--sec-gray); }
+#TOC a:hover       { color: var(--sec-orange-d); }
+
+.toc-active {
+  background: rgba(255,122,25,0.15);
+  border-left: 3px solid var(--sec-orange);
+  border-radius: 2px;
+}
+.toc-active > a   { color: var(--sec-blue); font-weight: 600; }
+
+/* compact nested items */
+#TOC ul ul { margin-left: 0.8rem; }
+
+/* ───────────────────────────────────────────────
+   Code blocks (“cards”)
+   ───────────────────────────────────────────── */
+pre {
+  background: var(--sec-code-bg);
+  border: 1px solid var(--sec-gray-l);
+  border-left: 4px solid var(--sec-orange);
+  border-radius: 6px;
+  padding: 0.85rem 1.1rem;
+  overflow-x: auto;
+  font-family: "Fira Code", "Source Code Pro", monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+pre > code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* inline code */
+code {
+  background: var(--sec-code-bg);
+  padding: 0 0.25em;
+  border-radius: 3px;
+  font-size: 0.88em;
+  font-family: "Fira Code", "Source Code Pro", monospace;
+}
+
+/* ───────────────────────────────────────────────
+   Figures & tables
+   ───────────────────────────────────────────── */
+.figure, .table { margin: 2rem 0; }
+caption { caption-side: bottom; font-size: 0.85rem; color: var(--sec-gray); }
+
+/* images adapt */
+img { max-width: 100%; height: auto; border-radius: 4px; }
+
+/* ───────────────────────────────────────────────
+   Blockquotes
+   ───────────────────────────────────────────── */
+blockquote {
+  border-left: 4px solid var(--sec-orange);
+  margin: 1.8rem 0;
+  padding: 0.6rem 1rem;
+  background: #fff8f3;
+  color: var(--sec-gray);
+}
+
+/* ───────────────────────────────────────────────
+   Scroll-spy highlight (needs JS)
+   ───────────────────────────────────────────── */
+section:target {
+  box-shadow: inset 0 0 0 3px rgba(255,122,25,0.4);
+  border-radius: 4px;
+}
+
+/* ───────────────────────────────────────────────
+   Tables
+   ───────────────────────────────────────────── */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+th, td {
+  border: 1px solid var(--sec-gray-l);
+  padding: 0.55rem 0.7rem;
+}
+
+th { background: #f2f4f7; }
+
+/* zebra striping */
+tbody tr:nth-child(odd) { background: #fafbfc; }
+
+/* ───────────────────────────────────────────────
+   Responsive tweaks
+   ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  body { margin-left: 0; max-width: 90%; }
+  #TOC { display: none; }  /* hide sidebar on small screens */
+}
