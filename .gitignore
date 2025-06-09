@@ -1,7 +1,14 @@
 .Rproj.user
 .Rhistory
 .RData
+*.RDataTmp*
 .Ruserdata
 .DS_Store
 .RDataTmp
 .vscode/
+/doc/
+/Meta/
+data/
+data-raw/
+inst/app/data/
+
