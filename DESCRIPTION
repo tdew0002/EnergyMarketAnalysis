@@ -1,0 +1,45 @@
+Package: AemoETL
+Type: Package
+Title: AEMO ETL & Shiny Dashboard
+Version: 0.1.0
+Authors@R: 
+  person(
+    given = "Tycia",
+    family = "Dewi",
+    role = c("aut","cre"),
+    email = "tycia.dewi@gmail.com"
+  )
+Description: 
+  An end-to-end ETL pipeline for AEMO data (download, filter, parquet conversion)
+  plus helper functions for a Shiny bidstack dashboard.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr
+URL: https://github.com/yourname/AemoETL
+BugReports: https://github.com/yourname/AemoETL/issues
+Imports:
+  arrow,
+  data.table,
+  dplyr,
+  fs,
+  future,
+  future.apply,
+  here,
+  lubridate,
+  progressr,
+  rvest,
+  httr,
+  purrr,
+  tools,
+  stringr,
+  Microsoft365R,
+  shiny
+Suggests:
+  knitr,
+  rmarkdown,
+  devtools,
+  testthat,
+  pkgdown
+RoxygenNote: 7.3.2
