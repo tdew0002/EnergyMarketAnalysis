@@ -12,3 +12,4 @@ data-raw/
 inst/app/data/
 
 /doc/
+*.png

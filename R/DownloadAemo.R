@@ -198,7 +198,7 @@ main <- function() {
         extract_dir <- file.path(local_base, tools::file_path_sans_ext(fname))
         
         if (!fs::dir_exists(extract_dir) ||
-            length(list.files(extract_dir, "\\.csv$", recursive=TRUE))==0) {
+            length(list.files(extract_dir, "(?i)\\.csv$", recursive=TRUE))==0) {
           if (!fs::file_exists(zip_path)) {
             message("⬇️ Downloading ", fname)
             httr::GET(paste0(final_url, fname), httr::write_disk(zip_path, overwrite=TRUE), httr::timeout(download_timeout))
@@ -211,7 +211,7 @@ main <- function() {
           message("📁 Using existing CSVs for ", dt)
         }
         
-        csvs <- list.files(extract_dir, "\\.csv$", full.names=TRUE, recursive=TRUE)
+        csvs <- list.files(extract_dir, "(?i)\\.csv$", full.names=TRUE, recursive=TRUE)
         tables <- unlist(lapply(csvs, extract_id_tables), recursive=FALSE)
         for (nm in names(tables)) {
           odir <- file.path(parquet_output, nm); fs::dir_create(odir)
