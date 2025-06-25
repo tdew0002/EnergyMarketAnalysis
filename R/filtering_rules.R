@@ -44,8 +44,7 @@ filtering_rules <- list(
         "REGIONID",
         "DUID",
         "FuelType",
-        "SETTLEMENTDATE",
-        "PERIODID",
+        "INTERVAL_DATETIME",
         "DIRECTION",
         "MAXAVAIL",
         "PASAAVAILIBILITY",
@@ -56,10 +55,9 @@ filtering_rules <- list(
     },
     timestamp = function(dt) {
       dt[, timestamp := as.POSIXct(
-        SETTLEMENTDATE,
+        INTERVAL_DATETIME,
         format = "%Y/%m/%d %H:%M:%S",
-        tz = "Australia/Brisbane"
-      ) + lubridate::minutes((PERIODID - 1) * 5)]
+        tz = "Australia/Brisbane")]
     }
   ),
   
@@ -206,6 +204,7 @@ filtering_rules <- list(
         date   <- substr(DISPATCHINTERVAL, 1, 8)
         period <- as.numeric(substr(DISPATCHINTERVAL, 9, 11))
         as.POSIXct(date, format = "%Y%m%d", tz = "Australia/Brisbane") +
+          hours(4) + minutes(5) +
           lubridate::minutes((period - 1) * 5)
       }]
     }
