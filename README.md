@@ -72,19 +72,19 @@ AemoETL::main()
 
 -   At the “Data source” prompt, choose **Archive (1)**.
 
--    Then select the following dataset IDs (and their corresponding folders will be created automatically):
+-   Then select the following dataset IDs (and their corresponding folders will be created automatically):
 
-    -    **03** `Bidmove_Complete/`
+    -   **03** `Bidmove_Complete/`
 
-    -    **33** `Next_Day_Dispatch/`
+    -   **33** `Next_Day_Dispatch/`
 
-    -    **34** `Next_Day_Intermittent_DS/`
+    -   **34** `Next_Day_Intermittent_DS/`
 
-    -    **45** `Operational_Demand/` (contains `[02] ACTUAL_DAILY`)
+    -   **45** `Operational_Demand/` (contains `[02] ACTUAL_DAILY`)
 
-    -    **55** `Public_Prices/`
+    -   **55** `Public_Prices/`
 
--    Once all files have downloaded, you’ll see console messages confirming the save locations.
+-   Once all files have downloaded, you’ll see console messages confirming the save locations.
 
 ```{r}
 #2. Filter the Parquet tables
@@ -93,23 +93,23 @@ AemoETL::run_filtering()
 
 By default, `run_filtering()` will:
 
--    Read raw Parquet files from these folders:
+-   Read raw Parquet files from these folders:
 
-    -    `BIDDAYOFFER_D/`
+    -   `BIDDAYOFFER_D/`
 
-    -    `BIDPEROFFER_D/`
+    -   `BIDPEROFFER_D/`
 
-    -    `INTERMITTENT_DS_PRED/`
+    -   `INTERMITTENT_DS_PRED/`
 
-    -    `UNIT_SOLUTION/`
+    -   `UNIT_SOLUTION/`
 
-    -    `DREGION/`
+    -   `DREGION/`
 
-    -    `OPERATIONAL_DEMAND/`
+    -   `OPERATIONAL_DEMAND/`
 
--    Apply your filtering rules.
+-   Apply your filtering rules.
 
--    Write the cleaned Parquet tables into `filtered_parquet_tables/`, creating the same subdirectory structure.
+-   Write the cleaned Parquet tables into `filtered_parquet_tables/`, creating the same subdirectory structure.
 
 #### Before launching the Shiny app
 
