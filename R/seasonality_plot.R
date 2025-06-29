@@ -28,13 +28,16 @@
 #' @importFrom hms as_hms
 #' @importFrom ggplot2 ggplot aes geom_line geom_point geom_tile stat_summary labs theme_minimal theme scale_x_date scale_x_time scale_y_continuous coord_cartesian
 #' @importFrom scales comma dollar_format label_time
+#' @importFrom patchwork plot_layout
 #' @export
+
 plot_daily_bid_metrics <- function(
     bids_dir,      # BIDDAYOFFER_D
     avail_dir,     # BIDPEROFFER_D
     rrp_dir,       # DREGION for RRP
     operational_dir,  # OPERATIONAL_DEMAND
     unit_dir,      # UNIT_SOLUTION
+    interm_dir,
     region,        # e.g. "VIC1"
     start_date,    # "YYYY-MM-DD"
     end_date       # "YYYY-MM-DD"
@@ -85,22 +88,92 @@ plot_daily_bid_metrics <- function(
     mutate(ts=floor30(timestamp), date=as_date(ts)) %>%
     group_by(date,ts) %>%
     summarise(Renewable_MW=sum(TOTALCLEARED,na.rm=TRUE), .groups="drop")
+  # build per‐fuel generation by (date, ts)
+  fuel_wide <- open_dataset(unit_dir) %>%
+    filter(
+      REGIONID == region,
+      timestamp >= dt0, timestamp <= dt1,
+      FuelType %in% c("Solar - Solar", "Wind - Wind")
+    ) %>%
+    collect() %>%
+    mutate(
+      ts   = floor30(timestamp),
+      date = as_date(ts)
+    ) %>%
+    group_by(date, ts, FuelType) %>%
+    summarise(Gen = sum(TOTALCLEARED, na.rm=TRUE), .groups="drop") %>%
+    pivot_wider(
+      names_from  = FuelType,
+      values_from = Gen,
+      values_fill = 0
+    )
+  
+  # join into ren_df
+  ren_df <- ren_df %>%
+    left_join(fuel_wide, by = c("date","ts"))
+  
+  
   
   # 2e) **operational demand** from OPERATIONAL_DEMAND
+  
+  interm_tbl <- open_dataset(interm_dir) %>%
+    filter(timestamp >= dt0, timestamp <= dt1) %>%
+    collect() %>%
+    group_by(DUID, timestamp) %>%
+    filter(
+      FORECAST_PRIORITY == max(FORECAST_PRIORITY, na.rm = TRUE),
+      OFFERDATETIME    == max(OFFERDATETIME,    na.rm = TRUE)
+    ) %>%
+    slice_head(n = 1) %>%
+    ungroup() %>%
+    select(DUID, timestamp, FORECAST_POE50)
+  
+  avail_all <- open_dataset(avail_dir) %>%
+    filter(REGIONID == region, timestamp >= dt0, timestamp <= dt1) %>%
+    select(DUID, timestamp, starts_with("BANDAVAIL"), MAXAVAIL) %>%
+    collect() %>%
+    pivot_longer(starts_with("BANDAVAIL"),
+                 names_to = "Band", values_to = "MW") %>%
+    mutate(Band = as.integer(str_extract(Band, "\\d+"))) %>%
+    left_join(interm_tbl, by = c("DUID","timestamp")) %>%
+    mutate(
+      effective_maxavail = ifelse(!is.na(FORECAST_POE50),
+                                  pmin(FORECAST_POE50, MAXAVAIL),
+                                  MAXAVAIL)
+    ) %>%
+    group_by(DUID, timestamp) %>%
+    mutate(
+      totalMW   = sum(MW, na.rm = TRUE),
+      over      = totalMW - effective_maxavail,
+      maxBandNZ = ifelse(any(MW > 0), max(Band[MW > 0]), NA_integer_),
+      MW        = ifelse(over > 0 & Band == maxBandNZ, pmax(MW - over, 0), MW)
+    ) %>%
+    ungroup() %>%
+    group_by(date = as_date(timestamp), ts = floor30(timestamp)) %>%
+    summarise(Renewable_MW = sum(MW, na.rm = TRUE), .groups = "drop")
+  
   op_df <- open_dataset(operational_dir) %>%
-    filter(REGIONID==region,
-           timestamp>=dt0, timestamp<=dt1) %>%
+    filter(
+      REGIONID == region,
+      timestamp >= dt0, timestamp <= dt1
+    ) %>%
     select(timestamp, OPERATIONAL_DEMAND) %>%
     collect() %>%
-    mutate(ts=floor30(timestamp), date=as_date(ts)) %>%
-    group_by(date,ts) %>%
-    summarise(Demand=mean(OPERATIONAL_DEMAND, na.rm=TRUE), .groups="drop")
+    mutate(
+      ts   = floor30(timestamp),
+      date = as_date(ts)
+    ) %>%
+    group_by(date, ts) %>%
+    summarise(
+      Demand = mean(OPERATIONAL_DEMAND, na.rm = TRUE),
+      .groups = "drop")
   
   # 2f) residual = demand – renewables
-  resid_df <- inner_join(op_df, ren_df, by=c("date","ts")) %>%
+  resid_df <- op_df %>%
+    inner_join(ren_df, by = c("date", "ts")) %>%
     mutate(
       Residual = Demand - Renewable_MW,
-      text     = paste0(
+      text = paste0(
         "Date: ", date,
         "<br>Time: ", format(ts, "%H:%M"),
         "<br>Demand: ", comma(Demand), " MW",
@@ -213,7 +286,9 @@ plot_daily_bid_metrics <- function(
     text  = paste0(
       "Date: ", date,
       "<br>Time: ", format(ts, "%H:%M"),
-      "<br>Renewable: ", comma(Renewable_MW), " MW"
+      "<br>Renewable: ", comma(Renewable_MW), " MW",
+      "<br>Solar: ", comma(`Solar - Solar`), " MW",
+      "<br>Wind:  ", comma(`Wind - Wind`),  " MW"
     )
   )) +
     geom_line(color="grey80", linewidth=0.4) +

@@ -10,6 +10,7 @@ plot_daily_bid_metrics(
   rrp_dir,
   operational_dir,
   unit_dir,
+  interm_dir,
   region,
   start_date,
   end_date

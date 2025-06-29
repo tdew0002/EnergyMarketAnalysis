@@ -1,17 +1,33 @@
 # inst/app/app.R
 
-library(shiny)
-library(shinydashboard)
-library(arrow)
-library(dplyr)
-library(tidyr)
-library(lubridate)
-library(ggplot2)
-library(gganimate)
-library(scales)
-library(here)
-library(plotly)
-library(AemoETL)    # <-- loads all your exported plotting functions
+## ---- Auto-install & load required packages ---------------------------------
+required_pkgs <- c(
+  "shiny", "shinydashboard",          # UI framework
+  "arrow",                            # Parquet / Apache Arrow
+  "dplyr", "tidyr", "lubridate",      # data wrangling
+  "ggplot2", "gganimate", "scales",   # base + animated plotting
+  "plotly",                           # interactive plots
+  "here",                             # project-root paths
+  "progressr", "future",              # (optional) progress + parallel
+  "gifski",                           # GIF encoder used by gganimate
+  "AemoETL"                           # your own package
+)
+
+# identify what’s missing
+missing_pkgs <- required_pkgs[!vapply(required_pkgs, requireNamespace,
+                                      FUN.VALUE = logical(1), quietly = TRUE)]
+
+# install any that aren’t present
+if (length(missing_pkgs)) {
+  message("Installing missing packages: ",
+          paste(missing_pkgs, collapse = ", "))
+  install.packages(missing_pkgs, repos = "https://cloud.r-project.org")
+}
+
+# now safely attach everything (suppress startup messages to keep the log tidy)
+invisible(lapply(required_pkgs, function(pkg)
+  suppressPackageStartupMessages(library(pkg, character.only = TRUE))))
+## ---------------------------------------------------------------------------
 
 # define data directories
 data_dir        <- here("data", "filtered_parquet_tables")
@@ -269,6 +285,7 @@ server <- function(input, output, session) {
       rrp_dir         = rrp_dir,
       operational_dir = operational_dir,
       unit_dir        = unit_dir,
+      interm_dir      = interm_dir,
       region          = input$season_region,
       start_date      = as.character(input$season_daterange[1]),
       end_date        = as.character(input$season_daterange[2])
