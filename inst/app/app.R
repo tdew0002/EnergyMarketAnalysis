@@ -241,7 +241,7 @@ server <- function(input, output, session) {
   
   # 3) Bidstack static
   bidstack_static <- eventReactive(input$go_bidstack_static, {
-    ts_str <- format(with_tz(input$bidstack_ts, "UTC"), "%Y-%m-%d %H:%M")
+    ts_str <- format(with_tz(input$bidstack_ts), "%Y-%m-%d %H:%M")
     create_bidstack_5min_snapshot(
       bids_dir   = bids_dir,
       per_dir    = per_dir,
