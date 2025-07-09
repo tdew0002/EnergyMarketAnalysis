@@ -107,36 +107,57 @@ create_bidstack_5min_snapshot <- function(
     dplyr::summarise(total_cleared = sum(TOTALCLEARED, na.rm=TRUE)) %>%
     dplyr::collect() %>%
     dplyr::pull(total_cleared)
+  # 7b) find marginal price where CumVol >= total_cleared
+  marginal_price <- df %>%
+    dplyr::filter(CumVol >= total_cleared) %>%
+    dplyr::slice_head(n = 1) %>%
+    dplyr::pull(Price)
+  
+  # 7c) build a one‐row label_df exactly like the animated fn
+  label_df <- data.frame(
+    x         = total_cleared,
+    price_cap = price_cap,
+    label_both= paste0("$", round(marginal_price,1), "/MWh / ", round(total_cleared), " MW"),
+    stringsAsFactors = FALSE
+  )
   
   # 8) plot
-  ggplot2::ggplot(df, ggplot2::aes(fill = FuelType)) +
-    ggplot2::geom_rect(ggplot2::aes(
-      xmin = CumVol - MW,
-      xmax = CumVol,
-      ymin = 0,
-      ymax = Price
-    )) +
-    ggplot2::geom_vline(
-      xintercept = total_cleared,
-      linetype   = "dashed",
-      size       = 1
-    ) +
-    ggplot2::scale_x_continuous(
-      "Cumulative Offer Volume (MW)",
-      labels = scales::number_format(scale = 1e-3, suffix = "K")
-    ) +
-    ggplot2::scale_y_continuous(
-      "Offer Price ($/MWh)",
-      labels = scales::dollar_format()
-    ) +
-    ggplot2::coord_cartesian(ylim = c(0, price_cap)) +
-    ggplot2::labs(
-      title    = paste0("Bidstack at ", ts, " (", region, ")"),
-      subtitle = paste0("Total cleared: ", round(total_cleared), " MW"),
-      fill     = "Fuel Type"
-    ) +
-    ggplot2::theme_minimal(base_size = 14) +
-    ggplot2::theme(panel.grid.minor = element_blank())
+    ggplot2::ggplot(df, ggplot2::aes(fill = FuelType)) +
+      ggplot2::geom_rect(ggplot2::aes(
+        xmin = CumVol - MW,
+        xmax = CumVol,
+        ymin = 0,
+        ymax = Price
+      )) +
+      ggplot2::geom_vline(
+        xintercept = total_cleared,
+        linetype   = "dashed",
+        size       = 1
+      ) +
+      ggplot2::geom_text(
+        data         = label_df,
+        mapping      = ggplot2::aes(x = x, y = price_cap, label = label_both),
+        inherit.aes  = FALSE,
+        hjust        = 1.1,
+        vjust        = -0.5,
+        size         = 4
+      ) +
+      ggplot2::scale_x_continuous(
+        "Cumulative Offer Volume (MW)",
+        labels = scales::number_format(scale = 1e-3, suffix = "K")
+      ) +
+      ggplot2::scale_y_continuous(
+        "Offer Price ($/MWh)",
+        labels = scales::dollar_format()
+      ) +
+      ggplot2::coord_cartesian(ylim = c(0, price_cap)) +
+      ggplot2::labs(
+        title    = paste0("Bidstack at ", ts, " (", region, ")"),
+        subtitle = paste0("Total cleared: ", round(total_cleared), " MW"),
+        fill     = "Fuel Type"
+      ) +
+      ggplot2::theme_minimal(base_size = 14) +
+      ggplot2::theme(panel.grid.minor = element_blank())
 }
 
 
@@ -307,4 +328,5 @@ create_bidstack_day_animation <- function(
     transition_time(timestamp) +
     ease_aes('linear')
 }
+
 
